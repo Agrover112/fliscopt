@@ -42,7 +42,8 @@ def get_minutes(hour):
   minutes = t[3] * 60 + t[4]
   return minutes
 
-def plot_scores(scores,algo_name,save_fig):
+def plot_scores(scores,algo_name,save_fig,**kwargs):
+  temp=kwargs.get('temp',None)
   plt.xlabel("No.of improvements")
   plt.ylabel("Objecetive f(x) Scores")
   plt.plot(scores)
@@ -50,6 +51,16 @@ def plot_scores(scores,algo_name,save_fig):
     plt.savefig(os.path.join('/mnt/d/MINOR PROJECT/final/results/'+algo_name+".png")) 
   else:
     plt.show()
+  if algo_name =='simulated_annealing':
+    plt.xlabel("Temperature")
+    plt.ylabel("Objective f(x) Scores")
+    plt.plot(scores,temp)
+    if save_fig :
+      plt.savefig(os.path.join('/mnt/d/MINOR PROJECT/final/results/'+"Scores_V_Temp"+".png")) 
+    else: 
+          plt.show()
+
+    
   
 
 def fitness_function(solution,dest):

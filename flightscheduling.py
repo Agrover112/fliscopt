@@ -24,14 +24,17 @@ def multiple_runs(algorithm,init=[],use_multithreading=False,n=10):
         f.write(str(i)+","+str(cost)+","+str(diff)+","+str(soln)+"\n")
     f.close()
 
-def single_run(algorithm,init=[],save_fig=False):
-    start=time.time()
-    soln,cost,scores=algorithm(domain,fitness_function,init)
-    diff=round(time.time()-start,3)
-    print("Time taken for single run ",diff)
-    plot_scores(scores,algorithm.__name__,save_fig)
-    print_schedule(soln,'FCO')
-    return soln,cost
+def single_run(algorithm,init=[],save_fig=False): 
+     start=time.time()
+     soln,cost,scores=algorithm(domain,fitness_function,init)
+     diff=round(time.time()-start,3)
+     print("Time taken for single run ",diff)
+     if algorithm.__name__ == 'simulated_annealing':
+         plot_scores(scores,algorithm.__name__,save_fig,temp=algorithm.temp)
+     else: 
+         plot_scores(scores,algorithm.__name__,save_fig)
+     print_schedule(soln,'FCO')
+     return soln,cost
 
 
 if __name__=="__main__":

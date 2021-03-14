@@ -51,9 +51,10 @@ def hill_climb(domain,fitness_function,init=[],epochs=1000):
 
   return solution,best,scores
     
-def simulated_anneling(domain, fitness_function, init =[], temperature = 50000.0,cooling = 0.95, step = 1):
+def simulated_annealing(domain, fitness_function, init =[], temperature = 50000.0,cooling = 0.95, step = 1):
   count = 0
   scores=[]
+  simulated_annealing.temp=[]
 
   if len(init) > 0:
     solution = init
@@ -81,6 +82,7 @@ def simulated_anneling(domain, fitness_function, init =[], temperature = 50000.0
     scores.append(best)
 
     temperature = temperature * cooling
+    simulated_annealing.temp.append(temperature)
 
   print('Count: ', count)
   return solution,best,scores
