@@ -1,10 +1,11 @@
 import random
 import sys
-def random_search(domain, fitness_function,initial=[],epochs=10000):
+import math
+def random_search(domain, fitness_function,init=[],epochs=10000):
   best_cost = sys.maxsize
   scores=[]
-  if len(initial) > 0:
-    solution = initial
+  if len(init) > 0:
+    solution = init
   else:
     solution = [random.randint(domain[i][0],domain[i][1]) for i in range(len(domain))]
   for i in range(epochs):
@@ -17,11 +18,11 @@ def random_search(domain, fitness_function,initial=[],epochs=10000):
     scores.append(best_cost)
   return best_solution,best_cost,scores
 
-def hill_climb(domain,fitness_function,initial=[],epochs=1000):
+def hill_climb(domain,fitness_function,init=[],epochs=1000):
   count=0
   scores=[]
-  if len(initial) > 0:
-    solution = initial
+  if len(init) > 0:
+    solution = init
   else:
     solution = [random.randint(domain[i][0],domain[i][1]) for i in range(len(domain))]
   while True:
@@ -50,3 +51,36 @@ def hill_climb(domain,fitness_function,initial=[],epochs=1000):
 
   return solution,best,scores
     
+def simulated_anneling(domain, fitness_function, init =[], temperature = 50000.0,cooling = 0.95, step = 1):
+  count = 0
+  scores=[]
+
+  if len(init) > 0:
+    solution = init
+  else:
+    solution = [random.randint(domain[i][0], domain[i][1]) for i in range(len(domain))]
+   
+  while temperature > 0.1:
+    i = random.randint(0, len(domain) - 1)
+    direction = random.randint(-step, step)
+    temp_solution = solution[:] 
+    temp_solution[i] += direction
+    if temp_solution[i] < domain[i][0]:
+      temp_solution[i] = domain[i][0]
+    elif temp_solution[i] > domain[i][1]:
+      temp_solution[i] = domain[i][1]
+
+    count += 1
+    cost = fitness_function(solution,'FCO')
+    cost_temp = fitness_function(temp_solution,'FCO')
+    prob = pow(math.e, (-cost_temp - cost) / temperature)
+    best=cost
+    if (cost_temp < cost or random.random() < prob):
+      best=cost_temp
+      solution = temp_solution
+    scores.append(best)
+
+    temperature = temperature * cooling
+
+  print('Count: ', count)
+  return solution,best,scores
