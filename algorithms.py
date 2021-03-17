@@ -1,6 +1,7 @@
 import random
 import sys
 import math
+
 def random_search(domain, fitness_function,init=[],epochs=10000):
   best_cost = sys.maxsize
   scores=[]
