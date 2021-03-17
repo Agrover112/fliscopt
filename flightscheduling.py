@@ -45,4 +45,3 @@ if __name__=="__main__":
     soln,cost=single_run(random_search,save_fig=True)
     multiple_runs(hill_climb,soln)
     soln,cost=single_run(hill_climb,init=soln,save_fig=True)
-    print("Done")
