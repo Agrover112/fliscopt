@@ -1,7 +1,7 @@
-from utils import * 
-#from algorithms.randomsearch import *
-#from algorithms.hillclimbing import *
-from algorithms import *
+
+from utils import read_file , time, plot_scores ,print_schedule , people
+from fitness import fitness_function
+from algorithms import random_search ,hill_climb, simulated_annealing
 import os
 
 import matplotlib.pyplot as plt
@@ -10,7 +10,7 @@ matplotlib.use('TKAgg')
 
 
 domain = [(0,9)] * (len(people) * 2) # 9 times * no.of people * to-from
-read_file('flights.txt')  # 16 flights with 10 possibilites 10^16
+read_file('flights.txt')  # 12 flights with 10 possibilites 10^12
 
 
 
