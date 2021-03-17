@@ -61,17 +61,6 @@ def plot_scores(scores,algo_name,save_fig,**kwargs):
           plt.show()
 
     
-  
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ =='__main__':
@@ -80,5 +69,3 @@ if __name__ =='__main__':
         assert flights !=None
         assert get_minutes("6:13") == 373
         assert get_minutes("00:00") == 0
-        #assert fitness_function([1,4, 3,2, 7,3, 6,3, 2,4, 5,3],"FCO") == 5451
-        #assert fitness_function([1,3, 3,2, 7,3, 6,3, 2,4, 5,3],"FCO") ==5304
