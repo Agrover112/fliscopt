@@ -1,5 +1,6 @@
 
 from utils import get_minutes , flights , people
+
 def fitness_function(solution,dest):
 
   total_price = 0
@@ -39,3 +40,8 @@ def fitness_function(solution,dest):
     total_price += 50                 # Penalize if arrival and departure are not on same days
   
   return total_price + total_wait     # The total cost associated
+
+
+if __name__ == "__main__":
+        assert fitness_function([1,4, 3,2, 7,3, 6,3, 2,4, 5,3],"FCO") == 5451
+        assert fitness_function([1,3, 3,2, 7,3, 6,3, 2,4, 5,3],"FCO") ==5304
