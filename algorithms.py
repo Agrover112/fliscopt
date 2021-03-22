@@ -4,6 +4,7 @@ import sys
 
 
 def random_search(domain, fitness_function, init=[], epochs=1000):
+    
     best_cost = sys.maxsize
     scores = []
     if len(init) > 0:

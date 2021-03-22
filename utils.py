@@ -1,11 +1,13 @@
-import time
-import random
-import math
-import sys
 import logging
+import math
 import os
-import matplotlib.pyplot as plt
+import random
+import sys
+import time
+
 import matplotlib
+import matplotlib.pyplot as plt
+
 matplotlib.use('TKAgg')
 people = [('Lisbon', 'LIS'),
           ('Madrid', 'MAD'),
@@ -17,7 +19,7 @@ flights = {}
 
 
 def read_file(fname):
-  
+
     for line in open('/mnt/d/MINOR PROJECT/final/data/'+fname, 'r+'):
         origin, dest, departure, arrival, price = line.split(',')
         flights.setdefault((origin, dest), [])
