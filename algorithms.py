@@ -3,7 +3,7 @@ import random
 import sys
 
 
-def random_search(domain, fitness_function, init=[], epochs=1000):
+def random_search(domain, fitness_function, init=[], epochs=100):
 
     best_cost = sys.maxsize
     scores = []
@@ -24,7 +24,7 @@ def random_search(domain, fitness_function, init=[], epochs=1000):
     return best_solution, best_cost, scores
 
 
-def hill_climb(domain, fitness_function, init=[], epochs=1000):
+def hill_climb(domain, fitness_function, init=[], epochs=100):
     count = 0
     scores = []
     if len(init) > 0:
