@@ -51,7 +51,7 @@ def multiple_runs(algorithm, init=[], use_multiproc=False, n_proc=multiprocessin
         print("Total time ", round(sum(times), 3))
 
 
-def single_run(algorithm, init=[], save_fig=False,print_sch=True):
+def single_run(algorithm, init=[], save_fig=False, print_sch=True):
     start = time.time()
     global scores
     soln, cost, scores = algorithm(domain, fitness_function, init)
@@ -65,32 +65,33 @@ def single_run(algorithm, init=[], save_fig=False,print_sch=True):
         print_schedule(soln, 'FCO')
     return soln, cost
 
-def sol_chaining(algorithm_1,algorithm_2,rounds=7):
-    ## Ankit you need to call the individual algorithm (sad noieses)
-    COST=[]
+
+def sol_chaining(algorithm_1, algorithm_2, rounds=7):
+
+    COST = []
     for i in range(rounds):
-        if i==0:       
-            soln,cost=single_run(algorithm_1,print_sch=False)
+        if i == 0:
+            soln, cost = single_run(algorithm_1, print_sch=False)
             COST.append(cost)
-            print("Cost at {}=={}".format(i,cost))
-        elif i==rounds-1 :
-            final_soln,cost=single_run(algorithm_2,init=soln,save_fig=False,print_sch=True)
+            print("Cost at {}=={}".format(i, cost))
+        elif i == rounds-1:
+            final_soln, cost = single_run(
+                algorithm_2, init=soln, save_fig=False, print_sch=True)
             COST.append(cost)
-            print("Cost at {}=={}".format(i,cost))
-            return final_soln,scores ,COST
+            print("Cost at {}=={}".format(i, cost))
+            return final_soln, scores, COST
         else:
-            soln,cost=single_run(algorithm_1,init=init,save_fig=False,print_sch=False)
-            print("Cost at {}=={}".format(i,cost))
+            soln, cost = single_run(
+                algorithm_1, init=init, save_fig=False, print_sch=False)
+            print("Cost at {}=={}".format(i, cost))
             COST.append(cost)
         #random_solution = [random.randint(domain[i][0], domain[i][1])for i in range(len(domain))]
-        #soln=soln+random_solution//2
+        # soln=soln+random_solution//2
 
-        final_soln,cost=single_run(algorithm_2,init=soln,print_sch=False)
-        print("Cost at {}=={}".format(i,cost))
+        final_soln, cost = single_run(algorithm_2, init=soln, print_sch=False)
+        print("Cost at {}=={}".format(i, cost))
         COST.append(cost)
-        init=final_soln
-
-    
+        init = final_soln
 
 
 if __name__ == "__main__":
@@ -98,9 +99,9 @@ if __name__ == "__main__":
     # print(soln)
     # print_schedule(soln,'FCO')
     #multiple_runs(simulated_annealing, n=20, use_multiproc=True)
-    #final_soln,scores,COST=sol_chaining(hill_climb,simulated_annealing)
-    #plt.plot(COST)
-    #plt.savefig('cost.png')
-    soln,cost=single_run(random_search,save_fig=False,print_sch=False)
+    # final_soln,scores,COST=sol_chaining(hill_climb,simulated_annealing)
+    # plt.plot(COST)
+    # plt.savefig('cost.png')
+    soln, cost = single_run(random_search, save_fig=False, print_sch=False)
     # multiple_runs(hill_climb,soln)
     # soln,cost=single_run(hill_climb,init=soln,save_fig=True)
