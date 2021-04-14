@@ -61,7 +61,7 @@ def plot_scores(scores, algo_name, save_fig, **kwargs):
                 '/mnt/d/MINOR PROJECT/final/results/'+"simulated_annealing"+".png"))
         else:
             plt.show()
-    elif algo_name=='genetic_algorithm':
+    elif algo_name == 'genetic_algorithm':
         plt.xlabel("No.of Generations")
         plt.ylabel("Objective f(x) Scores")
         plt.plot(scores)
