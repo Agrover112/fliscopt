@@ -52,21 +52,31 @@ def get_minutes(hour):
 
 def plot_scores(scores, algo_name, save_fig, **kwargs):
     temp = kwargs.get('temp', None)
-    plt.xlabel("No.of improvements")
-    plt.ylabel("Objecetive f(x) Scores")
-    plt.plot(scores)
-    if save_fig:
-        plt.savefig(os.path.join(
-            '/mnt/d/MINOR PROJECT/final/results/'+algo_name+".png"))
-    else:
-        plt.show()
     if algo_name == 'simulated_annealing':
         plt.xlabel("Temperature")
         plt.ylabel("Objective f(x) Scores")
         plt.plot(scores, temp)
         if save_fig:
             plt.savefig(os.path.join(
-                '/mnt/d/MINOR PROJECT/final/results/'+"Scores_V_Temp"+".png"))
+                '/mnt/d/MINOR PROJECT/final/results/'+"simulated_annealing"+".png"))
+        else:
+            plt.show()
+    elif algo_name=='genetic_algorithm':
+        plt.xlabel("No.of Generations")
+        plt.ylabel("Objective f(x) Scores")
+        plt.plot(scores)
+        if save_fig:
+            plt.savefig(os.path.join(
+                '/mnt/d/MINOR PROJECT/final/results/'+"genetic_algorithm"+".png"))
+        else:
+            plt.show()
+    else:
+        plt.xlabel("No.of improvements")
+        plt.ylabel("Objective f(x) Scores")
+        plt.plot(scores)
+        if save_fig:
+            plt.savefig(os.path.join(
+                '/mnt/d/MINOR PROJECT/final/results/'+algo_name+".png"))
         else:
             plt.show()
 
