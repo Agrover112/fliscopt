@@ -8,7 +8,8 @@ from multiprocessing import Pool, Process, Queue
 import matplotlib
 import matplotlib.pyplot as plt
 
-from algorithms import hill_climb, random_search, simulated_annealing ,genetic_algorithm
+from algorithms import (genetic_algorithm, hill_climb, random_search,
+                        simulated_annealing)
 from fitness import fitness_function
 from utils import people, plot_scores, print_schedule, read_file, time
 
@@ -27,7 +28,7 @@ def multiple_runs(algorithm, init=[], use_multiproc=False, n_proc=multiprocessin
         inputs = [(d, fn)]*n
 
         # Multiprocessing starts here
-        
+
         pool = multiprocessing.Pool(n_proc)
         start = time.time()
         # result=pool.starmap_async(random_search,inputs)   #Async run
@@ -70,8 +71,8 @@ def single_run(algorithm, init=[], save_fig=False, print_sch=True):
     return soln, cost
 
 
-def sol_chaining(algorithm_1, algorithm_2, rounds=20, n_obs=2, tol=90,save_fig=False):
-   #Note scores here is the best cost of each particular single_run 
+def sol_chaining(algorithm_1, algorithm_2, rounds=20, n_obs=2, tol=90, save_fig=False):
+   # Note scores here is the best cost of each particular single_run
     scores = []
     for i in range(rounds):
         if i == 0:
@@ -83,8 +84,8 @@ def sol_chaining(algorithm_1, algorithm_2, rounds=20, n_obs=2, tol=90,save_fig=F
                 algorithm_2, init=soln, save_fig=False, print_sch=True)
             scores.append(cost)
             print("Cost at {}=={}".format(i, cost))
-            plot_scores(scores,sol_chaining.__name__,save_fig)
-            return final_soln,scores[-1],scores
+            plot_scores(scores, sol_chaining.__name__, save_fig)
+            return final_soln, scores[-1], scores
         else:
             soln, cost = single_run(
                 algorithm_1, init=init, save_fig=False, print_sch=False)
@@ -99,8 +100,8 @@ def sol_chaining(algorithm_1, algorithm_2, rounds=20, n_obs=2, tol=90,save_fig=F
             print("----Ending early at iteration{}----".format(i))
             print("Cost{}".format(cost))
             print_schedule(final_soln, 'FCO')
-            plot_scores(scores,sol_chaining.__name__,save_fig)
-            return final_soln, scores[-1],scores
+            plot_scores(scores, sol_chaining.__name__, save_fig)
+            return final_soln, scores[-1], scores
         print("Cost at {}=={}".format(i, cost))
         init = final_soln
 
@@ -112,5 +113,5 @@ if __name__ == "__main__":
     multiple_runs(genetic_algorithm, n=5, use_multiproc=True)
     #final_soln,cost,scores = sol_chaining(hill_climb, simulated_annealing,save_fig=True)
     #soln, cost = single_run(genetic_algorithm, save_fig=False, print_sch=False)
-    #multiple_runs(hill_climb,soln)
+    # multiple_runs(hill_climb,soln)
     # soln,cost=single_run(hill_climb,init=soln,save_fig=True)
