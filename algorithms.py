@@ -1,7 +1,8 @@
+import heapq
 import math
 import random
 import sys
-import heapq
+
 
 def random_search(domain, fitness_function, init=[], epochs=100):
 
@@ -99,51 +100,57 @@ def simulated_annealing(domain, fitness_function, init=[], temperature=50000.0, 
     return solution, best, scores
 
 
-def mutation(domain,step,solution):
-  gene=random.randint(0,len(domain)-1)
-  mutant=solution
-  if random.random() < 0.5:
-    if solution[gene] !=domain[gene][0]:
-      mutant=solution[0:gene]+[solution[gene]-step]+solution[gene+1:]
-  else:
-      if solution[gene] !=domain[gene][1]:
-        mutant=solution[0:gene]+[solution[gene]+step]+solution[gene+1:]
-  return mutant
-
-def crossover(domain,solution_1,solution_2):
-  gene = random.randint(1, len(domain) - 2)
-  return solution_1[0:gene] + solution_2[gene:]
-
-def genetic_algorithm(domain, fitness_function,init=[], population_size = 100, step = 1,
-            probability_mutation = 0.2, elitism = 0.2,
-            number_generations = 500, search = False):
-  population = []
-  scores=[]
-  for i in range(population_size):
-    if search == True:
-      solution = random_search(domain, fitness_function)
-    if len(init)>0:
-        solution=init
+def mutation(domain, step, solution):
+    gene = random.randint(0, len(domain)-1)
+    mutant = solution
+    if random.random() < 0.5:
+        if solution[gene] != domain[gene][0]:
+            mutant = solution[0:gene]+[solution[gene]-step]+solution[gene+1:]
     else:
-      solution = [random.randint(domain[i][0], domain[i][1]) for i in range(len(domain))]
-    
-    population.append(solution)
+        if solution[gene] != domain[gene][1]:
+            mutant = solution[0:gene]+[solution[gene]+step]+solution[gene+1:]
+    return mutant
 
-  number_elitism = int(elitism * population_size)
 
-  for i in range(number_generations):
-    costs = [(fitness_function(individual,'FCO'), individual) for individual in population]
-    #costs.sort()
-    heapq.heapify(costs)
-    ordered_individuals = [individual for (cost, individual) in costs]
-    population = ordered_individuals[0:number_elitism]
-    scores.append(fitness_function(population[0],'FCO'))
-    while len(population) < population_size:
-      if random.random() < probability_mutation:
-        m = random.randint(0, number_elitism)
-        population.append(mutation(domain, step, ordered_individuals[m]))
-      else:
-        i1 = random.randint(0, number_elitism)
-        i2 = random.randint(0, number_elitism)
-        population.append(crossover(domain, ordered_individuals[i1], ordered_individuals[i2]))
-  return costs[0][1],costs[0][0],scores
+def crossover(domain, solution_1, solution_2):
+    gene = random.randint(1, len(domain) - 2)
+    return solution_1[0:gene] + solution_2[gene:]
+
+
+def genetic_algorithm(domain, fitness_function, init=[], population_size=100, step=1,
+                      probability_mutation=0.2, elitism=0.2,
+                      number_generations=500, search=False):
+    population = []
+    scores = []
+    for i in range(population_size):
+        if search == True:
+            solution = random_search(domain, fitness_function)
+        if len(init) > 0:
+            solution = init
+        else:
+            solution = [random.randint(domain[i][0], domain[i][1])
+                        for i in range(len(domain))]
+
+        population.append(solution)
+
+    number_elitism = int(elitism * population_size)
+
+    for i in range(number_generations):
+        costs = [(fitness_function(individual, 'FCO'), individual)
+                 for individual in population]
+        # costs.sort()
+        heapq.heapify(costs)
+        ordered_individuals = [individual for (cost, individual) in costs]
+        population = ordered_individuals[0:number_elitism]
+        scores.append(fitness_function(population[0], 'FCO'))
+        while len(population) < population_size:
+            if random.random() < probability_mutation:
+                m = random.randint(0, number_elitism)
+                population.append(
+                    mutation(domain, step, ordered_individuals[m]))
+            else:
+                i1 = random.randint(0, number_elitism)
+                i2 = random.randint(0, number_elitism)
+                population.append(
+                    crossover(domain, ordered_individuals[i1], ordered_individuals[i2]))
+    return costs[0][1], costs[0][0], scores
