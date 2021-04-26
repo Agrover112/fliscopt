@@ -5,6 +5,19 @@ import sys
 
 
 def random_search(domain, fitness_function, init=[], epochs=100):
+    """ Random search algorithm implemented
+
+    Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+    """
 
     best_cost = sys.maxsize
     scores = []
@@ -26,6 +39,19 @@ def random_search(domain, fitness_function, init=[], epochs=100):
 
 
 def hill_climb(domain, fitness_function, init=[], epochs=100):
+    """ Simple Hill Climbing algorithm implemented
+
+    Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+    """
     count = 0
     scores = []
     if len(init) > 0:
@@ -63,6 +89,23 @@ def hill_climb(domain, fitness_function, init=[], epochs=100):
 
 
 def simulated_annealing(domain, fitness_function, init=[], temperature=50000.0, cooling=0.95, step=1):
+    """ Simulated annealing algorithm implemented with temeperature and cooling parameters.
+
+
+    Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+        temperature (float, optional): This parameter controls the degree of randomness.Increasing it increases the search space. Defaults to 50000.0.
+        cooling (float, optional): The margin by which temperature decreases at each epoch. Defaults to 0.95.
+        step (int, optional): Number of steps to the right or left to make changes in given solution. Defaults to 1.
+
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+    """
     count = 0
     scores = []
     simulated_annealing.temp = []
@@ -120,6 +163,25 @@ def crossover(domain, solution_1, solution_2):
 def genetic_algorithm(domain, fitness_function, init=[], population_size=100, step=1,
                       probability_mutation=0.2, elitism=0.2,
                       number_generations=500, search=False):
+    """ Genetic algorithm implemented with elitisim.
+
+
+    Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        population_size (int, optional): The maximum size of the population to generate. Defaults to 100.
+        probability_mutation (float, optional): Controls the rate of mutation of genes. Defaults to 0.2.
+        elitism (float, optional): The percentage of population which proceeds onto next iter without changes. Defaults to 0.2.
+        number_generations (int, optional): Analgous to epochs, but in this context refers to number of generations the algorithm evolves to . Defaults to 500.
+        search (bool, optional): If True  solution is initialized as the result of a RandomSearch . Defaults to False.
+        step (int, optional): Number of steps to the right or left to make changes in given solution. Defaults to 1.
+
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+    """
     population = []
     scores = []
     for i in range(population_size):
