@@ -3,6 +3,15 @@ from utils import flights, get_minutes, people
 
 
 def fitness_function(solution, dest):
+    """ Cost function of Flight Scheduling problem
+
+    Args:
+        solution (list): List containing the solution to be evaluated
+        dest (str): String containing the destination city airport abbreviation
+
+    Returns:
+        int: The evaluated cost og the given solution and destination of travel
+    """
 
     total_price = 0
     last_arrival = 0          # 0:00
