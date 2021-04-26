@@ -19,6 +19,12 @@ flights = {}
 
 
 def read_file(fname):
+    """ Utility function to read given file
+    Args:
+        fname (str): File name to be read
+    Returns:
+        str: String message that file has been read
+    """
 
     for line in open('/mnt/d/MINOR PROJECT/final/data/'+fname, 'r+'):
         origin, dest, departure, arrival, price = line.split(',')
@@ -28,6 +34,12 @@ def read_file(fname):
 
 
 def print_schedule(schedule, dest):
+    """ Generates and prints the flight schedule based on the schedule and destination information.
+
+    Args:
+        schedule (list): List containing the flight schedule similar to solutions
+        dest (str): The destination, eg 'FCO' for Rome. Refer flights.txt
+    """
     flight_id = -1
     total_price = 0
     for i in range(len(schedule) // 2):
@@ -45,12 +57,26 @@ def print_schedule(schedule, dest):
 
 
 def get_minutes(hour):
+    """ Get total number of minutes from time in %H:%M .
+
+    Args:
+        hour (str): String containing time in 24 hour %H:%M format
+
+    Returns:
+        int: Returns total number of minutes
+    """
     t = time.strptime(hour, '%H:%M')
     minutes = t[3] * 60 + t[4]
     return minutes
 
 
 def plot_scores(scores, algo_name, save_fig, **kwargs):
+    """ Plots the respective scores
+    Args:
+        scores (list): A list containing the scores over number of epochs.Eg.cost over n epochs
+        algo_name (str): The name of the algorithm whose scores are being plotted
+        save_fig (bool): If True figure is saved , otherwise plotted during run-time.
+    """
     temp = kwargs.get('temp', None)
     if algo_name == 'simulated_annealing':
         plt.xlabel("Temperature")
