@@ -8,8 +8,8 @@ from multiprocessing import Pool, Process, Queue
 import matplotlib
 import matplotlib.pyplot as plt
 
-from algorithms import (genetic_algorithm, hill_climb, random_search,
-                        simulated_annealing)
+from algorithms import (genetic_algorithm, genetic_algorithm_reversed, hill_climb, random_search,
+                        simulated_annealing,mutation,crossover,multi_mutation)
 from fitness import fitness_function
 from utils import people, plot_scores, print_schedule, read_file, time
 
@@ -71,12 +71,14 @@ def single_run(algorithm, init=[], save_fig=False, print_sch=True):
     return soln, cost
 
 
-def sol_chaining(algorithm_1, algorithm_2, rounds=20, n_obs=2, tol=90, save_fig=False):
+def sol_chaining(algorithm_1, algorithm_2, rounds=10 , n_obs=2, tol=90, save_fig=False):
    # Note scores here is the best cost of each particular single_run
     scores = []
     for i in range(rounds):
         if i == 0:
             soln, cost = single_run(algorithm_1, print_sch=False)
+            #soln=mutation(domain,random.randint(0,1),soln)
+            soln=multi_mutation(domain,1,soln)
             scores.append(cost)
             print("Cost at {}=={}".format(i, cost))
         elif i == rounds-1:
@@ -90,6 +92,8 @@ def sol_chaining(algorithm_1, algorithm_2, rounds=20, n_obs=2, tol=90, save_fig=
             soln, cost = single_run(
                 algorithm_1, init=init, save_fig=False, print_sch=False)
             print("Cost at {}=={}".format(i, cost))
+            #soln=mutation(domain,random.randint(0,1),soln)
+            soln=multi_mutation(domain,1,soln)
             scores.append(cost)
         #random_solution = [random.randint(domain[i][0], domain[i][1])for i in range(len(domain))]
         # soln=soln+random_solution//2
@@ -103,15 +107,16 @@ def sol_chaining(algorithm_1, algorithm_2, rounds=20, n_obs=2, tol=90, save_fig=
             plot_scores(scores, sol_chaining.__name__, save_fig)
             return final_soln, scores[-1], scores
         print("Cost at {}=={}".format(i, cost))
-        init = final_soln
+        init = mutation(domain,1,final_soln)
 
 
 if __name__ == "__main__":
+    """Change the file_read function name and fitness_fn namer"""
     # soln,cost,scores=random_search(domain,fitness_function)
     # print(soln)
     # print_schedule(soln,'FCO')
-    multiple_runs(genetic_algorithm, n=5, use_multiproc=True)
-    #final_soln,cost,scores = sol_chaining(hill_climb, simulated_annealing,save_fig=True)
-    #soln, cost = single_run(genetic_algorithm, save_fig=False, print_sch=False)
+    multiple_runs(genetic_algorithm, n=20, use_multiproc=True)
+    #final_soln,cost,scores = sol_chaining(random_search,hill_climb ,save_fig=True)
+    #soln, cost = single_run(genetic_algorithm_reversed, save_fig=False, print_sch=False)
     # multiple_runs(hill_climb,soln)
     # soln,cost=single_run(hill_climb,init=soln,save_fig=True)
