@@ -1,6 +1,7 @@
 import heapq
 import math
 import random
+random.seed(10)
 import sys
 
 """Add option to select mutation type in GA method.
