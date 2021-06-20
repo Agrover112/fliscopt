@@ -5,7 +5,7 @@ import sys
 import time
 from multiprocessing import Lock, Pool, Process, Queue
 
-from algorithms import random_search
+from algorithms import genetic_algorithm, hill_climb, random_search, simulated_annealing
 from flightscheduling import domain, fitness_function
 
 """def f(l, i):
@@ -30,19 +30,27 @@ SCORES, BEST_COST, BEST_SOLUTION = [], [], []
 if __name__ == '__main__':
     d = domain
     f = fitness_function
-    inputs = [(d, f)]*10
+    #sol=random_search(domain,fitness_function)
+    seeds=random.sample(range(10,100),10)  #List of seeds N seeds = N runs
+    temp_inputs = [(d,f)]*10
+    inputs=[]
+    for idx,seed in enumerate(seeds):
+        inputs.append(temp_inputs[idx]+(seed,))
+
+
+
     # inputs=[(d,f)]
     # Multiprocessing starts here
     start = time.time()
     pool = multiprocessing.Pool(multiprocessing.cpu_count())
-    result = pool.starmap_async(random_search, inputs)  # Async run
+    result = pool.starmap_async(genetic_algorithm, inputs)  # Async run
     pool.close()
     pool.join()  # Close the pool
     print("", (time.time()-start))
     res = result.get()
-    # print(res)
+    print("Run_Number\tSolution\t      Cost  NFE SEED",)
     for i, r in enumerate(res):
-        print(i, r[0], r[1])
+        print(i, r[0], r[1],r[3],r[4])
     # print(result._value[0][1])
 
     # for i in result :
