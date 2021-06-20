@@ -30,8 +30,8 @@ SCORES, BEST_COST, BEST_SOLUTION = [], [], []
 if __name__ == '__main__':
     d = domain
     f = fitness_function
-    #sol=random_search(domain,fitness_function)
-    seeds=random.sample(range(10,100),10)  #List of seeds N seeds = N runs
+    #seeds=random.sample(range(10,100),10)  #List of seeds N seeds = N runs
+    seeds=[10,24,32,100,20,67,13,19,65,51]
     temp_inputs = [(d,f)]*10
     inputs=[]
     for idx,seed in enumerate(seeds):
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     # Multiprocessing starts here
     start = time.time() 
     pool = multiprocessing.Pool(multiprocessing.cpu_count())
-    result = pool.starmap_async(genetic_algorithm, inputs)  # Async run
+    result = pool.starmap_async(genetic_algorithm_reversed, inputs)  # Async run
     pool.close()
     pool.join()  # Close the pool
     print("", (time.time()-start))
