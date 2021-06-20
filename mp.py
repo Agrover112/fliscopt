@@ -5,7 +5,7 @@ import sys
 import time
 from multiprocessing import Lock, Pool, Process, Queue
 
-from algorithms import genetic_algorithm, hill_climb, random_search, simulated_annealing
+from algorithms import genetic_algorithm, genetic_algorithm_reversed, hill_climb, random_search, simulated_annealing
 from flightscheduling import domain, fitness_function
 
 """def f(l, i):
@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
     # inputs=[(d,f)]
     # Multiprocessing starts here
-    start = time.time()
+    start = time.time() 
     pool = multiprocessing.Pool(multiprocessing.cpu_count())
     result = pool.starmap_async(genetic_algorithm, inputs)  # Async run
     pool.close()
