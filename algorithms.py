@@ -1,14 +1,13 @@
 import heapq
 import math
 import random
-random.seed(10)
 import sys
 
 """Add option to select mutation type in GA method.
        Add bit flip mutation
        Wrapp all different mutation types in a class XD
     """
-def random_search(domain, fitness_function, init=[], epochs=100):
+def random_search(domain, fitness_function,seed=random.randint(10,100), init=[], epochs=100):
     """ Random search algorithm implemented
 
     Args:
@@ -22,9 +21,10 @@ def random_search(domain, fitness_function, init=[], epochs=100):
         int: The final cost after running the algorithm,
         list: List containing all costs during all epochs.
     """
-
+    random.seed(seed)
     best_cost = sys.maxsize
     scores = []
+    nfe=0
     if len(init) > 0:
         solution = init
     else:
@@ -35,14 +35,15 @@ def random_search(domain, fitness_function, init=[], epochs=100):
             solution = [random.randint(domain[i][0], domain[i][1])
                         for i in range(len(domain))]
         cost = fitness_function(solution, 'FCO')
+        nfe+=1
         if cost < best_cost:
             best_cost = cost
             best_solution = solution
         scores.append(best_cost)
-    return best_solution, best_cost, scores
+    return best_solution, best_cost,scores,nfe,seed
 
 
-def hill_climb(domain, fitness_function, init=[], epochs=100):
+def hill_climb(domain, fitness_function,seed=random.randint(10,100), init=[], epochs=100):
     """ Simple Hill Climbing algorithm implemented
 
     Args:
@@ -56,8 +57,10 @@ def hill_climb(domain, fitness_function, init=[], epochs=100):
         int: The final cost after running the algorithm,
         list: List containing all costs during all epochs.
     """
+    random.seed(seed)
     count = 0
     scores = []
+    nfe=0
     if len(init) > 0:
         solution = init
     else:
@@ -76,10 +79,12 @@ def hill_climb(domain, fitness_function, init=[], epochs=100):
                         solution[0:i] + [solution[i] - 1] + solution[i + 1:])
 
         actual = fitness_function(solution, 'FCO')
+        nfe+=1
         best = actual
         for i in range(len(neighbors)):
             count += 1
             cost = fitness_function(neighbors[i], 'FCO')
+            nfe+=1
             if cost < best:
                 best = cost
                 solution = neighbors[i]
@@ -87,12 +92,12 @@ def hill_climb(domain, fitness_function, init=[], epochs=100):
 
         if best == actual:
             print('Count: ', count)
+            #print('NFE: ',nfe)
             break
+    return solution, best, scores,nfe,seed
 
-    return solution, best, scores
 
-
-def simulated_annealing(domain, fitness_function, init=[], temperature=50000.0, cooling=0.95, step=1):
+def simulated_annealing(domain, fitness_function,seed=random.randint(10,100), init=[], temperature=50000.0, cooling=0.95, step=1):
     """ Simulated annealing algorithm implemented with temeperature and cooling parameters.
 
 
@@ -110,7 +115,9 @@ def simulated_annealing(domain, fitness_function, init=[], temperature=50000.0, 
         int: The final cost after running the algorithm,
         list: List containing all costs during all epochs.
     """
+    random.seed(seed)
     count = 0
+    nfe=0
     scores = []
     simulated_annealing.temp = []
 
@@ -132,7 +139,9 @@ def simulated_annealing(domain, fitness_function, init=[], temperature=50000.0, 
 
         count += 1
         cost = fitness_function(solution, 'FCO')
+        nfe+=1
         cost_temp = fitness_function(temp_solution, 'FCO')
+        nfe+=1
         prob = pow(math.e, (-cost_temp - cost) / temperature)
         best = cost
         if (cost_temp < cost or random.random() < prob):
@@ -144,7 +153,7 @@ def simulated_annealing(domain, fitness_function, init=[], temperature=50000.0, 
         simulated_annealing.temp.append(temperature)
 
     print('Count: ', count)
-    return solution, best, scores
+    return solution, best, scores,nfe,seed
 
 
 def mutation(domain, step, solution):
@@ -189,9 +198,9 @@ def crossover(domain, solution_1, solution_2):
     return solution_1[0:gene] + solution_2[gene:]
 
 
-def genetic_algorithm(domain, fitness_function, init=[], population_size=100, step=1,
+def genetic_algorithm(domain, fitness_function,seed=random.randint(10,100), init=[], population_size=100, step=1,
                       probability_mutation=0.2, elitism=0.2,
-                      number_generations=500, search=False):
+                      number_generations=500, search=True):
     """ Genetic algorithm implemented with elitisim.
 
 
@@ -211,11 +220,15 @@ def genetic_algorithm(domain, fitness_function, init=[], population_size=100, st
         int: The final cost after running the algorithm,
         list: List containing all costs during all epochs.
     """
+    random.seed(seed)
     population = []
     scores = []
+    nfe=0
     for i in range(population_size):
         if search == True:
-            solution = random_search(domain, fitness_function)
+            solution, b_c,sc,r_nfe,s = random_search(domain, fitness_function,seed)
+            print(r_nfe)
+            nfe+=r_nfe
         if len(init) > 0:
             solution = init
         else:
@@ -229,11 +242,13 @@ def genetic_algorithm(domain, fitness_function, init=[], population_size=100, st
     for i in range(number_generations):
         costs = [(fitness_function(individual, 'FCO'), individual)
                  for individual in population]
+        nfe+=1
         # costs.sort()
         heapq.heapify(costs)
         ordered_individuals = [individual for (cost, individual) in costs]
         population = ordered_individuals[0:number_elitism]
         scores.append(fitness_function(population[0], 'FCO'))
+        nfe+=1
         while len(population) < population_size:
             if random.random() < probability_mutation:
                 m = random.randint(0, number_elitism)
@@ -244,10 +259,10 @@ def genetic_algorithm(domain, fitness_function, init=[], population_size=100, st
                 i2 = random.randint(0, number_elitism)
                 population.append(
                     crossover(domain, ordered_individuals[i1], ordered_individuals[i2]))
-    return costs[0][1], costs[0][0], scores
+    return costs[0][1], costs[0][0], scores,nfe,seed
 
 
-def genetic_algorithm_reversed(domain, fitness_function, init=[], population_size=100, step=1,
+def genetic_algorithm_reversed(domain, fitness_function,seed=random.randint(10,100), init=[], population_size=100, step=1,
                       probability_mutation=0.2, elitism=0.2,
                       number_generations=500, search=False):
     """ Genetic algorithm implemented with elitisim.
@@ -269,11 +284,14 @@ def genetic_algorithm_reversed(domain, fitness_function, init=[], population_siz
         int: The final cost after running the algorithm,
         list: List containing all costs during all epochs.
     """
+    random.seed(seed)
     population = []
     scores = []
+    nfe=0
     for i in range(population_size):
         if search == True:
-            solution = random_search(domain, fitness_function)
+            solution, b_c,sc,r_nfe,s = random_search(domain, fitness_function,seed)
+            nfe+=r_nfe
         if len(init) > 0:
             solution = init
         else:
@@ -287,11 +305,13 @@ def genetic_algorithm_reversed(domain, fitness_function, init=[], population_siz
     for i in range(number_generations):
         costs = [(fitness_function(individual, 'FCO'), individual)
                  for individual in population]
+        nfe+=1
         # costs.sort()
         heapq.heapify(costs)
         ordered_individuals = [individual for (cost, individual) in costs]
         population = ordered_individuals[0:number_elitism]
         scores.append(fitness_function(population[0], 'FCO'))
+        nfe+=1
         while len(population) < population_size:
             if random.random() < probability_mutation:  
                 i1 = random.randint(0, number_elitism)
@@ -303,6 +323,6 @@ def genetic_algorithm_reversed(domain, fitness_function, init=[], population_siz
                 population.append(
                     mutation(domain, step, ordered_individuals[m]))
                 
-    return costs[0][1], costs[0][0], scores
+    return costs[0][1], costs[0][0], scores,nfe,seed
 
 
