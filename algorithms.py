@@ -7,12 +7,13 @@ import sys
        Add bit flip mutation
        Wrapp all different mutation types in a class XD
     """
-def random_search(domain, fitness_function,seed=random.randint(10,100), init=[], epochs=100):
+def random_search(domain, fitness_function,seed=random.randint(10,100),seed_init=True,init=[], epochs=100):
     """ Random search algorithm implemented
 
     Args:
         domain (list): List containing the upper and lower bound.i.e domain of our inputs
         fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator.
         init (list, optional): List for initializing the initial solution. Defaults to [].
         epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
 
@@ -21,14 +22,19 @@ def random_search(domain, fitness_function,seed=random.randint(10,100), init=[],
         int: The final cost after running the algorithm,
         list: List containing all costs during all epochs.
     """
-    random.seed(seed)
+    if seed_init:
+        r_init=random.Random(seed) # Set the seed for initial population only
+    else:
+        r_init=random.Random(seed) # Same seeds for both init and other random generators
+        random.seed(seed)         
+
     best_cost = sys.maxsize
     scores = []
     nfe=0
     if len(init) > 0:
         solution = init
     else:
-        solution = [random.randint(domain[i][0], domain[i][1])
+        solution = [r_init.randint(domain[i][0], domain[i][1])
                     for i in range(len(domain))]
     for i in range(epochs):
         if i != 0:
@@ -43,7 +49,7 @@ def random_search(domain, fitness_function,seed=random.randint(10,100), init=[],
     return best_solution, best_cost,scores,nfe,seed
 
 
-def hill_climb(domain, fitness_function,seed=random.randint(10,100), init=[], epochs=100):
+def hill_climb(domain, fitness_function,seed=random.randint(10,100),seed_init=True,init=[], epochs=100):
     """ Simple Hill Climbing algorithm implemented
 
     Args:
@@ -57,14 +63,18 @@ def hill_climb(domain, fitness_function,seed=random.randint(10,100), init=[], ep
         int: The final cost after running the algorithm,
         list: List containing all costs during all epochs.
     """
-    random.seed(seed)
+    if seed_init:
+        r_init=random.Random(seed) # Set the seed for initial population only
+    else:
+        r_init=random.Random(seed) # Same seeds for both init and other random generators
+        random.seed(seed)         
     count = 0
     scores = []
     nfe=0
     if len(init) > 0:
         solution = init
     else:
-        solution = [random.randint(domain[i][0], domain[i][1])
+        solution = [r_init.randint(domain[i][0], domain[i][1])
                     for i in range(len(domain))]
     while True:
         neighbors = []
@@ -97,7 +107,7 @@ def hill_climb(domain, fitness_function,seed=random.randint(10,100), init=[], ep
     return solution, best, scores,nfe,seed
 
 
-def simulated_annealing(domain, fitness_function,seed=random.randint(10,100), init=[], temperature=50000.0, cooling=0.95, step=1):
+def simulated_annealing(domain, fitness_function,seed=random.randint(10,100),seed_init=True, init=[], temperature=50000.0, cooling=0.95, step=1):
     """ Simulated annealing algorithm implemented with temeperature and cooling parameters.
 
 
@@ -116,6 +126,11 @@ def simulated_annealing(domain, fitness_function,seed=random.randint(10,100), in
         list: List containing all costs during all epochs.
     """
     random.seed(seed)
+    if seed_init:
+        r_init=random.Random(seed) # Set the seed for initial population only
+    else:
+        r_init=random.Random(seed) # Same seeds for both init and other random generators
+        random.seed(seed)   
     count = 0
     nfe=0
     scores = []
@@ -124,7 +139,7 @@ def simulated_annealing(domain, fitness_function,seed=random.randint(10,100), in
     if len(init) > 0:
         solution = init
     else:
-        solution = [random.randint(domain[i][0], domain[i][1])
+        solution = [r_init.randint(domain[i][0], domain[i][1])
                     for i in range(len(domain))]
 
     while temperature > 0.1:
@@ -198,9 +213,9 @@ def crossover(domain, solution_1, solution_2):
     return solution_1[0:gene] + solution_2[gene:]
 
 
-def genetic_algorithm(domain, fitness_function,seed=random.randint(10,100), init=[], population_size=100, step=1,
+def genetic_algorithm(domain, fitness_function,seed=random.randint(10,100),seed_init=True, init=[], population_size=100, step=1,
                       probability_mutation=0.2, elitism=0.2,
-                      number_generations=500, search=True):
+                      number_generations=500, search=False):
     """ Genetic algorithm implemented with elitisim.
 
 
@@ -220,19 +235,22 @@ def genetic_algorithm(domain, fitness_function,seed=random.randint(10,100), init
         int: The final cost after running the algorithm,
         list: List containing all costs during all epochs.
     """
-    random.seed(seed)
+    if seed_init:
+        r_init=random.Random(seed) # Set the seed for initial population only
+    else:
+        r_init=random.Random(seed) # Same seeds for both init and other random generators
+        random.seed(seed)   
     population = []
     scores = []
     nfe=0
     for i in range(population_size):
         if search == True:
             solution, b_c,sc,r_nfe,s = random_search(domain, fitness_function,seed)
-            print(r_nfe)
             nfe+=r_nfe
         if len(init) > 0:
             solution = init
         else:
-            solution = [random.randint(domain[i][0], domain[i][1])
+            solution = [r_init.randint(domain[i][0], domain[i][1])
                         for i in range(len(domain))]
 
         population.append(solution)
@@ -262,7 +280,7 @@ def genetic_algorithm(domain, fitness_function,seed=random.randint(10,100), init
     return costs[0][1], costs[0][0], scores,nfe,seed
 
 
-def genetic_algorithm_reversed(domain, fitness_function,seed=random.randint(10,100), init=[], population_size=100, step=1,
+def genetic_algorithm_reversed(domain, fitness_function,seed=random.randint(10,100),seed_init=True,init=[], population_size=100, step=1,
                       probability_mutation=0.2, elitism=0.2,
                       number_generations=500, search=False):
     """ Genetic algorithm implemented with elitisim.
@@ -284,7 +302,11 @@ def genetic_algorithm_reversed(domain, fitness_function,seed=random.randint(10,1
         int: The final cost after running the algorithm,
         list: List containing all costs during all epochs.
     """
-    random.seed(seed)
+    if seed_init:
+        r_init=random.Random(seed) # Set the seed for initial population only
+    else:
+        r_init=random.Random(seed) # Same seeds for both init and other random generators
+        random.seed(seed)   
     population = []
     scores = []
     nfe=0
@@ -295,7 +317,7 @@ def genetic_algorithm_reversed(domain, fitness_function,seed=random.randint(10,1
         if len(init) > 0:
             solution = init
         else:
-            solution = [random.randint(domain[i][0], domain[i][1])
+            solution = [r_init.randint(domain[i][0], domain[i][1])
                         for i in range(len(domain))]
 
         population.append(solution)
