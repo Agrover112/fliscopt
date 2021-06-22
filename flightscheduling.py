@@ -8,9 +8,10 @@ from multiprocessing import Pool, Process, Queue
 import matplotlib
 import matplotlib.pyplot as plt
 
-from algorithms import (genetic_algorithm, genetic_algorithm_reversed, hill_climb, random_search,
-                        simulated_annealing,mutation,crossover,multi_mutation)
+from algorithms import (genetic_algorithm, genetic_algorithm_reversed,
+                        hill_climb, random_search, simulated_annealing)
 from fitness import fitness_function
+from ga_utils import multi_mutation, mutation
 from utils import people, plot_scores, print_schedule, read_file, time
 
 matplotlib.use('TKAgg')
@@ -112,11 +113,13 @@ def sol_chaining(algorithm_1, algorithm_2, rounds=10 , n_obs=2, tol=90, save_fig
 
 if __name__ == "__main__":
     """Change the file_read function name and fitness_fn namer"""
-    # soln,cost,scores=random_search(domain,fitness_function)
+    """ ANKIT ADD A NFE COLUMN :D
+        Add seed to each mp run    """
+    #soln,cost,scores,nfe,seed=random_search(domain,fitness_function)
     # print(soln)
     # print_schedule(soln,'FCO')
-    multiple_runs(genetic_algorithm, n=20, use_multiproc=True)
+    #multiple_runs(genetic_algorithm, n=20, use_multiproc=True)
     #final_soln,cost,scores = sol_chaining(random_search,hill_climb ,save_fig=True)
-    #soln, cost = single_run(genetic_algorithm_reversed, save_fig=False, print_sch=False)
-    # multiple_runs(hill_climb,soln)
+    #soln, cost = single_run(hill_climb, save_fig=False, print_sch=False)
+    multiple_runs(genetic_algorithm,n=5,use_multiproc=True)
     # soln,cost=single_run(hill_climb,init=soln,save_fig=True)
