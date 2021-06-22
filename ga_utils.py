@@ -1,3 +1,4 @@
+import random
 def crossover(domain, solution_1, solution_2):
     gene = random.randint(1, len(domain) - 2)
     return solution_1[0:gene] + solution_2[gene:]
