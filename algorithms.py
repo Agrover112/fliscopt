@@ -184,9 +184,9 @@ def simulated_annealing(domain, fitness_function, seed=random.randint(10, 100), 
             best = cost_temp
             solution = temp_solution
         scores.append(best)
-
-        temperature = temperature * cooling
         simulated_annealing.temp.append(temperature)
+        temperature = temperature * cooling
+        
 
     print('Count: ', count)
     return solution, best, scores, nfe, seed
@@ -267,6 +267,81 @@ def genetic_algorithm(domain, fitness_function, seed=random.randint(10, 100), se
 
 
 def genetic_algorithm_reversed(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[], population_size=100, step=1,
+                               probability_mutation=0.2, elitism=0.2,
+                               number_generations=500, search=False):
+    """ Genetic algorithm implemented with elitisim.
+
+
+    Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        population_size (int, optional): The maximum size of the population to generate. Defaults to 100.
+        probability_mutation (float, optional): Controls the rate of mutation of genes. Defaults to 0.2.
+        elitism (float, optional): The percentage of population which proceeds onto next iter without changes. Defaults to 0.2.
+        number_generations (int, optional): Analgous to epochs, but in this context refers to number of generations the algorithm evolves to . Defaults to 500.
+        search (bool, optional): If True  solution is initialized as the result of a RandomSearch . Defaults to False.
+        step (int, optional): Number of steps to the right or left to make changes in given solution. Defaults to 1.
+
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
+    if seed_init:
+        # Set the seed for initial population only
+        r_init = random.Random(seed)
+    else:
+        # Same seeds for both init and other random generators
+        r_init = random.Random(seed)
+        random.seed(seed)
+    population = []
+    scores = []
+    nfe = 0
+    for i in range(population_size):
+        if search == True:
+            solution, b_c, sc, r_nfe, s = random_search(
+                domain, fitness_function, seed)
+            nfe += r_nfe
+        if len(init) > 0:
+            solution = init
+        else:
+            solution = [r_init.randint(domain[i][0], domain[i][1])
+                        for i in range(len(domain))]
+
+        population.append(solution)
+
+    number_elitism = int(elitism * population_size)
+
+    for i in range(number_generations):
+        costs = [(fitness_function(individual, 'FCO'), individual)
+                 for individual in population]
+        nfe += 1
+        # costs.sort()
+        heapq.heapify(costs)
+        ordered_individuals = [individual for (cost, individual) in costs]
+        population = ordered_individuals[0:number_elitism]
+        scores.append(fitness_function(population[0], 'FCO'))
+        nfe += 1
+        while len(population) < population_size:
+            if random.random() < probability_mutation:
+                i1 = random.randint(0, number_elitism)
+                i2 = random.randint(0, number_elitism)
+                population.append(
+                    crossover(domain, ordered_individuals[i1], ordered_individuals[i2]))
+            else:
+                m = random.randint(0, number_elitism)
+                population.append(
+                    mutation(domain, step, ordered_individuals[m]))
+
+    return costs[0][1], costs[0][0], scores, nfe, seed
+
+
+def genetic_algorithm_with_restarts(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[], population_size=100, step=1,
                                probability_mutation=0.2, elitism=0.2,
                                number_generations=500, search=False):
     """ Genetic algorithm implemented with elitisim.
