@@ -81,7 +81,7 @@ def plot_scores(scores, algo_name, save_fig, **kwargs):
     if algo_name == 'simulated_annealing':
         plt.xlabel("Temperature")
         plt.ylabel("Objective f(x) Scores")
-        plt.plot(scores, temp)
+        plt.plot(temp,scores)
         if save_fig:
             plt.savefig(os.path.join(
                 '/mnt/d/MINOR PROJECT/final/results/'+"simulated_annealing"+".png"))
