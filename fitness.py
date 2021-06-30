@@ -2,6 +2,8 @@
 from math import exp, sqrt
 from utils import flights, get_minutes, people
 
+ackley_N2_domain=[(-32,32)]
+
 def fitness_function(solution, dest):
     """ Cost function of Flight Scheduling problem
 
