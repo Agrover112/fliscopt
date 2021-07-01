@@ -84,7 +84,7 @@ def plot_scores(scores, algo_name, save_fig, **kwargs):
         plt.plot(temp,scores)
         if save_fig:
             plt.savefig(os.path.join(
-                '/mnt/d/MINOR PROJECT/final/results/'+"simulated_annealing"+".png"))
+                '/mnt/d/MINOR PROJECT/final/results/plots/'+"simulated_annealing"+".png"))
         else:
             plt.show()
     elif algo_name == 'genetic_algorithm' or algo_name == 'genetic_algorithm_reversed':
@@ -93,7 +93,7 @@ def plot_scores(scores, algo_name, save_fig, **kwargs):
         plt.plot(scores)
         if save_fig:
             plt.savefig(os.path.join(
-                '/mnt/d/MINOR PROJECT/final/results/'+algo_name+".png"))
+                '/mnt/d/MINOR PROJECT/final/results/plots/'+algo_name+".png"))
         else:
             plt.show()
     else:
@@ -102,7 +102,7 @@ def plot_scores(scores, algo_name, save_fig, **kwargs):
         plt.plot(scores)
         if save_fig:
             plt.savefig(os.path.join(
-                '/mnt/d/MINOR PROJECT/final/results/'+algo_name+".png"))
+                '/mnt/d/MINOR PROJECT/final/results/plots/'+algo_name+".png"))
         else:
             plt.show()
 
