@@ -2,7 +2,7 @@
 from math import exp, sqrt
 from utils import flights, get_minutes, people
 
-ackley_N2_domain=[(-32,32)]
+ackley_N2_domain=[(-32,32)]*2
 
 def fitness_function(solution, dest):
     """ Cost function of Flight Scheduling problem
@@ -57,15 +57,15 @@ def fitness_function(solution, dest):
     return total_price + total_wait     # The total cost associated
 
 
-def ackley_N2(x,y):
+def ackley_N2(x):
     """Ackley test objective function.
          - minimization
        * - Range[-32, 32]`
-       * - Global optima  f(x*)=-200    
+       * - Global optima  f(x*)=-200    @x1,x2=0,0
     """
 
     
-    return -200 * exp(-0.02 * sqrt((x**2) + (y**2)))
+    return -200 * exp(-0.02 * sqrt((x[0]**2) + (x[1]**2)))
 
 if __name__ == "__main__":
     """assert fitness_function(

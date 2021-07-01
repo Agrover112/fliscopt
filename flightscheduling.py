@@ -10,7 +10,8 @@ import matplotlib.pyplot as plt
 
 from algorithms import (genetic_algorithm, genetic_algorithm_reversed,
                         hill_climb, random_search, simulated_annealing)
-from fitness import fitness_function
+from fitness import fitness_function,ackley_N2,ackley_N2_domain
+
 from ga_utils import multi_mutation, mutation
 from utils import people, plot_scores, print_schedule, read_file, time
 
@@ -19,29 +20,38 @@ matplotlib.use('TKAgg')
 domain = [(0, 9)] * (len(people) * 2)  # 9 times * no.of people * to-from
 read_file('flights.txt')  # 12 flights with 10 possibilites 10^12
 
-
+# FIXIT with NFE,seed File writes Time 
 def multiple_runs(algorithm, init=[], use_multiproc=False, n_proc=multiprocessing.cpu_count(), n=10):
-    f = open(os.path.join('/mnt/d/MINOR PROJECT/final/results/' +
+    f = open(os.path.join('/mnt/d/MINOR PROJECT/final/results/multi_proc/' +
              algorithm.__name__+"_results.csv"), 'a+')
     if use_multiproc:
         d = domain
         fn = fitness_function
-        inputs = [(d, fn)]*n
+        seeds=[10,24,32,100,20,67,13,19,65,51,35,61,154,85,144,162,48,79,69,186]
+        if n>0 and n<20:
+            seeds=seeds[:n] # Some defined seeds
+        temp_inputs = [(d, fn)]*n              # Temp inputs
+        inputs=[]
+        for idx,seed in enumerate(seeds):           # Add seeds to all inputs
+            inputs.append(temp_inputs[idx]+(seed,))   
 
         # Multiprocessing starts here
-
-        pool = multiprocessing.Pool(n_proc)
         start = time.time()
+        pool = multiprocessing.Pool(n_proc)
+
         # result=pool.starmap_async(random_search,inputs)   #Async run
         result = pool.starmap_async(algorithm, inputs)
-        pool.close()  # Close the pool
-        diff = round(time.time()-start, 3)
-        f.write('MRun_no'+","+'Cost'+","+'Run_Time'+","+'Solution'+"\n")
+        pool.close()
+        pool.join()  # Close the pool
+        #diff = round(time.time()-start, 3)
+        diff=time.time()-start
+        print("Total time:", diff)
+        f.write('MRun_no'+","+'Cost'+","+'Run_Time'+","+'Solution'+","+'Nfe'+","+'Seed'+"\n")
         res = result.get()
         for i, r in enumerate(res):
-            f.write(str(i)+","+str(r[1])+","+str((diff/10))+","+str(r[0])+"\n")
+            f.write(str(i)+","+str(r[1])+","+str((diff/10))+","+str(r[0])+","+str(r[3])+","+str(r[4])+"\n")
         f.close()
-        print("Total time:", diff*n)
+
     else:
         f.write('Run_no'+","+'Cost'+","+'Run_Time'+","+'Solution'+"\n")
         times = []
@@ -55,16 +65,15 @@ def multiple_runs(algorithm, init=[], use_multiproc=False, n_proc=multiprocessin
         print("Total time ", round(sum(times), 3))
 
 
-def single_run(algorithm, init=[], save_fig=False, print_sch=True):
-    start = time.time()
+def single_run(algorithm, init=[],seed=random.randint(10,100),seed_init=True,save_fig=False, print_sch=True): 
     global scores
-    soln, cost, scores = algorithm(domain, fitness_function, init)
+
+    start = time.time()
+    soln, cost, scores,nfe,seed= algorithm(domain, fitness_function,seed,seed_init,init)
     diff = round(time.time()-start, 3)
     print("Time taken for single run ", diff)
     if algorithm.__name__ == 'simulated_annealing':
         plot_scores(scores, algorithm.__name__, save_fig, temp=algorithm.temp)
-    elif algorithm.__name__ == 'genetic_algorithm':
-        plot_scores(scores, algorithm.__name__, save_fig)
     else:
         plot_scores(scores, algorithm.__name__, save_fig)
     if print_sch:
@@ -112,14 +121,23 @@ def sol_chaining(algorithm_1, algorithm_2, rounds=10 , n_obs=2, tol=90, save_fig
 
 
 if __name__ == "__main__":
-    """Change the file_read function name and fitness_fn namer"""
-    """ ANKIT ADD A NFE COLUMN :D
-        Add seed to each mp run    """
+    """CHANGES In order:
+
+    3.implement GA_Random_reversal
+    4.Record obs for ALL standrad algos and soln_chaining CLOSE TABS    
+    5. Implement all test_funcs in fitness with domains above
+    6. Modify in algorithms.py each func's fitness_func() line
+    7. Test each in single_run
+    8. Test each in mp.py
+    9. Results if all goes well I guesss
+
+    """
     #soln,cost,scores,nfe,seed=random_search(domain,fitness_function)
-    # print(soln)
-    # print_schedule(soln,'FCO')
+    #print(soln)
+    #print_schedule(soln,'FCO')
     #multiple_runs(genetic_algorithm, n=20, use_multiproc=True)
     #final_soln,cost,scores = sol_chaining(random_search,hill_climb ,save_fig=True)
     #soln, cost = single_run(hill_climb, save_fig=False, print_sch=False)
-    multiple_runs(genetic_algorithm,n=5,use_multiproc=True)
-    # soln,cost=single_run(hill_climb,init=soln,save_fig=True)
+    #multiple_runs(genetic_algorithm_reversed,n=20,use_multiproc=True)
+    soln,cost=single_run(genetic_algorithm_reversed,save_fig=True,print_sch=False)
+  
