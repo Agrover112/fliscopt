@@ -3,9 +3,9 @@ import sys
 from utils import plot_scores
 import matplotlib
 from matplotlib import pyplot as plt
-matplotlib.use('TKAgg')
-domain=[(-32,32)]*2
-from fitness import ackley_N2
+#matplotlib.use('TKAgg')
+#domain=[(-32,32)]*2
+from fitness import *
 def random_search(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[], epochs=100):
     """ Random search algorithm implemented
 
@@ -44,8 +44,9 @@ def random_search(domain, fitness_function, seed=random.randint(10, 100), seed_i
         if i != 0:
             solution = [random.randint(domain[i][0], domain[i][1])
                         for i in range(len(domain))]
+            print(solution)
         if not fitness_function.__name__ == 'fitness_function':
-            cost = fitness_function(solution[0],solution[1])
+            cost = fitness_function(solution)
         else: cost = fitness_function(solution,'FCO')
         nfe += 1
         if cost < best_cost:
@@ -55,5 +56,6 @@ def random_search(domain, fitness_function, seed=random.randint(10, 100), seed_i
     return best_solution, best_cost, scores, nfe, seed
 
 if __name__ == '__main__':
-    soln,cost,scores,nfe,seed=random_search(domain,ackley_N2)
-    plot_scores(scores,'random_search',save_fig=False)
+    soln,cost,scores,nfe,seed=random_search(domain['rosenbrock']*12,rosenbrock)
+    print(cost,soln,"\n",scores)
+    #plot_scores(scores,'random_search',save_fig=False)
