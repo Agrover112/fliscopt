@@ -7,7 +7,6 @@ from ga_utils import crossover, mutation
 
 """Add option to select mutation type in GA method.
        Add bit flip mutation
-       Wrapp all different mutation types in a class or file
     """
 
 
