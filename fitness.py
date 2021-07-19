@@ -9,7 +9,7 @@ matyas_d=[(-10,10)]*2
 griewank_d=[(-600,600)]
 sphere_d=[(-5,5)]
 three_hump_camel_d=[(-5,5)]*2
-shewfel_N2_23_d=[(-10,10)]
+schwefel_N2_23_d=[(-10,10)]
 brown_d=[(-1,4)]
 rosenbrock_d=[(-5,10)]
 
@@ -17,7 +17,7 @@ domain = {
     'domain': [(0, 9)] * (len(people) * 2), # 9 times * no.of people * to-from
     'ackley_N2': ackley_N2_d,
     'schaffer_N1':schaffer_N1_d,
-    'shewfel_N2_23':shewfel_N2_23_d,
+    'schwefel_N2_23':schwefel_N2_23_d,
     'matyas':matyas_d,
     'booth':matyas_d,
     'griewank':griewank_d,
@@ -126,7 +126,7 @@ def schaffer_N1(x):
 def three_hump_camel(x):
     return (2 * x[0]**2) - (1.05 * (x[0] **4)) + ((x[0] ** 6) / 6) + x[0] * x[1] + x[1] **2
 
-def shewfel(x):
+def schwefel(x):
     return sum((i**10 for i in x))
 
 def brown(x):
@@ -151,6 +151,6 @@ if __name__ == "__main__":
     assert sphere([0,0,0])==0    #12/13 dimensional
     assert three_hump_camel([0,0]) == 0 #difficult
     assert schaffer_N1([0,0]) == 0 #difficult
-    assert shewfel([0,0,0]) == 0
+    assert schwefel([0,0,0]) == 0
     assert brown([0,0,0])==0
     assert rosenbrock([1,1,1])==0
