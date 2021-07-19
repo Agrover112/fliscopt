@@ -1,11 +1,34 @@
 
-from math import exp, sqrt
+from math import exp, sqrt ,prod , cos,sin
 from utils import flights, get_minutes, people
 
-ackley_N2_domain=[(-32,32)]*2
+#All domains defined with a single-tuple/or without a multiplier have n-dimensional Input Domain
+ackley_N2_d = [(-32, 32)]*2
+schaffer_N1_d=[(-100,100)]*2
+matyas_d=[(-10,10)]*2
+griewank_d=[(-600,600)]
+sphere_d=[(-5,5)]
+three_hump_camel_d=[(-5,5)]*2
+shewfel_N2_23_d=[(-10,10)]
+brown_d=[(-1,4)]
+rosenbrock_d=[(-5,10)]
 
+domain = {  
+    'domain': [(0, 9)] * (len(people) * 2), # 9 times * no.of people * to-from
+    'ackley_N2': ackley_N2_d,
+    'schaffer_N1':schaffer_N1_d,
+    'shewfel_N2_23':shewfel_N2_23_d,
+    'matyas':matyas_d,
+    'booth':matyas_d,
+    'griewank':griewank_d,
+    'sphere':sphere_d,
+    'three_hump_camel':three_hump_camel_d,
+    'brown':brown_d,
+    'rosenbrock':rosenbrock_d
+     }
+#Our Problem's fitness function             
 def fitness_function(solution, dest):
-    """ Cost function of Flight Scheduling problem
+    """ Cost function of Flight Scheduling problem 12D
 
     Args:
         solution (list): List containing the solution to be evaluated
@@ -56,7 +79,7 @@ def fitness_function(solution, dest):
 
     return total_price + total_wait     # The total cost associated
 
-
+# Benchmarks Function
 def ackley_N2(x):
     """Ackley test objective function.
          - minimization
@@ -67,9 +90,67 @@ def ackley_N2(x):
     
     return -200 * exp(-0.02 * sqrt((x[0]**2) + (x[1]**2)))
 
+def matyas(x):
+    """
+    Ackley test objective function 2D
+         - minimization
+       * - Range[-10, 10]`
+       * - Global optima  f(x*)=0    @x1,x2=0,0
+    """
+    if x is not None and not None in x and type(x) == list and len(x) ==  2 :
+        return 0.26 * (x[0]**2 + x[1]**2) - 0.48 * x[0] * x[1]
+    else:
+        
+        if  not type(x) == list:
+            raise TypeError("X is of type list")
+        elif len(x) !=2:
+            raise ValueError("Matyas function is defined in 2D space. Your x is of {} dimensions".format(len(x)))
+        elif x is None or x[0] is None or x[1] is None or None in x:
+            raise ValueError("X is an empty list or contains only None")
+        else : raise ValueError("X params are wrong")
+
+def booth(x):
+    return (x[0] + (2 * x[1]) - 7)**2 + ( (2 * x[0]) + x[1] - 5)**2
+
+def griewank(x):
+    #Griewank is n dim unimodal f(0,0,0)== 0
+   return 1.0/4000.0 * sum(i**2 for i in x) - prod((cos(i/sqrt(idx+1.0)) for idx, i in enumerate(x))) +1
+
+def sphere(x):
+    # Convex n dimensional unimodal
+    return sum(i**2 for i in x)
+
+def schaffer_N1(x):
+    return 0.5 + (sin((x[0] ** 2 + x[1] ** 2) ** 2) ** 2) - 0.5 / (1 + 0.001 * (x[0] **2 + x[1] **2)) ** 2
+
+def three_hump_camel(x):
+    return (2 * x[0]**2) - (1.05 * (x[0] **4)) + ((x[0] ** 6) / 6) + x[0] * x[1] + x[1] **2
+
+def shewfel(x):
+    return sum((i**10 for i in x))
+
+def brown(x):
+    #x=list(i**2 for i in x)
+    #return sum((x[i]**2.0)**(x[i+1]**2.0 + 1.0) + (x[i+1]**2.0)**(x[i]**2.0 + 1.0)for i in range(len(x)-1))
+    return sum((x**2.0)**(y**2.0 + 1.0) + (y**2.0)**(x**2.0 + 1.0) for x, y in zip(x[:-1], x[1:]))
+
+def rosenbrock(x):
+    """ This function blatantly copied lol DEAP benchmarks :(
+        My implementation was absolutely ***""" 
+    return sum(100 * (x * x - y)**2 + (1. - x)**2 for x, y in zip(x[:-1], x[1:]))
+
 if __name__ == "__main__":
     """assert fitness_function(
         [1, 4, 3, 2, 7, 3, 6, 3, 2, 4, 5, 3], "FCO") == 5451
     assert fitness_function(
         [1, 3, 3, 2, 7, 3, 6, 3, 2, 4, 5, 3], "FCO") == 5304"""
-    assert ackley_N2(0,0) == -200
+    assert ackley_N2([0,0]) == -200
+    assert matyas([0,0]) == 0
+    assert booth([1,3]) == 0
+    assert griewank([0,0,0])==0 
+    assert sphere([0,0,0])==0    #12/13 dimensional
+    assert three_hump_camel([0,0]) == 0 #difficult
+    assert schaffer_N1([0,0]) == 0 #difficult
+    assert shewfel([0,0,0]) == 0
+    assert brown([0,0,0])==0
+    assert rosenbrock([1,1,1])==0
