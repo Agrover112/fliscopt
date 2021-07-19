@@ -6,7 +6,7 @@ from multiprocessing import Lock, Pool, Process, Queue
 
 from algorithms import genetic_algorithm, genetic_algorithm_reversed, hill_climb, random_search, simulated_annealing
 from flightscheduling import domain, fitness_function
-
+from fitness import *
 """def f(l, i):
     l.acquire()
     try:
@@ -27,8 +27,10 @@ dic = {}
 SCORES, BEST_COST, BEST_SOLUTION = [], [], []
 
 if __name__ == '__main__':
-    d = domain
+    #d = domain['rosenbrock']*15
+    d=domain['domain']
     f = fitness_function
+    #f=rosenbrock
     #seeds=random.sample(range(10,100),10)  #List of seeds N seeds = N runs
     seeds=[10,24,32,100,20,67,13,19,65,51]
     temp_inputs = [(d,f)]*10
@@ -42,7 +44,7 @@ if __name__ == '__main__':
     # Multiprocessing starts here
     start = time.time() 
     pool = multiprocessing.Pool(multiprocessing.cpu_count())
-    result = pool.starmap_async(genetic_algorithm_reversed, inputs)  # Async run
+    result = pool.starmap_async(genetic_algorithm, inputs)  # Async run
     pool.close()
     pool.join()  # Close the pool
     print("", (time.time()-start))
