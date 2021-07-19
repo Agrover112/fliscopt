@@ -12,7 +12,7 @@ three_hump_camel_d=[(-5,5)]*2
 schwefel_N2_23_d=[(-10,10)]
 brown_d=[(-1,4)]
 rosenbrock_d=[(-5,10)]
-
+zakharov_d=[(-5,10)]
 domain = {  
     'domain': [(0, 9)] * (len(people) * 2), # 9 times * no.of people * to-from
     'ackley_N2': ackley_N2_d,
@@ -24,7 +24,8 @@ domain = {
     'sphere':sphere_d,
     'three_hump_camel':three_hump_camel_d,
     'brown':brown_d,
-    'rosenbrock':rosenbrock_d
+    'rosenbrock':rosenbrock_d,
+    'zakharov':zakharov_d
      }
 #Our Problem's fitness function             
 def fitness_function(solution, dest):
@@ -139,6 +140,10 @@ def rosenbrock(x):
         My implementation was absolutely ***""" 
     return sum(100 * (x * x - y)**2 + (1. - x)**2 for x, y in zip(x[:-1], x[1:]))
 
+def zakharov(x):
+    p2=sum(0.5*idx*i for idx,i in enumerate(x))
+    return (sum(i**2 for i in x) + p2**2 +p2**4  )
+
 if __name__ == "__main__":
     """assert fitness_function(
         [1, 4, 3, 2, 7, 3, 6, 3, 2, 4, 5, 3], "FCO") == 5451
@@ -154,3 +159,4 @@ if __name__ == "__main__":
     assert schwefel([0,0,0]) == 0
     assert brown([0,0,0])==0
     assert rosenbrock([1,1,1])==0
+    assert zakharov([0,0,0,0])==0
