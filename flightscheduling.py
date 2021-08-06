@@ -8,7 +8,7 @@ from multiprocessing import Pool, Process, Queue
 import matplotlib
 import matplotlib.pyplot as plt
 
-from algorithms import (genetic_algorithm, genetic_algorithm_reversed,
+from algorithms import (genetic_algorithm, genetic_algorithm_reversed,genetic_algorithm_with_reversals,
                         hill_climb, random_search, simulated_annealing)
 from fitness import *
 
@@ -132,13 +132,13 @@ if __name__ == "__main__":
     10. Exception handling
 
     """
-    soln,cost,scores,nfe,seed=random_search(domain['zakharov']*5,zakharov)
-    print(soln)
+    #soln,cost,scores,nfe,seed=random_search(domain['zakharov']*5,zakharov)
+    #print(soln)
     #print_schedule(soln,'FCO')
-    #multiple_runs(genetic_algorithm, n=20, use_multiproc=True)
+    multiple_runs(genetic_algorithm_with_reversals, n=20, use_multiproc=True,domain=domain['domain'],fitness_function=fitness_function)
     #final_soln,cost,scores = sol_chaining(random_search,hill_climb ,save_fig=True)
-    #soln, cost = single_run(genetic_algorithm,domain['three_hump_camel'],three_hump_camel,seed_init=False, save_fig=False, print_sch=True)
+    #soln, cost = single_run(genetic_algorithm_with_reversals,domain['domain'],fitness_function,seed_init=False, save_fig=False, print_sch=True)
     #print(soln,cost)
-    #multiple_runs(genetic_algorithm,domain['zakharov']*13,zakharov,n=5,use_multiproc=True)
-    #soln,cost=single_run(genetic_algorithm_reversed,save_fig=False,print_sch=False)
-  
+    #multiple_runs(genetic_algorithm_with_reversals,domain['zakharov']*13,zakharov,n=5,use_multiproc=True)
+    #soln,cost=single_run(genetic_algorithm_with_reversals,save_fig=False,print_sch=False,domain=domain['domain'],fitness_function=fitness_function,seed=10)
+
