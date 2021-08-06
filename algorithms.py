@@ -367,10 +367,11 @@ def genetic_algorithm_reversed(domain, fitness_function, seed=random.randint(10,
     return costs[0][1], costs[0][0], scores, nfe, seed
 
 
-def genetic_algorithm_with_restarts(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[], population_size=100, step=1,
-                               probability_mutation=0.2, elitism=0.2,
+def genetic_algorithm_with_reversals(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[], population_size=100, step=1,
+                               probability_mutation=0.2, elitism=0.2,n_k=250,step_length=100,
                                number_generations=500, search=False):
-    """ Genetic algorithm implemented with elitisim.
+    """ Genetic algorithm implemented with elitisim with n number of reversals.
+        No. of reversals= number_generations/n_keach of n iter=step_length i.e n step reversal.
 
 
     Args:
@@ -383,6 +384,8 @@ def genetic_algorithm_with_restarts(domain, fitness_function, seed=random.randin
         probability_mutation (float, optional): Controls the rate of mutation of genes. Defaults to 0.2.
         elitism (float, optional): The percentage of population which proceeds onto next iter without changes. Defaults to 0.2.
         number_generations (int, optional): Analgous to epochs, but in this context refers to number of generations the algorithm evolves to . Defaults to 500.
+        n_k (int, optional): Divides number of generations to get actual no of reversals. Defaults to 50.
+        step_length (int,optional): The number of reversal steps in a given reversal. Defaults to 120.
         search (bool, optional): If True  solution is initialized as the result of a RandomSearch . Defaults to False.
         step (int, optional): Number of steps to the right or left to make changes in given solution. Defaults to 1.
 
@@ -403,6 +406,7 @@ def genetic_algorithm_with_restarts(domain, fitness_function, seed=random.randin
     population = []
     scores = []
     nfe = 0
+    #rev=0
     for i in range(population_size):
         if search == True:
             solution, b_c, sc, r_nfe, s = random_search(
@@ -419,14 +423,42 @@ def genetic_algorithm_with_restarts(domain, fitness_function, seed=random.randin
     number_elitism = int(elitism * population_size)
 
     for i in range(number_generations):
-        costs = [(fitness_function(individual, 'FCO'), individual)
+        if not fitness_function.__name__ == 'fitness_function':
+            costs = [(fitness_function(individual), individual)
+                 for individual in population]
+        else: costs = [(fitness_function(individual, 'FCO'), individual)
                  for individual in population]
         nfe += 1
-        # costs.sort()
-        heapq.heapify(costs)
+        if i % n_k ==0 and i!=0:
+            if step_length==1:
+                costs.sort(reverse=True)
+         #rev+=1
+            else:
+                for _ in range(step_length-1):
+                    costs.sort(reverse=True)
+                    ordered_individuals = [individual for (cost, individual) in costs]
+                    population = ordered_individuals[0:number_elitism]
+                    if not fitness_function.__name__ == 'fitness_function':
+                        scores.append(fitness_function(population[0]))
+                    else: scores.append(fitness_function(population[0], 'FCO'))
+                    nfe += 1
+                    while len(population) < population_size:
+                        if random.random() < probability_mutation:
+                            i1 = random.randint(0, number_elitism)
+                            i2 = random.randint(0, number_elitism)
+                            population.append(
+                                crossover(domain, ordered_individuals[i1], ordered_individuals[i2]))
+                        else:
+                            m = random.randint(0, number_elitism)
+                            population.append(
+                                mutation(domain, step, ordered_individuals[m]))   
+        #print(rev)    #To print the number of reversals
+        else: heapq.heapify(costs)
         ordered_individuals = [individual for (cost, individual) in costs]
         population = ordered_individuals[0:number_elitism]
-        scores.append(fitness_function(population[0], 'FCO'))
+        if not fitness_function.__name__ == 'fitness_function':
+            scores.append(fitness_function(population[0]))
+        else: scores.append(fitness_function(population[0], 'FCO'))
         nfe += 1
         while len(population) < population_size:
             if random.random() < probability_mutation:
