@@ -1,5 +1,5 @@
 # PyPy Setup 
-## First update your distribution.
+## Update your distribution.
 ```
 sudo apt-get update
 sudo apt-get update -y
@@ -26,5 +26,7 @@ pypy mp.py
 OR
 pypy flightscheduling.py
 ```
-**Note**: Use PATH -m ensurepip only if an error is enocountered or if prompt says so.
- 
+**Note**: 
+- Use PATH -m ensurepip only if an error is enocountered or if prompt says so.
+ - Some Python functions aren't compatible with PyPy.Since at the time of writing it uses *Python3.7.*
+Use *sys.version_info* to check incase you want to add support for PyPy3.7    
