@@ -1,5 +1,8 @@
+from math import exp, sqrt , cos,sin
 
-from math import exp, sqrt ,prod , cos,sin
+import sys
+
+
 from utils import flights, get_minutes, people
 
 #All domains defined with a single-tuple/or without a multiplier have n-dimensional Input Domain
@@ -112,16 +115,27 @@ def matyas(x):
 
 def booth(x):
     return (x[0] + (2 * x[1]) - 7)**2 + ( (2 * x[0]) + x[1] - 5)**2
+if sys.version_info[1]<8:
+    from math import exp, sqrt ,cos,sin
+    from functools import reduce
+    import operator
+    def griewank(x):
+        #Griewank is n dim unimodal f(0,0,0)== 0
+    #return 1.0/4000.0 * sum(i**2 for i in x) - math.prod((cos(i/sqrt(idx+1.0)) for idx, i in enumerate(x))) +1
+        return 1.0/4000.0 * sum(i**2 for i in x) - reduce(operator.mul,(cos(i/sqrt(idx+1.0)) for idx, i in enumerate(x))) +1
+else:
+    from math import prod
+    def griewank(x):
+        #Griewank is n dim unimodal f(0,0,0)== 0
+        return 1.0/4000.0 * sum(i**2 for i in x) - prod((cos(i/sqrt(idx+1.0)) for idx, i in enumerate(x))) +1
 
-def griewank(x):
-    #Griewank is n dim unimodal f(0,0,0)== 0
-   return 1.0/4000.0 * sum(i**2 for i in x) - prod((cos(i/sqrt(idx+1.0)) for idx, i in enumerate(x))) +1
 
 def sphere(x):
     # Convex n dimensional unimodal
     return sum(i**2 for i in x)
 
 def schaffer_N1(x):
+    #Shaffer N1 is 2 dim unimodal function with a global minima at f(0,0)
     return 0.5 + (sin((x[0] ** 2 + x[1] ** 2) ** 2) ** 2) - 0.5 / (1 + 0.001 * (x[0] **2 + x[1] **2)) ** 2
 
 def three_hump_camel(x):
