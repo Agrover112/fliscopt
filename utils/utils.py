@@ -1,3 +1,4 @@
+#from fitness import fitness_function
 import logging
 import math
 import os
@@ -78,13 +79,14 @@ def plot_scores(scores, algo_name, save_fig, **kwargs):
         save_fig (bool): If True figure is saved , otherwise plotted during run-time.
     """
     temp = kwargs.get('temp', None)
+    fname=kwargs.get('fname','FlightScheduling')
     if algo_name == 'simulated_annealing':
         plt.xlabel("Temperature")
         plt.ylabel("Objective f(x) Scores")
         plt.plot(temp,scores)
         if save_fig:
             plt.savefig(os.path.join(
-                '/mnt/d/MINOR PROJECT/final/results/plots/'+"simulated_annealing"+".png"))
+                '/mnt/d/MINOR PROJECT/final/results/plots/'+fname+'/'+"simulated_annealing"+".png"))
         else:
             plt.show()
     elif algo_name == 'genetic_algorithm' or algo_name == 'genetic_algorithm_reversed'or algo_name == 'genetic_algorithm_with_reversals':
@@ -93,7 +95,7 @@ def plot_scores(scores, algo_name, save_fig, **kwargs):
         plt.plot(scores)
         if save_fig:
             plt.savefig(os.path.join(
-                '/mnt/d/MINOR PROJECT/final/results/plots/'+algo_name+".png"))
+                '/mnt/d/MINOR PROJECT/final/results/plots/'+fname+'/'+algo_name+".png"))
         else:
             plt.show()
     else:
@@ -102,7 +104,7 @@ def plot_scores(scores, algo_name, save_fig, **kwargs):
         plt.plot(scores)
         if save_fig:
             plt.savefig(os.path.join(
-                '/mnt/d/MINOR PROJECT/final/results/plots/'+algo_name+".png"))
+                '/mnt/d/MINOR PROJECT/final/results/plots/'+fname+'/'+algo_name+".png"))
         else:
             plt.show()
 
