@@ -3,7 +3,7 @@ import math
 import random
 import sys
 
-from ga_utils import crossover, mutation
+from utils.ga_utils import crossover, mutation
 
 """Add option to select mutation type in GA method.
        Add bit flip mutation
@@ -50,7 +50,8 @@ def random_search(domain, fitness_function, seed=random.randint(10, 100), seed_i
                         for i in range(len(domain))]
         if not fitness_function.__name__ == 'fitness_function':
             cost = fitness_function(solution)
-        else: cost = fitness_function(solution,'FCO')
+        else:
+            cost = fitness_function(solution, 'FCO')
         nfe += 1
         if cost < best_cost:
             best_cost = cost
@@ -107,7 +108,8 @@ def hill_climb(domain, fitness_function, seed=random.randint(10, 100), seed_init
         #actual = fitness_function(solution, 'FCO')
         if not fitness_function.__name__ == 'fitness_function':
             actual = fitness_function(solution)
-        else: actual = fitness_function(solution,'FCO')
+        else:
+            actual = fitness_function(solution, 'FCO')
         nfe += 1
         best = actual
         for i in range(len(neighbors)):
@@ -115,7 +117,8 @@ def hill_climb(domain, fitness_function, seed=random.randint(10, 100), seed_init
             #cost = fitness_function(neighbors[i], 'FCO')
             if not fitness_function.__name__ == 'fitness_function':
                 cost = fitness_function(neighbors[i])
-            else: cost = fitness_function(neighbors[i],'FCO')
+            else:
+                cost = fitness_function(neighbors[i], 'FCO')
             nfe += 1
             if cost < best:
                 best = cost
@@ -183,14 +186,19 @@ def simulated_annealing(domain, fitness_function, seed=random.randint(10, 100), 
         #cost = fitness_function(solution, 'FCO')
         if not fitness_function.__name__ == 'fitness_function':
             cost = fitness_function(solution)
-        else: cost = fitness_function(solution,'FCO')
+        else:
+            cost = fitness_function(solution, 'FCO')
         nfe += 1
         #cost_temp = fitness_function(temp_solution, 'FCO')
         if not fitness_function.__name__ == 'fitness_function':
             cost_temp = fitness_function(solution)
-        else: cost_temp= fitness_function(solution,'FCO')
+        else:
+            cost_temp = fitness_function(solution, 'FCO')
         nfe += 1
-        prob = pow(math.e, (-cost_temp - cost) / temperature)
+        try:
+            prob = pow(math.e, (-cost_temp - cost) / temperature)
+        except OverflowError:
+            prob = float('inf')
         best = cost
         if (cost_temp < cost or random.random() < prob):
             best = cost_temp
@@ -198,7 +206,6 @@ def simulated_annealing(domain, fitness_function, seed=random.randint(10, 100), 
         scores.append(best)
         simulated_annealing.temp.append(temperature)
         temperature = temperature * cooling
-        
 
     print('Count: ', count)
     return solution, best, scores, nfe, seed
@@ -258,10 +265,11 @@ def genetic_algorithm(domain, fitness_function, seed=random.randint(10, 100), se
     for i in range(number_generations):
         if not fitness_function.__name__ == 'fitness_function':
             costs = [(fitness_function(individual), individual)
-                 for individual in population]
-        else: costs = [(fitness_function(individual, 'FCO'), individual)
-                 for individual in population]
-        #costs = [(fitness_function(individual, 'FCO'), individual)
+                     for individual in population]
+        else:
+            costs = [(fitness_function(individual, 'FCO'), individual)
+                     for individual in population]
+        # costs = [(fitness_function(individual, 'FCO'), individual)
         #         for individual in population]
         nfe += 1
         # costs.sort()
@@ -270,7 +278,8 @@ def genetic_algorithm(domain, fitness_function, seed=random.randint(10, 100), se
         population = ordered_individuals[0:number_elitism]
         if not fitness_function.__name__ == 'fitness_function':
             scores.append(fitness_function(population[0]))
-        else: scores.append(fitness_function(population[0], 'FCO'))
+        else:
+            scores.append(fitness_function(population[0], 'FCO'))
         #scores.append(fitness_function(population[0], 'FCO'))
         nfe += 1
         while len(population) < population_size:
@@ -340,9 +349,10 @@ def genetic_algorithm_reversed(domain, fitness_function, seed=random.randint(10,
     for i in range(number_generations):
         if not fitness_function.__name__ == 'fitness_function':
             costs = [(fitness_function(individual), individual)
-                 for individual in population]
-        else: costs = [(fitness_function(individual, 'FCO'), individual)
-                 for individual in population]
+                     for individual in population]
+        else:
+            costs = [(fitness_function(individual, 'FCO'), individual)
+                     for individual in population]
         nfe += 1
         # costs.sort()
         heapq.heapify(costs)
@@ -350,7 +360,8 @@ def genetic_algorithm_reversed(domain, fitness_function, seed=random.randint(10,
         population = ordered_individuals[0:number_elitism]
         if not fitness_function.__name__ == 'fitness_function':
             scores.append(fitness_function(population[0]))
-        else: scores.append(fitness_function(population[0], 'FCO'))
+        else:
+            scores.append(fitness_function(population[0], 'FCO'))
         #scores.append(fitness_function(population[0], 'FCO'))
         nfe += 1
         while len(population) < population_size:
@@ -368,8 +379,8 @@ def genetic_algorithm_reversed(domain, fitness_function, seed=random.randint(10,
 
 
 def genetic_algorithm_with_reversals(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[], population_size=100, step=1,
-                               probability_mutation=0.2, elitism=0.2,n_k=250,step_length=100,
-                               number_generations=500, search=False):
+                                     probability_mutation=0.2, elitism=0.2, n_k=250, step_length=100,
+                                     number_generations=500, search=False):
     """ Genetic algorithm implemented with elitisim with n number of reversals.
         No. of reversals= number_generations/n_keach of n iter=step_length i.e n step reversal.
 
@@ -406,7 +417,7 @@ def genetic_algorithm_with_reversals(domain, fitness_function, seed=random.randi
     population = []
     scores = []
     nfe = 0
-    #rev=0
+    rev = 0
     for i in range(population_size):
         if search == True:
             solution, b_c, sc, r_nfe, s = random_search(
@@ -425,22 +436,26 @@ def genetic_algorithm_with_reversals(domain, fitness_function, seed=random.randi
     for i in range(number_generations):
         if not fitness_function.__name__ == 'fitness_function':
             costs = [(fitness_function(individual), individual)
-                 for individual in population]
-        else: costs = [(fitness_function(individual, 'FCO'), individual)
-                 for individual in population]
+                     for individual in population]
+        else:
+            costs = [(fitness_function(individual, 'FCO'), individual)
+                     for individual in population]
         nfe += 1
-        if i % n_k ==0 and i!=0:
-            if step_length==1:
+        if i % n_k == 0 and i != 0:
+            if step_length == 1:
                 costs.sort(reverse=True)
-         #rev+=1
+                rev += 1
             else:
+                rev += 1
                 for _ in range(step_length-1):
                     costs.sort(reverse=True)
-                    ordered_individuals = [individual for (cost, individual) in costs]
+                    ordered_individuals = [
+                        individual for (cost, individual) in costs]
                     population = ordered_individuals[0:number_elitism]
                     if not fitness_function.__name__ == 'fitness_function':
                         scores.append(fitness_function(population[0]))
-                    else: scores.append(fitness_function(population[0], 'FCO'))
+                    else:
+                        scores.append(fitness_function(population[0], 'FCO'))
                     nfe += 1
                     while len(population) < population_size:
                         if random.random() < probability_mutation:
@@ -451,14 +466,16 @@ def genetic_algorithm_with_reversals(domain, fitness_function, seed=random.randi
                         else:
                             m = random.randint(0, number_elitism)
                             population.append(
-                                mutation(domain, step, ordered_individuals[m]))   
-        #print(rev)    #To print the number of reversals
-        else: heapq.heapify(costs)
+                                mutation(domain, step, ordered_individuals[m]))
+            print(rev)  # To print the number of reversals
+        else:
+            heapq.heapify(costs)
         ordered_individuals = [individual for (cost, individual) in costs]
         population = ordered_individuals[0:number_elitism]
         if not fitness_function.__name__ == 'fitness_function':
             scores.append(fitness_function(population[0]))
-        else: scores.append(fitness_function(population[0], 'FCO'))
+        else:
+            scores.append(fitness_function(population[0], 'FCO'))
         nfe += 1
         while len(population) < population_size:
             if random.random() < probability_mutation:
