@@ -26,7 +26,7 @@ jobs = []
 dic = {}
 SCORES, BEST_COST, BEST_SOLUTION = [], [], []
 
-if __name__ == '__main__':
+def main():
     #d = domain['rosenbrock']*15
     d=domain['domain']
     f = fitness_function
@@ -52,6 +52,10 @@ if __name__ == '__main__':
     print("Run_Number\tSolution\t      Cost  NFE SEED",)
     for i, r in enumerate(res):
         print(i, r[0], r[1],r[3],r[4])
+
+if __name__ == '__main__':
+    main()
+    
     # print(result._value[0][1])
 
     # for i in result :

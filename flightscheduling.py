@@ -120,20 +120,17 @@ def sol_chaining(algorithm_1, algorithm_2,domain,fitness_function,seed=random.ra
         print("Cost at {}=={}".format(i, cost))
         init = mutation(domain,1,final_soln)  # IntMutation
 
-if __name__ == "__main__":
-    """CHANGES In order:
 
-    4.Record obs for ALL standrad algos and soln_chaining CLOSE TABS    
-    9. Results if all goes well I guess
+
+def main():
+    """CHANGES In order:
     10. Exception handling
 
     """
-    #soln,cost,scores,nfe,seed=random_search(domain['zakharov']*5,zakharov)
-    #print(soln)
     #print_schedule(soln,'FCO')
     #multiple_runs(genetic_algorithm_with_reversals, n=20, use_multiproc=True,domain=domain['domain'],fitness_function=fitness_function)
-    final_soln,cost,scores = sol_chaining(random_search,hill_climb ,domain=domain['domain'],fitness_function=fitness_function,save_fig=True,seed=10)
-    #soln, cost = single_run(genetic_algorithm_with_reversals,domain['domain'],fitness_function,seed_init=False, save_fig=False, print_sch=True)
+    #final_soln,cost,scores = sol_chaining(random_search,hill_climb ,domain=domain['domain'],fitness_function=fitness_function,save_fig=True,seed=10)
+    soln, cost = single_run(genetic_algorithm_with_reversals,domain['domain'],fitness_function,seed_init=False, save_fig=False, print_sch=True)
     #print(soln,cost)
     #multiple_runs(simulated_annealing,domain[ 'matyas'],matyas,n=20,use_multiproc=True)
     #multiple_runs(random_search,domain['matyas'],matyas,n=20,use_multiproc=True)
@@ -142,5 +139,8 @@ if __name__ == "__main__":
     #multiple_runs(genetic_algorithm_reversed,domain['matyas'],matyas,n=20,use_multiproc=True)
     #multiple_runs(genetic_algorithm_with_reversals,domain['matyas'],matyas,n=20,use_multiproc=True)
     #soln,cost=single_run(simulated_annealing,save_fig=False,print_sch=False,domain=domain['griewank']*13,fitness_function=griewank,seed=10)
+
+if __name__ == "__main__":
+    main()
     
 
