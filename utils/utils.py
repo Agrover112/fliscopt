@@ -79,7 +79,7 @@ def plot_scores(scores, algo_name, save_fig, **kwargs):
         save_fig (bool): If True figure is saved , otherwise plotted during run-time.
     """
     temp = kwargs.get('temp', None)
-    fname=kwargs.get('fname','FlightScheduling')
+    fname=kwargs.get('fname','flight_scheduling')
     if algo_name == 'simulated_annealing':
         plt.xlabel("Temperature")
         plt.ylabel("Objective f(x) Scores")

@@ -3,11 +3,9 @@ import math
 import random
 import sys
 
-from utils.ga_utils import crossover, mutation
+from utils.ga_utils import crossover, mutation ,multi_mutation
+from utils.utils import plot_scores, print_schedule
 
-"""Add option to select mutation type in GA method.
-       Add bit flip mutation
-    """
 
 
 def random_search(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[], epochs=100):
@@ -489,3 +487,7 @@ def genetic_algorithm_with_reversals(domain, fitness_function, seed=random.randi
                     mutation(domain, step, ordered_individuals[m]))
 
     return costs[0][1], costs[0][0], scores, nfe, seed
+
+
+
+

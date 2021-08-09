@@ -8,12 +8,13 @@ from multiprocessing import Pool, Process, Queue
 import matplotlib
 import matplotlib.pyplot as plt
 
-from algorithms import (genetic_algorithm, genetic_algorithm_reversed,genetic_algorithm_with_reversals,
-                        hill_climb, random_search, simulated_annealing)
-from fitness import *
+from algorithms import (genetic_algorithm, genetic_algorithm_reversed,
+                        genetic_algorithm_with_reversals, hill_climb,
+                        random_search, simulated_annealing)
 
-from ga_utils import multi_mutation, mutation
-from utils import people, plot_scores, print_schedule, read_file, time
+from fitness import *
+from utils.ga_utils import multi_mutation, mutation
+from utils.utils import people, plot_scores, print_schedule, read_file, time
 
 matplotlib.use('TKAgg')
 
@@ -23,7 +24,7 @@ read_file(_FLIGHTS_FILE_)  # 12 flights with 10 possibilites 10^12
 
 
 def multiple_runs(algorithm,domain,fitness_function, init=[], use_multiproc=False, n_proc=multiprocessing.cpu_count(), n=10):
-    f = open(os.path.join('/mnt/d/MINOR PROJECT/final/results/multi_proc/' +
+    f = open(os.path.join('/mnt/d/MINOR PROJECT/final/results/multi_proc/' +fitness_function.__name__+'/'+
              algorithm.__name__+"_results.csv"), 'a+')
     if use_multiproc:
         d = domain
@@ -65,7 +66,7 @@ def multiple_runs(algorithm,domain,fitness_function, init=[], use_multiproc=Fals
         f.close()
         print("Total time ", round(sum(times), 3))
 
-
+ 
 def single_run(algorithm,domain,fitness_function,init=[],seed=random.randint(10,100),seed_init=True,save_fig=False, print_sch=True): 
     global scores
 
@@ -74,60 +75,55 @@ def single_run(algorithm,domain,fitness_function,init=[],seed=random.randint(10,
     diff = round(time.time()-start, 3)
     print("Time taken for single run ", diff)
     if algorithm.__name__ == 'simulated_annealing':
-        plot_scores(scores, algorithm.__name__, save_fig, temp=algorithm.temp)
+        plot_scores(scores, algorithm.__name__, save_fig, temp=algorithm.temp,fname=fitness_function.__name__)
     else:
-        plot_scores(scores, algorithm.__name__, save_fig)
+        plot_scores(scores, algorithm.__name__, save_fig,fname=fitness_function.__name__)
         
     if print_sch and fitness_function.__name__ == 'fitness_function':
         print_schedule(soln, 'FCO')
     return soln, cost
 
-
-def sol_chaining(algorithm_1, algorithm_2, rounds=10 , n_obs=2, tol=90, save_fig=False):
+def sol_chaining(algorithm_1, algorithm_2,domain,fitness_function,seed=random.randint(10,100), rounds=10 , n_obs=2, tol=90, save_fig=False):
    # Note scores here is the best cost of each particular single_run
     scores = []
     for i in range(rounds):
         if i == 0:
-            soln, cost = single_run(algorithm_1,domain,fitness_function, print_sch=False)
-            #soln=mutation(domain,random.randint(0,1),soln)
-            soln=multi_mutation(domain,1,soln)
+            soln, cost = single_run(algorithm_1,domain,fitness_function, print_sch=False,seed=seed)
+            soln=mutation(domain,random.randint(0,1),soln) # Either 1 step or no step InitMutation
+            #soln=multi_mutation(domain,1,soln)
             scores.append(cost)
             print("Cost at {}=={}".format(i, cost))
         elif i == rounds-1:
             final_soln, cost = single_run(
-                algorithm_2,algorithm_1,domain,fitness_function, init=soln, save_fig=False, print_sch=True)
+                algorithm_2,domain=domain,fitness_function=fitness_function, init=soln, save_fig=False, print_sch=True,seed=seed)
             scores.append(cost)
             print("Cost at {}=={}".format(i, cost))
             plot_scores(scores, sol_chaining.__name__, save_fig)
             return final_soln, scores[-1], scores
         else:
             soln, cost = single_run(
-                algorithm_1,algorithm_1,domain,fitness_function, init=init, save_fig=False, print_sch=False)
+                algorithm_1,domain=domain,fitness_function=fitness_function, init=init, save_fig=False, print_sch=False,seed=seed)
             print("Cost at {}=={}".format(i, cost))
-            #soln=mutation(domain,random.randint(0,1),soln)
-            soln=multi_mutation(domain,1,soln)
+            soln=mutation(domain,random.randint(0,1),soln)
+            #soln=multi_mutation(domain,1,soln)
             scores.append(cost)
-        #random_solution = [random.randint(domain[i][0], domain[i][1])for i in range(len(domain))]
-        # soln=soln+random_solution//2
 
-        final_soln, cost = single_run(algorithm_2,algorithm_1,domain,fitness_function, init=soln, print_sch=False)
+        final_soln, cost = single_run(algorithm_2,domain=domain,fitness_function=fitness_function, init=soln, print_sch=False,seed=seed)
         scores.append(cost)
         if cost - random.randint(tol, 100) > int(sum(scores[-n_obs:])/n_obs):
             print("----Ending early at iteration{}----".format(i))
             print("Cost{}".format(cost))
-            print_schedule(final_soln, 'FCO')
+            if fitness_function.__name__ == 'fitness_function':
+                print_schedule(final_soln, 'FCO')
             plot_scores(scores, sol_chaining.__name__, save_fig)
             return final_soln, scores[-1], scores
         print("Cost at {}=={}".format(i, cost))
-        init = mutation(domain,1,final_soln)
-
+        init = mutation(domain,1,final_soln)  # IntMutation
 
 if __name__ == "__main__":
     """CHANGES In order:
 
-    3.implement GA_Random_reversal
     4.Record obs for ALL standrad algos and soln_chaining CLOSE TABS    
-    8. Test each in mp.py
     9. Results if all goes well I guess
     10. Exception handling
 
@@ -135,10 +131,16 @@ if __name__ == "__main__":
     #soln,cost,scores,nfe,seed=random_search(domain['zakharov']*5,zakharov)
     #print(soln)
     #print_schedule(soln,'FCO')
-    multiple_runs(genetic_algorithm_with_reversals, n=20, use_multiproc=True,domain=domain['domain'],fitness_function=fitness_function)
-    #final_soln,cost,scores = sol_chaining(random_search,hill_climb ,save_fig=True)
+    #multiple_runs(genetic_algorithm_with_reversals, n=20, use_multiproc=True,domain=domain['domain'],fitness_function=fitness_function)
+    final_soln,cost,scores = sol_chaining(random_search,hill_climb ,domain=domain['domain'],fitness_function=fitness_function,save_fig=True,seed=10)
     #soln, cost = single_run(genetic_algorithm_with_reversals,domain['domain'],fitness_function,seed_init=False, save_fig=False, print_sch=True)
     #print(soln,cost)
-    #multiple_runs(genetic_algorithm_with_reversals,domain['zakharov']*13,zakharov,n=5,use_multiproc=True)
-    #soln,cost=single_run(genetic_algorithm_with_reversals,save_fig=False,print_sch=False,domain=domain['domain'],fitness_function=fitness_function,seed=10)
+    #multiple_runs(simulated_annealing,domain[ 'matyas'],matyas,n=20,use_multiproc=True)
+    #multiple_runs(random_search,domain['matyas'],matyas,n=20,use_multiproc=True)
+    #multiple_runs(hill_climb,domain['matyas'],matyas,n=20,use_multiproc=True)
+    #multiple_runs(genetic_algorithm,domain['matyas'],matyas,n=20,use_multiproc=True)
+    #multiple_runs(genetic_algorithm_reversed,domain['matyas'],matyas,n=20,use_multiproc=True)
+    #multiple_runs(genetic_algorithm_with_reversals,domain['matyas'],matyas,n=20,use_multiproc=True)
+    #soln,cost=single_run(simulated_annealing,save_fig=False,print_sch=False,domain=domain['griewank']*13,fitness_function=griewank,seed=10)
+    
 
