@@ -1,0 +1,39 @@
+name: pypy
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1=conda_forge
+  - _openmp_mutex=4.5=1_gnu
+  - bzip2=1.0.8=h7f98852_4
+  - ca-certificates=2021.5.30=ha878542_0
+  - expat=2.4.1=h9c3ff4c_0
+  - gdbm=1.18=h0a1914f_2
+  - libffi=3.3=h58526e2_2
+  - libgcc-ng=9.3.0=h2828fa1_19
+  - libgomp=9.3.0=h2828fa1_19
+  - libstdcxx-ng=9.3.0=h6de172a_19
+  - ncurses=6.2=h58526e2_4
+  - openssl=1.1.1k=h7f98852_0
+  - pypy3.7=7.3.5=hc4e864a_2
+  - readline=8.1=h46c0cb4_0
+  - sqlite=3.36.0=h9cd32fc_0
+  - tk=8.6.10=h21135ba_1
+  - xz=5.2.5=h516909a_1
+  - zlib=1.2.11=h516909a_1010
+  - pip
+  - pip:
+    - cffi==1.14.5
+    - cycler==0.10.0
+    - greenlet==0.4.13
+    - kiwisolver==1.1.0
+    - matplotlib==3.4.2
+    - numpy==1.21.0
+    - Pillow==8.2.0
+    - pyparsing==2.4.7
+    - python-dateutil==2.8.1
+    - readline==6.2.4.1
+    - six==1.16.0
+
+
+prefix: /home/agrover112/miniconda3/envs/pypy

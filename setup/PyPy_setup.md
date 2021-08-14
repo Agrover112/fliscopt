@@ -1,4 +1,6 @@
-# PyPy Setup 
+# PyPy Setup
+#1.Manual
+Eiter do the process manually in-case of any problems. 
 ## Update your distribution.
 ```
 sudo apt-get update
@@ -19,6 +21,13 @@ pypy -mpip install matplotlib
 pypy -mpip install matplotlib
 /home/$USER/miniconda3/envs/pypy/bin/pypy -m pip install --upgrade pip
 pypy -mpip install matplotlib
+```
+
+#2. Using the script
+The script creates and activates an PyPy virtual environment with all libraries and dependencies.
+```
+cd ./setup.sh
+source setup.sh
 ```
 # Run
 ```
