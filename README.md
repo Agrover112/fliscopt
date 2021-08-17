@@ -14,8 +14,7 @@ The following repository contains code for the paper "XYZ" .Few flight schedulin
 
 
 # Getting Started
-The instructions for setup are mentioned in setup directory. Alternatively, you can setup using this bash script.
-
+The instructions for setup are mentioned in setup directory. Alternatively, you can setup using this bash script. A requirements file is provided just in case.
 The script creates and activates an PyPy conda virtual environment with all libraries and dependencies.
 ```
 cd ./setup.sh
