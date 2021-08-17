@@ -23,18 +23,6 @@ pypy -mpip install matplotlib
 pypy -mpip install matplotlib
 ```
 
-#2. Using the script
-The script creates and activates an PyPy virtual environment with all libraries and dependencies.
-```
-cd ./setup.sh
-source setup.sh
-```
-# Run
-```
-pypy mp.py 
-OR
-pypy flightscheduling.py
-```
 **Note**: 
 - Use PATH -m ensurepip only if an error is enocountered or if prompt says so.
  - Some Python functions aren't compatible with PyPy.Since at the time of writing it uses *Python3.7.*
