@@ -294,7 +294,7 @@ def genetic_algorithm(domain, fitness_function, seed=random.randint(10, 100), se
 
 
 def genetic_algorithm_reversed(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[], population_size=100, step=1,
-                               probability_mutation=0.2, elitism=0.2,
+                               probability_crossover=0.2, elitism=0.2,
                                number_generations=500, search=False):
     """ Genetic algorithm implemented with elitisim.
 
@@ -306,7 +306,7 @@ def genetic_algorithm_reversed(domain, fitness_function, seed=random.randint(10,
         seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
         seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
         population_size (int, optional): The maximum size of the population to generate. Defaults to 100.
-        probability_mutation (float, optional): Controls the rate of mutation of genes. Defaults to 0.2.
+        probability_crossover (float, optional): Controls the rate of crossover of genes. Defaults to 0.2.
         elitism (float, optional): The percentage of population which proceeds onto next iter without changes. Defaults to 0.2.
         number_generations (int, optional): Analgous to epochs, but in this context refers to number of generations the algorithm evolves to . Defaults to 500.
         search (bool, optional): If True  solution is initialized as the result of a RandomSearch . Defaults to False.
@@ -363,7 +363,7 @@ def genetic_algorithm_reversed(domain, fitness_function, seed=random.randint(10,
         #scores.append(fitness_function(population[0], 'FCO'))
         nfe += 1
         while len(population) < population_size:
-            if random.random() < probability_mutation:
+            if random.random() < probability_crossover:
                 i1 = random.randint(0, number_elitism)
                 i2 = random.randint(0, number_elitism)
                 population.append(
