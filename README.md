@@ -31,7 +31,7 @@ pypy flightscheduling.py
 # Results
 
 # Contributing Guidelines
-Refer Contributing.md for mode details.
+Refer [Contributing.md](./CONTRIBUTING.md) for mode details.
 # References
 [1] []
 [2] []    
