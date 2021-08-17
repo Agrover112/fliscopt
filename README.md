@@ -7,7 +7,7 @@ The following repository contains code for the paper "XYZ" .Few flight schedulin
 - Random Search
 - Simulated Annealing
 - Genetic Algorithm
-- Genetic Algrithm in Reverse Mode
+- Genetic Algorithm in Reverse Mode
 - Genetic  Algorithm with Reversals
 - Iterated Chaining
   
