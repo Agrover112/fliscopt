@@ -150,7 +150,7 @@ def main():
     soln, cost, nfe = single_run(genetic_algorithm_with_reversals, domain['griewank'] * 13, griewank, seed_init=False,
                                  save_fig=False, print_sch=True)
     print(soln, cost, nfe)
-    print_schedule(soln, 'FCO')
+    #print_schedule(soln, 'FCO')
     # multiple_runs(simulated_annealing,domain[ 'matyas'],matyas,n=20,use_multiproc=True)
     # multiple_runs(random_search,domain['matyas'],matyas,n=20,use_multiproc=True)
     # multiple_runs(hill_climb,domain['griewank']*13,griewank,n=20,use_multiproc=True)
