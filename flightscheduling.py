@@ -99,6 +99,22 @@ def single_run(algorithm,domain,fitness_function,init=[],seed=random.randint(10,
     return soln, cost,nfe
 
 def sol_chaining(algorithm_1, algorithm_2,domain,fitness_function,seed=random.randint(10,100), rounds=10 , n_obs=2, tol=90, save_fig=False):
+    """ Iterated Solution chaining method with 
+
+    Args:
+        algorithm_1 ([type]): The Base algorithm supposed to be weak .
+        algorithm_2 ([type]): The Child algorithm supposed to be strong.
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        rounds (int, optional): The number of Chaining Iterations. Defaults to 10.
+        n_obs (int, optional): Number of observations upto which average is taken. Defaults to 2.
+        tol (int, optional): The tolerance factor.Higher tolerance equates to more tolerance to divergence.Defaults to 90.
+        save_fig (bool, optional): Boolean parameter to save the matplotlib figure. Defaults to False.
+
+    Returns:
+        [none]: none
+    """
    # Note scores here is the best cost of each particular single_run
     scores = []
     NFE=0
@@ -157,7 +173,6 @@ def main():
 if __name__ == "__main__":
     #CHANGES In order:
     #    1. Exception handling
-    #    2. SHorten parameter names?
     #    3. Change to multiproc functions/restructuring?
     main()
     
