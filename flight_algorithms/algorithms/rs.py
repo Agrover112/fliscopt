@@ -1,6 +1,7 @@
 import sys
 import os 
 sys.path.append(os.getcwd())
+#sys.path.append("/mnt/d/MINOR PROJECT/final/")
 from abc import ABCMeta
 from utils.utils import plot_scores, print_schedule, read_file
 from flight_algorithms.algorithms.base_algorithm import FlightAlgorithm
@@ -13,14 +14,14 @@ from fitness import *
 
 class RandomSearch(FlightAlgorithm, metaclass=ABCMeta):
     def __init__(self, domain, fitness_function, seed=random.randint(10, 100),
-                 seed_init=True, init=[], epochs=100):
-        super().__init__(domain, fitness_function, seed, seed_init, init)         
+                 seed_init=True, init=[], epochs=100) -> None:
+        super().__init__(domain, fitness_function, seed, seed_init, init)        
         self.epochs = epochs
         self.best_cost=sys.maxsize
         self.best_solution=0.0
 
 
-    def run(self, **kwargs) -> tuple:
+    def run(self, *args,**kwargs) -> tuple:
         scores = []
         nfe = 0
         if len(self.init) > 0:
@@ -47,11 +48,12 @@ class RandomSearch(FlightAlgorithm, metaclass=ABCMeta):
 
 if __name__ == '__main__':
     read_file('flights.txt')
-    rs=RandomSearch(domain=domain['domain'],fitness_function=fitness_function,seed=5,seed_init=False)
+    rs=RandomSearch(domain=domain['matyas'],fitness_function=fitness_function,seed=5,seed_init=False)
     soln, cost, scores, nfe, seed=rs.run()
     plot_scores(scores,rs.__class__.__name__,save_fig=False)
     print_schedule(soln,'FCO')
     """"
+    Add max time parameter in the function
     1. Change all algorithms
     2. Docstrings 
     3. Type hinting
