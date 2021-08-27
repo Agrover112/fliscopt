@@ -1,5 +1,6 @@
 import sys
 import os
+import time
 sys.path.append(os.getcwd())
 #sys.path.append("/mnt/d/MINOR PROJECT/final/")
 from utils.utils import plot_scores, print_schedule, read_file
@@ -8,7 +9,6 @@ from flight_algorithms.algorithms.rs import RandomSearch
 from utils.ga_utils import crossover, mutation
 from fitness import *
 import random
-import math
 import heapq
 from abc import ABCMeta, abstractmethod
 
@@ -28,9 +28,18 @@ class BaseGA(FlightAlgorithm, metaclass=ABCMeta):
         self.number_generations = number_generations
         self.search = search
 
-    @abstractmethod
-    def run(self, *args, **kwargs) -> tuple:
+
+    def get_base(self) -> str:
+        return self.__class__.__base__.__name__
+
+    def get_name(self) -> str:
         pass
+    
+    @abstractmethod
+    def run(self,**kwargs) -> tuple:
+        pass
+
+
 
 
 class GA(BaseGA):
@@ -40,7 +49,8 @@ class GA(BaseGA):
         super().__init__(domain, fitness_function, seed, seed_init, init, population_size, step, probability_mutation,
                          0, elitism, number_generations, search)
 
-    def run(self, *args, **kwargs) -> tuple:
+    def run(self,**kwargs) -> tuple:
+        max_time=kwargs.get('max_time',1000)
         population = []
         scores = []
         nfe = 0
@@ -58,7 +68,7 @@ class GA(BaseGA):
             population.append(solution)
 
         number_elitism = int(self.elitism * self.population_size)
-
+        self.start_time=time.time()
         for i in range(self.number_generations):
             if not self.fitness_function.__name__ == 'fitness_function':
                 costs = [(self.fitness_function(individual), individual)
@@ -88,6 +98,9 @@ class GA(BaseGA):
                     population.append(
                         crossover(domain, ordered_individuals[i1], ordered_individuals[i2]))
 
+            if time.time()-self.start_time>max_time:
+                return costs[0][1], costs[0][0], scores, nfe, self.seed
+
         return costs[0][1], costs[0][0], scores, nfe, self.seed
 
 
@@ -98,7 +111,8 @@ class ReverseGA(BaseGA):
         super().__init__(domain, fitness_function, seed, seed_init, init, population_size, step, 0.0,
                          probability_crossover, elitism, number_generations, search)
 
-    def run(self, *args, **kwargs) -> tuple:
+    def run(self,**kwargs) -> tuple:
+        max_time=kwargs.get('max_time',1000)
         population = []
         scores = []
         nfe = 0
@@ -116,7 +130,7 @@ class ReverseGA(BaseGA):
             population.append(solution)
 
         number_elitism = int(self.elitism * self.population_size)
-
+        self.start_time=time.time()
         for i in range(self.number_generations):
             if not self.fitness_function.__name__ == 'fitness_function':
                 costs = [(self.fitness_function(individual), individual)
@@ -145,6 +159,9 @@ class ReverseGA(BaseGA):
                     m = random.randint(0, number_elitism)
                     population.append(
                         mutation(self.domain, self.step, ordered_individuals[m]))
+        
+            if time.time()-self.start_time>max_time:
+                return costs[0][1], costs[0][0], scores, nfe, self.seed
 
         return costs[0][1], costs[0][0], scores, nfe, self.seed
 
@@ -159,7 +176,8 @@ class GAReversals(BaseGA):
         self.n_k = n_k
         self.step_length = step_length
 
-    def run(self, *args, **kwargs) -> tuple:
+    def run(self,**kwargs) -> tuple:
+        max_time=kwargs.get('max_time',1000000)
         population = []
         scores = []
         nfe = 0
@@ -178,7 +196,7 @@ class GAReversals(BaseGA):
             population.append(solution)
 
         number_elitism = int(self.elitism * self.population_size)
-
+        self.start_time=time.time()
         for i in range(self.number_generations):
             if not self.fitness_function.__name__ == 'fitness_function':
                 costs = [(self.fitness_function(individual), individual)
@@ -233,6 +251,9 @@ class GAReversals(BaseGA):
                     m = random.randint(0, number_elitism)
                     population.append(
                         mutation(self.domain, self.step, ordered_individuals[m]))
+                        
+            if time.time()-self.start_time>max_time:
+                    return costs[0][1], costs[0][0], scores, nfe, self.seed
 
         return costs[0][1], costs[0][0], scores, nfe, self.seed
             
@@ -241,6 +262,7 @@ if __name__ == '__main__':
     read_file('flights.txt')
     sga = GAReversals(domain=domain['domain'], fitness_function=fitness_function,
                     seed=5, seed_init=False, search=True,n_k=125)
+
     soln, cost, scores, nfe, seed = sga.run()
-    plot_scores(scores, sga.__class__.__name__, save_fig=False)
-    #print_schedule(soln, 'FCO')
+    plot_scores(scores, sga.get_base(), save_fig=False)
+    print_schedule(soln, 'FCO')

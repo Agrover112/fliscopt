@@ -15,7 +15,7 @@ people = [('Lisbon', 'LIS'),
 flights = {}
 
 
-def read_file(fname):
+def read_file(fname) -> str:
     """ Utility function to read given file
     Args:
         fname (str): File name to be read
@@ -30,7 +30,7 @@ def read_file(fname):
     return "------File Read-----"
 
 
-def print_schedule(schedule, dest):
+def print_schedule(schedule, dest) -> None:
     """ Generates and prints the flight schedule based on the schedule and destination information.
 
     Args:
@@ -53,7 +53,7 @@ def print_schedule(schedule, dest):
         print('Total price: ', total_price)
 
 
-def get_minutes(hour):
+def get_minutes(hour) -> int:
     """ Get total number of minutes from time in %H:%M .
 
     Args:
@@ -67,7 +67,7 @@ def get_minutes(hour):
     return minutes
 
 
-def plot_scores(scores, algo_name, save_fig, **kwargs):
+def plot_scores(scores, algo_name, save_fig, **kwargs) -> None:
     """ Plots the respective scores
     Args:
         scores (list): A list containing the scores over number of epochs.Eg.cost over n epochs
@@ -76,7 +76,7 @@ def plot_scores(scores, algo_name, save_fig, **kwargs):
     """
     temp = kwargs.get('temp', None)
     fname = kwargs.get('fname', 'flight_scheduling')
-    if algo_name == 'simulated_annealing':
+    if algo_name == 'simulated_annealing' or algo_name=='SimulatedAnnealing':
         plt.xlabel("Temperature")
         plt.ylabel("Objective f(x) Scores")
         plt.plot(temp, scores)
@@ -85,7 +85,7 @@ def plot_scores(scores, algo_name, save_fig, **kwargs):
                 '/mnt/d/MINOR PROJECT/final/results/plots/' + fname + '/' + "simulated_annealing" + ".png"))
         else:
             plt.show()
-    elif algo_name == 'genetic_algorithm' or algo_name == 'genetic_algorithm_reversed' or algo_name == 'genetic_algorithm_with_reversals':
+    elif algo_name == 'genetic_algorithm' or algo_name == 'genetic_algorithm_reversed' or algo_name == 'genetic_algorithm_with_reversals'or algo_name =='BaseGA':
         plt.xlabel("No.of Generations")
         plt.ylabel("Objective f(x) Scores")
         plt.plot(scores)

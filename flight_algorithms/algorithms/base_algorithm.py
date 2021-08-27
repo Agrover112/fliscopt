@@ -5,7 +5,7 @@ import math
 import sys
 
 class FlightAlgorithm(metaclass=ABCMeta):
-    def __init__(self, domain, fitness_function,seed=random.randint(10, 100),seed_init=True,init=[]):
+    def __init__(self, domain, fitness_function,seed=random.randint(10, 100),seed_init=True,init=[])-> None:
         self.domain = domain
         self.fitness_function = fitness_function
         self.seed = seed
@@ -20,7 +20,17 @@ class FlightAlgorithm(metaclass=ABCMeta):
             random.seed(seed)
         
         self.best_cost =0.0  # returned
+    @abstractmethod
+    def get_base(self) -> str:
+        pass
+
+    @abstractmethod
+    def get_name(self) -> str:
+        pass
 
     @abstractmethod
     def run(self, **kwargs) -> tuple:
+        pass
+    @abstractmethod
+    def run(self,**kwargs) -> tuple:
         pass

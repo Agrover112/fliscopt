@@ -1,5 +1,6 @@
+from __future__ import annotations
 from datetime import datetime
-
+import os
 
 class Flight:
     origin = None
@@ -33,3 +34,7 @@ def load_flights(flights_path) -> list[Flight]:
             float(split[4])
         ))
     return flights
+
+if __name__ == '__main__':
+    pass
+    #print(load_flights(os.getcwd()+'/data/flights.txt'))

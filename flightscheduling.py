@@ -4,7 +4,7 @@ import random
 
 import matplotlib
 
-from algorithms import genetic_algorithm_with_reversals
+from algorithms import genetic_algorithm, genetic_algorithm_with_reversals, random_search
 from fitness import *
 from utils.ga_utils import mutation
 from utils.utils import plot_scores, print_schedule, read_file, time
@@ -147,7 +147,7 @@ def sol_chaining(algorithm_1, algorithm_2, domain, fitness_function, seed=random
 
 
 def main():
-    soln, cost, nfe = single_run(genetic_algorithm_with_reversals, domain['griewank'] * 13, griewank, seed_init=False,
+    soln, cost, nfe = single_run(genetic_algorithm, domain['domain'] ,fitness_function=fitness_function, seed_init=False,seed=5,
                                  save_fig=False, print_sch=True)
     print(soln, cost, nfe)
     #print_schedule(soln, 'FCO')
