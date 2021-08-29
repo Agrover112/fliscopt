@@ -1,4 +1,5 @@
 # from fitness import fitness_function
+#from fitness import fitness_function
 import os
 import time
 
@@ -76,13 +77,21 @@ def plot_scores(scores, algo_name, save_fig, **kwargs) -> None:
     """
     temp = kwargs.get('temp', None)
     fname = kwargs.get('fname', 'flight_scheduling')
+
+    if not os.path.exists(os.getcwd() + '/results'):
+            os.makedirs(os.getcwd()+ '/results', exist_ok=True)
+    if not os.path.exists(os.getcwd() + '/results/plots'):
+            os.makedirs(os.getcwd()+ '/results/plots', exist_ok=True)
+    if not os.path.exists(os.getcwd() + '/results/plots/'+fname):
+            os.makedirs(os.getcwd()+ '/results/plots/'+fname, exist_ok=True)
+
     if algo_name == 'simulated_annealing' or algo_name=='SimulatedAnnealing':
         plt.xlabel("Temperature")
         plt.ylabel("Objective f(x) Scores")
         plt.plot(temp, scores)
         if save_fig:
             plt.savefig(os.path.join(
-                '/mnt/d/MINOR PROJECT/final/results/plots/' + fname + '/' + "simulated_annealing" + ".png"))
+                os.getcwd()+'/results/plots/' + fname + '/' + "simulated_annealing" + ".png"))
         else:
             plt.show()
     elif algo_name == 'genetic_algorithm' or algo_name == 'genetic_algorithm_reversed' or algo_name == 'genetic_algorithm_with_reversals'or algo_name =='BaseGA':
@@ -91,7 +100,7 @@ def plot_scores(scores, algo_name, save_fig, **kwargs) -> None:
         plt.plot(scores)
         if save_fig:
             plt.savefig(os.path.join(
-                '/mnt/d/MINOR PROJECT/final/results/plots/' + fname + '/' + algo_name + ".png"))
+                os.getcwd()+'/results/plots/' + fname + '/' + algo_name + ".png"))
         else:
             plt.show()
     else:
@@ -100,7 +109,7 @@ def plot_scores(scores, algo_name, save_fig, **kwargs) -> None:
         plt.plot(scores)
         if save_fig:
             plt.savefig(os.path.join(
-                '/mnt/d/MINOR PROJECT/final/results/plots/' + fname + '/' + algo_name + ".png"))
+                os.getcwd()+'/results/plots/' + fname + '/' + algo_name + ".png"))
         else:
             plt.show()
 
