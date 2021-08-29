@@ -30,7 +30,7 @@ def read_file(fname) -> str:
     return "------File Read-----"
 
 
-def print_schedule(schedule, dest) -> None:
+def print_schedule(schedule:list, dest:str) -> None:
     """ Generates and prints the flight schedule based on the schedule and destination information.
 
     Args:
@@ -53,7 +53,7 @@ def print_schedule(schedule, dest) -> None:
         print('Total price: ', total_price)
 
 
-def get_minutes(hour) -> int:
+def get_minutes(hour:str) -> int:
     """ Get total number of minutes from time in %H:%M .
 
     Args:
@@ -103,6 +103,12 @@ def plot_scores(scores, algo_name, save_fig, **kwargs) -> None:
                 '/mnt/d/MINOR PROJECT/final/results/plots/' + fname + '/' + algo_name + ".png"))
         else:
             plt.show()
+
+def play_sound() -> None:
+    """ Plays a completion sound.
+    """
+    raise NotImplementedError
+  
 
 
 if __name__ == '__main__':
