@@ -2,7 +2,6 @@ import sys
 import os
 import time 
 sys.path.append(os.getcwd())
-#sys.path.append("/mnt/d/MINOR PROJECT/final/")
 from abc import ABCMeta
 from utils.utils import plot_scores, print_schedule, read_file
 from flight_algorithms.algorithms.base_algorithm import FlightAlgorithm
@@ -13,9 +12,9 @@ import sys
 from fitness import *
 
 class SimulatedAnnealing(FlightAlgorithm,metaclass=ABCMeta):
-    def __init__(self, domain, fitness_function, seed=random.randint(10, 100),
-                 seed_init=True, init=[],temperature=50000.0, cooling=0.95, step=1) -> None:
-        super().__init__(domain, fitness_function, seed, seed_init, init)        
+    def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100),
+                 seed_init=True,init=[],max_time=1000,temperature=50000.0, cooling=0.95, step=1) -> None:
+        super().__init__(domain, fitness_function, seed, seed_init, init,max_time) 
         self.best_solution=0.0
         self.temperature=temperature
         self.cooling=cooling
@@ -28,8 +27,7 @@ class SimulatedAnnealing(FlightAlgorithm,metaclass=ABCMeta):
     def get_name(self) -> str:
         return self.__class__.__name__
 
-    def run(self,**kwargs) -> tuple:
-        max_time=kwargs.get('max_time',1000)
+    def run(self,domain,fitness_function,seed) -> tuple:
         count = 0
         nfe = 0
         scores = []
@@ -76,7 +74,7 @@ class SimulatedAnnealing(FlightAlgorithm,metaclass=ABCMeta):
             self.temp.append(self.temperature)
             self.temperature = self.temperature * self.cooling
 
-            if time.time()-self.start_time>max_time:
+            if time.time()-self.start_time>self.max_time:
                 return solution, best_cost, scores, nfe, self.seed
 
         print('Count: ', count)
@@ -86,7 +84,7 @@ class SimulatedAnnealing(FlightAlgorithm,metaclass=ABCMeta):
 
 if __name__ == '__main__':
     read_file('flights.txt')
-    sa=SimulatedAnnealing(domain=domain['griewank']*5,fitness_function=griewank,seed=5,seed_init=False)
-    soln, cost, scores, nfe, seed=sa.run(max_time=0.0003)
-    plot_scores(scores,sa.get_name(),save_fig=False,temp=sa.temp)
-    #print_schedule(soln,'FCO')
+    sa=SimulatedAnnealing(max_time=0.0003,temperature=50000.0,seed_init=False)
+    soln, cost, scores, nfe, seed=sa.run(domain=domain['griewank']*5,fitness_function=griewank,seed=5)
+    plot_scores(scores,sa.get_name(),fname='griewank',save_fig=False,temp=sa.temp)
+    print_schedule(soln,'FCO')

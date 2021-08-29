@@ -1,9 +1,11 @@
 import multiprocessing
 import time
 from multiprocessing import Queue
+from utils.utils import read_file
 
 from algorithms import genetic_algorithm_with_reversals
 from fitness import *
+from flight_algorithms.algorithms.rs import RandomSearch
 
 """def f(l, i):
     l.acquire()
@@ -26,6 +28,7 @@ SCORES, BEST_COST, BEST_SOLUTION = [], [], []
 
 
 def main():
+    read_file('flights.txt')
     # d = domain['rosenbrock']*15
     d = domain['domain']
     f = fitness_function
@@ -37,11 +40,13 @@ def main():
     for idx, seed in enumerate(seeds):
         inputs.append(temp_inputs[idx] + (seed,))
 
-    # inputs=[(d,f)]
+    rs=RandomSearch()
     # Multiprocessing starts here
     start = time.time()
+
     pool = multiprocessing.Pool(multiprocessing.cpu_count())
-    result = pool.starmap_async(genetic_algorithm_with_reversals, inputs)  # Async run
+    #result = pool.starmap_async(RandomSearch().run, inputs)  # Async run
+    result=pool.starmap_async(rs.run, inputs)
     pool.close()
     pool.join()  # Close the pool
     print("", (time.time() - start))

@@ -2,7 +2,6 @@ import sys
 import os
 import time
 sys.path.append(os.getcwd())
-#sys.path.append("/mnt/d/MINOR PROJECT/final/")
 from utils.utils import plot_scores, print_schedule, read_file
 from flight_algorithms.algorithms.base_algorithm import FlightAlgorithm
 from flight_algorithms.algorithms.rs import RandomSearch
@@ -16,10 +15,10 @@ from abc import ABCMeta, abstractmethod
 
 class BaseGA(FlightAlgorithm, metaclass=ABCMeta):
 
-    def __init__(self, domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],
+    def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],max_time=100,
                  population_size=100, step=1, probability_mutation=0.2, probability_crossover=0.2, elitism=0.2,
                  number_generations=500, search=False) -> None:
-        super().__init__(domain, fitness_function, seed, seed_init, init)
+        super().__init__(domain, fitness_function, seed, seed_init, init,max_time)
         self.population_size = population_size
         self.step = step
         self.probability_mutation = probability_mutation
@@ -36,28 +35,27 @@ class BaseGA(FlightAlgorithm, metaclass=ABCMeta):
         pass
     
     @abstractmethod
-    def run(self,**kwargs) -> tuple:
+    def run(self,domain,fitness_function,seed) -> tuple:
         pass
 
 
 
 
 class GA(BaseGA):
-    def __init__(self, domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],
+    def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],max_time=100,
                  population_size=100, step=1, probability_mutation=0.2, elitism=0.2,
                  number_generations=500, search=False) -> None:
-        super().__init__(domain, fitness_function, seed, seed_init, init, population_size, step, probability_mutation,
+        super().__init__(domain, fitness_function, seed, seed_init, init,max_time, population_size, step, probability_mutation,
                          0, elitism, number_generations, search)
 
-    def run(self,**kwargs) -> tuple:
-        max_time=kwargs.get('max_time',1000)
+    def run(self,domain,fitness_function,seed) -> tuple:
         population = []
         scores = []
         nfe = 0
         for i in range(self.population_size):
             if self.search == True:
                 solution, b_c, sc, r_nfe, s = RandomSearch(
-                    self.domain, self.fitness_function, self.seed).run()
+                    ).run(self.domain, self.fitness_function, self.seed)
                 nfe += r_nfe
             if len(self.init) > 0:
                 solution = self.init
@@ -98,28 +96,27 @@ class GA(BaseGA):
                     population.append(
                         crossover(domain, ordered_individuals[i1], ordered_individuals[i2]))
 
-            if time.time()-self.start_time>max_time:
+            if time.time()-self.start_time>self.max_time:
                 return costs[0][1], costs[0][0], scores, nfe, self.seed
 
         return costs[0][1], costs[0][0], scores, nfe, self.seed
 
 
 class ReverseGA(BaseGA):
-    def __init__(self, domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],
+    def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],max_time=100,
                  population_size=100, step=1, probability_crossover=0.2, elitism=0.2,
                  number_generations=500, search=False) -> None:
-        super().__init__(domain, fitness_function, seed, seed_init, init, population_size, step, 0.0,
+        super().__init__(domain, fitness_function, seed, seed_init, init,max_time, population_size, step, 0.0,
                          probability_crossover, elitism, number_generations, search)
 
-    def run(self,**kwargs) -> tuple:
-        max_time=kwargs.get('max_time',1000)
+    def run(self,domain,fitness_function,seed) -> tuple:
         population = []
         scores = []
         nfe = 0
         for i in range(self.population_size):
             if self.search == True:
                 solution, b_c, sc, r_nfe, s = RandomSearch(
-                    self.domain, self.fitness_function, self.seed).run()
+                    ).run(self.domain, self.fitness_function, self.seed)
                 nfe += r_nfe
             if len(self.init) > 0:
                 solution = self.init
@@ -160,7 +157,7 @@ class ReverseGA(BaseGA):
                     population.append(
                         mutation(self.domain, self.step, ordered_individuals[m]))
         
-            if time.time()-self.start_time>max_time:
+            if time.time()-self.start_time>self.max_time:
                 return costs[0][1], costs[0][0], scores, nfe, self.seed
 
         return costs[0][1], costs[0][0], scores, nfe, self.seed
@@ -168,16 +165,15 @@ class ReverseGA(BaseGA):
 
 
 class GAReversals(BaseGA):
-    def __init__(self, domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],
+    def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],max_time=100,
                  population_size=100, step=1, probability_mutation=0.2, elitism=0.2,
                  number_generations=500, search=False,n_k=250, step_length=100,) -> None:
-        super().__init__(domain, fitness_function, seed, seed_init, init, population_size, step, probability_mutation,
+        super().__init__(domain, fitness_function, seed, seed_init, init,max_time, population_size, step, probability_mutation,
                          0.0, elitism, number_generations, search)
         self.n_k = n_k
         self.step_length = step_length
 
-    def run(self,**kwargs) -> tuple:
-        max_time=kwargs.get('max_time',1000000)
+    def run(self,domain,fitness_function,seed) -> tuple:
         population = []
         scores = []
         nfe = 0
@@ -185,7 +181,7 @@ class GAReversals(BaseGA):
         for i in range(self.population_size):
             if self.search == True:
                 solution, b_c, sc, r_nfe, s = RandomSearch(
-                    self.domain, self.fitness_function, self.seed).run()
+                    ).run(self.domain, self.fitness_function,self.seed)
                 nfe += r_nfe
             if len(self.init) > 0:
                 solution = self.init
@@ -219,7 +215,7 @@ class GAReversals(BaseGA):
                         if not self.fitness_function.__name__ == 'fitness_function':
                             scores.append(self.fitness_function(population[0]))
                         else:
-                            scores.append(fitness_function(population[0], 'FCO'))
+                            scores.append(self.fitness_function(population[0], 'FCO'))
                         nfe += 1
                         while len(population) < self.population_size:
                             if random.random() < self.probability_mutation:
@@ -252,7 +248,7 @@ class GAReversals(BaseGA):
                     population.append(
                         mutation(self.domain, self.step, ordered_individuals[m]))
                         
-            if time.time()-self.start_time>max_time:
+            if time.time()-self.start_time>self.max_time:
                     return costs[0][1], costs[0][0], scores, nfe, self.seed
 
         return costs[0][1], costs[0][0], scores, nfe, self.seed
@@ -260,9 +256,9 @@ class GAReversals(BaseGA):
 
 if __name__ == '__main__':
     read_file('flights.txt')
-    sga = GAReversals(domain=domain['domain'], fitness_function=fitness_function,
-                    seed=5, seed_init=False, search=True,n_k=125)
+    sga = ReverseGA(seed_init=False,search=True)
 
-    soln, cost, scores, nfe, seed = sga.run()
-    plot_scores(scores, sga.get_base(), save_fig=False)
+    soln, cost, scores, nfe, seed = sga.run(domain=domain['domain'], fitness_function=fitness_function,
+                    seed=5)
+    plot_scores(scores, sga.get_base(),fname='flight_scheduling', save_fig=True)
     print_schedule(soln, 'FCO')
