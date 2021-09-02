@@ -5,14 +5,14 @@ import time
 from abc import ABCMeta
 from utils.utils import plot_scores, print_schedule, read_file
 from flight_algorithms.base_algorithm import FlightAlgorithm
+
 import random
-import sys
 from fitness import *
 
 
 class RandomSearch(FlightAlgorithm, metaclass=ABCMeta):
     def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100),
-                 seed_init=True, init=[],max_time=1000,epochs=100) -> None:
+                 seed_init=True, init=None,max_time=1000,epochs=100) -> None:
         super().__init__(domain, fitness_function, seed, seed_init, init,max_time)        
         self.epochs = epochs
         self.best_cost=sys.maxsize

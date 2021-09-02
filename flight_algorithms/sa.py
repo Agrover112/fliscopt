@@ -7,8 +7,8 @@ from utils.utils import plot_scores, print_schedule, read_file
 from flight_algorithms.base_algorithm import FlightAlgorithm
 import heapq
 import math
+
 import random
-import sys
 from fitness import *
 
 class SimulatedAnnealing(FlightAlgorithm,metaclass=ABCMeta):
