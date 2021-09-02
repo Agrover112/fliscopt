@@ -4,7 +4,7 @@ sys.path.append(os.getcwd())
 import time
 from abc import ABCMeta
 from utils.utils import plot_scores, print_schedule, read_file
-from flight_algorithms.algorithms.base_algorithm import FlightAlgorithm
+from flight_algorithms.base_algorithm import FlightAlgorithm
 import random
 import sys
 from fitness import *
@@ -80,5 +80,5 @@ if __name__ == '__main__':
     read_file('flights.txt')
     hc=HillClimb(seed_init=False,max_time=0.0000001)
     soln, cost, scores, nfe, seed=hc.run(domain=domain['griewank']*5,fitness_function=griewank,seed=5)
-    plot_scores(scores,hc.get_name(),fname='griewank',save_fig=True)
+    plot_scores(scores,hc.get_name(),fname='griewank',save_fig=False)
     #print_schedule(soln,'FCO')

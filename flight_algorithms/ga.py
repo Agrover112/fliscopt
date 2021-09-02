@@ -3,8 +3,8 @@ import os
 import time
 sys.path.append(os.getcwd())
 from utils.utils import plot_scores, print_schedule, read_file
-from flight_algorithms.algorithms.base_algorithm import FlightAlgorithm
-from flight_algorithms.algorithms.rs import RandomSearch
+from flight_algorithms.base_algorithm import FlightAlgorithm
+from flight_algorithms.rs import RandomSearch
 from utils.ga_utils import crossover, mutation
 from fitness import *
 import random
@@ -260,5 +260,5 @@ if __name__ == '__main__':
 
     soln, cost, scores, nfe, seed = sga.run(domain=domain['domain'], fitness_function=fitness_function,
                     seed=5)
-    plot_scores(scores, sga.get_base(),fname='flight_scheduling', save_fig=True)
+    plot_scores(scores, sga.get_base(),fname='flight_scheduling', save_fig=False)
     print_schedule(soln, 'FCO')

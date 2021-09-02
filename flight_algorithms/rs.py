@@ -4,7 +4,7 @@ sys.path.append(os.getcwd())
 import time
 from abc import ABCMeta
 from utils.utils import plot_scores, print_schedule, read_file
-from flight_algorithms.algorithms.base_algorithm import FlightAlgorithm
+from flight_algorithms.base_algorithm import FlightAlgorithm
 import random
 import sys
 from fitness import *
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     read_file('flights.txt')
     rs=RandomSearch(max_time=0.00001)  #def run():
     soln, cost, scores, nfe, seed=rs.run(domain=domain['domain'],fitness_function=fitness_function,seed=5)
-    plot_scores(scores,rs.get_name(),fname='flight_scheduling',save_fig=False)
+    #plot_scores(scores,rs.get_name(),fname='flight_scheduling',save_fig=False)
     #print_schedule(soln,'FCO')
     """"
     2. Docstrings 
