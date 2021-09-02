@@ -1,5 +1,4 @@
 from abc import ABC, ABCMeta, abstractmethod
-#from flight_algorithms.Flight import Flight
 import random
 import math
 import sys
