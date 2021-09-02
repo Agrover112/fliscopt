@@ -9,7 +9,7 @@ from multiprocessing import Queue
 from utils.utils import read_file
 
 from fitness import *
-from flight_algorithms.algorithms.ga import GA,ReverseGA, GAReversals
+from flight_algorithms.ga import GA,ReverseGA, GAReversals
 
 """ Asynchronous multiprocessing implementation for searching algorithms"""
 
