@@ -16,51 +16,6 @@ _FLIGHTS_FILE_ = 'flights.txt'
 read_file(_FLIGHTS_FILE_)  # 12 flights with 10 possibilites 10^12
 
 
-def multiple_runs(algorithm, domain, fitness_function, init=[], use_multiproc=False, n_proc=multiprocessing.cpu_count(),
-                  n=10):
-    f = open(os.path.join('/mnt/d/MINOR PROJECT/final/results/multi_proc/' + fitness_function.__name__ + '/' +
-                          algorithm.__name__ + "_results.csv"), 'a+')
-    if use_multiproc:
-        d = domain
-        fn = fitness_function
-        seeds = [10, 24, 32, 100, 20, 67, 13, 19, 65, 51, 35, 61, 154, 85, 144, 162, 48, 79, 69, 186]
-        if n > 0 and n < 20:
-            seeds = seeds[:n]  # Some defined seeds
-        temp_inputs = [(d, fn)] * n  # Temp inputs
-        inputs = []
-        for idx, seed in enumerate(seeds):  # Add seeds to all inputs
-            inputs.append(temp_inputs[idx] + (seed,))
-
-            # Multiprocessing starts here
-        start = time.time()
-        pool = multiprocessing.Pool(n_proc)
-
-        # result=pool.starmap_async(random_search,inputs)   #Async run
-        result = pool.starmap_async(algorithm, inputs)
-        pool.close()
-        pool.join()  # Close the pool
-        # diff = round(time.time()-start, 3)
-        diff = time.time() - start
-        print("Total time:", diff)
-        f.write('MRun_no' + "," + 'Cost' + "," + 'Run_Time' + "," + 'Solution' + "," + 'Nfe' + "," + 'Seed' + "\n")
-        res = result.get()
-        for i, r in enumerate(res):
-            f.write(str(i) + "," + str(r[1]) + "," + str((diff / 10)) + "," + str(r[0]) + "," + str(r[3]) + "," + str(
-                r[4]) + "\n")
-        f.close()
-
-    else:
-        f.write('Run_no' + "," + 'Cost' + "," + 'Run_Time' + "," + 'Solution' + "\n")
-        times = []
-        for i in range(n):
-            start = time.time()
-            soln, cost, _ = algorithm(domain, fitness_function)
-            diff = round(time.time() - start, 3)
-            times.append(diff)
-            f.write(str(i) + "," + str(cost) + "," + str(diff) + "," + str(soln) + "\n")
-        f.close()
-        print("Total time ", round(sum(times), 3))
-
 
 def multiple_runs_itr_chaining(algorithm_1, algorithm_2, domain, fitness_function, seed=random.randint(10, 100),
                                rounds=10, n_obs=2, tol=90, save_fig=False, n=20):
@@ -163,6 +118,4 @@ def main():
 if __name__ == "__main__":
     # CHANGES In order:
     #    1. Exception handling
-    #    2. SHorten parameter names?
-    #    3. Change to multiproc functions/restructuring?
     main()
