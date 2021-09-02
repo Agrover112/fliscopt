@@ -59,7 +59,3 @@ if __name__ == '__main__':
     soln, cost, scores, nfe, seed=rs.run(domain=domain['domain'],fitness_function=fitness_function,seed=5)
     #plot_scores(scores,rs.get_name(),fname='flight_scheduling',save_fig=False)
     #print_schedule(soln,'FCO')
-    """"
-    2. Docstrings 
-    4. Unit tests
-    """

@@ -116,6 +116,4 @@ def main():
 
 
 if __name__ == "__main__":
-    # CHANGES In order:
-    #    1. Exception handling
     main()
