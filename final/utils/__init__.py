@@ -1,1 +1,1 @@
-from . import utils, ga_utils
+from . import util, ga_utils
