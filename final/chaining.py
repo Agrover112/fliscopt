@@ -3,7 +3,7 @@ import os
 sys.path.append(os.getcwd())
 import time
 
-from utils.utils import  plot_scores, print_schedule, read_file
+from utils.util import  plot_scores, print_schedule, read_file
 from utils.ga_utils import mutation
 from final.base_algorithm import FlightAlgorithm
 from final.rs import RandomSearch

@@ -6,7 +6,7 @@ sys.path.append(os.getcwd())
 import multiprocessing
 import time
 from multiprocessing import Queue
-from utils.utils import read_file
+from utils.util import read_file
 
 from fitness import *
 from final.ga import GA,ReverseGA, GAReversals

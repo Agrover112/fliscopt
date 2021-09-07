@@ -1,4 +1,4 @@
-from final.utils.utils import read_file,plot_scores
+from final.utils.util import read_file,plot_scores
 from final.rs import RandomSearch
 from final.ga import GeneticAlgorithm, ReverseGA
 from final.hc import HillClimb
