@@ -12,7 +12,7 @@ from .sa import SimulatedAnnealing
 from .ga import GA, ReverseGA, GAReversals
 
 import random
-from fitness import *
+from .fitness import *
 
 class IteratedChaining():
 
