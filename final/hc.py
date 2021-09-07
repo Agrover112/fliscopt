@@ -3,7 +3,7 @@ import os
 sys.path.append(os.getcwd())
 import time
 from abc import ABCMeta
-from utils.util import plot_scores, print_schedule, read_file
+from final.utils.util import plot_scores, print_schedule, read_file
 from final.base_algorithm import FlightAlgorithm
 
 import random

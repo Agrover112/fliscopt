@@ -1,7 +1,7 @@
 import sys
 from math import cos, exp, sin, sqrt
 
-from utils.utils import flights, get_minutes, people
+from final.utils.util import flights, get_minutes, people
 
 # All domains defined with a single-tuple/or without a multiplier have n-dimensional Input Domain
 ackley_N2_d = [(-32, 32)]*2

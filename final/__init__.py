@@ -1,4 +1,4 @@
-from . import ga,hc,rs,sa,multiproc,chaining,base_algorithm,fitness
+from . import ga,hc,rs,sa,multiproc,chaining,base_algorithm,fitness,utils
 """from .ga import GA,GAReversals,ReverseGA
 from .hc import HillClimb
 from .sa import SimulatedAnnealing

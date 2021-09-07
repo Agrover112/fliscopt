@@ -1,5 +1,5 @@
 import setuptools
-from setuptools import setup
+from setuptools import setup,find_packages
 import os
 
 with open("README.md", 'r') as f:
@@ -13,7 +13,7 @@ setup(
    long_description=long_description,
    author='agrover112',
    author_email='agrover112@gmail.com',
-   packages=['final'],
+    packages=find_packages(),
 
    install_requires=[
        'matplotlib',
