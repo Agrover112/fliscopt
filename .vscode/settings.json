@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
-        "./flight_algorithms"
+        "./flight_algorithms",
+        "./final"
     ]
 }
