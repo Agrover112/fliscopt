@@ -3,13 +3,13 @@ import os
 sys.path.append(os.getcwd())
 import time
 
-from final.utils.util import  plot_scores, print_schedule, read_file
-from final.utils.ga_utils import mutation
-from final.base_algorithm import FlightAlgorithm
-from final.rs import RandomSearch
-from final.hc import HillClimb
-from final.sa import SimulatedAnnealing
-from final.ga import GA, ReverseGA, GAReversals
+from .utils.util import  plot_scores, print_schedule, read_file
+from .utils.ga_utils import mutation
+from .base_algorithm import FlightAlgorithm
+from .rs import RandomSearch
+from .hc import HillClimb
+from .sa import SimulatedAnnealing
+from .ga import GA, ReverseGA, GAReversals
 
 import random
 from fitness import *

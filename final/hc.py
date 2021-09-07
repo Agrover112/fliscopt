@@ -3,11 +3,11 @@ import os
 sys.path.append(os.getcwd())
 import time
 from abc import ABCMeta
-from final.utils.util import plot_scores, print_schedule, read_file
-from final.base_algorithm import FlightAlgorithm
+from .utils.util import plot_scores, print_schedule, read_file
+from .base_algorithm import FlightAlgorithm
 
 import random
-from fitness import *
+from .fitness import *
 
 class HillClimb(FlightAlgorithm,metaclass=ABCMeta):
     def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100),

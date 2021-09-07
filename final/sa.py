@@ -3,13 +3,13 @@ import os
 import time 
 sys.path.append(os.getcwd())
 from abc import ABCMeta
-from final.utils.util import plot_scores, print_schedule, read_file
-from final.base_algorithm import FlightAlgorithm
+from .utils.util import plot_scores, print_schedule, read_file
+from .base_algorithm import FlightAlgorithm
 import heapq
 import math
 
 import random
-from fitness import *
+from .fitness import *
 
 class SimulatedAnnealing(FlightAlgorithm,metaclass=ABCMeta):
     def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100),
