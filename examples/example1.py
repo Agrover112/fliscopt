@@ -1,10 +1,10 @@
-from flight_algorithms.utils import *
-from flight_algorithms.rs import RandomSearch
-from flight_algorithms.ga import GeneticAlgorithm, ReverseGA
-from flight_algorithms.hc import HillClimb
-from flight_algorithms.chaining import IteratedChaining
-from flight_algorithms.multiproc import multiple_runs
-from flight_algorithms.fitness import fitness_function,domain,griewank
+from final.utils.utils import read_file,plot_scores
+from final.rs import RandomSearch
+from final.ga import GeneticAlgorithm, ReverseGA
+from final.hc import HillClimb
+from final.chaining import IteratedChaining
+from final.multiproc import multiple_runs
+from final.fitness import fitness_function,domain,griewank
 
 """
 
@@ -33,11 +33,11 @@ Iterated Chaining and GAReversals and ReverseGA are algos I haven;t really found
 implemented. So I implemented them.
 
 
-** I am trying to make the flight_algorithms into a package.
+** I am trying to make the final into a package.
 there are 3 __init__.py 
 one in the main folder.
-second inside flight_algorithms/
-third in flight_algorithms/utils/
+second inside final/
+third in final/utils/
 So either the init files are importing wrongly or sys.path.append(os.getcwd()) is causing an issue
 or the naming of utils/utils??
 A problem i faced was an error always popped up saying utils module doesn't exist,
@@ -50,9 +50,9 @@ read_file('flights.txt')
 ic=IteratedChaining(rounds=10, n_obs=2, tol=90)
 soln, cost, scores, nfe=ic.run('RandomSearch', 'HillClimb')
 
-multiple_runs(ReverseGA, domain, fitness_function, record=False, n=10)
+#multiple_runs(ReverseGA, domain, fitness_function, record=False, n=10)
 
 
-hc=HillClimb(seed_init=False,max_time=0.0000001)
-soln, cost, scores, nfe, seed=hc.run(domain=domain['griewank']*5,fitness_function=griewank,seed=5)
-plot_scores(scores,hc.get_name(),fname='griewank',save_fig=False)
+#hc=HillClimb(seed_init=False,max_time=0.0000001)
+#soln, cost, scores, nfe, seed=hc.run(domain=domain['griewank']*5,fitness_function=griewank,seed=5)
+#plot_scores(scores,hc.get_name(),fname='griewank',save_fig=False)

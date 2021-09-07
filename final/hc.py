@@ -4,7 +4,7 @@ sys.path.append(os.getcwd())
 import time
 from abc import ABCMeta
 from utils.utils import plot_scores, print_schedule, read_file
-from flight_algorithms.base_algorithm import FlightAlgorithm
+from final.base_algorithm import FlightAlgorithm
 
 import random
 from fitness import *

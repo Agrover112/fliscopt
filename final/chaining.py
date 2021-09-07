@@ -5,11 +5,11 @@ import time
 
 from utils.utils import  plot_scores, print_schedule, read_file
 from utils.ga_utils import mutation
-from flight_algorithms.base_algorithm import FlightAlgorithm
-from flight_algorithms.rs import RandomSearch
-from flight_algorithms.hc import HillClimb
-from flight_algorithms.sa import SimulatedAnnealing
-from flight_algorithms.ga import GA, ReverseGA, GAReversals
+from final.base_algorithm import FlightAlgorithm
+from final.rs import RandomSearch
+from final.hc import HillClimb
+from final.sa import SimulatedAnnealing
+from final.ga import GA, ReverseGA, GAReversals
 
 import random
 from fitness import *
