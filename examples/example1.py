@@ -33,6 +33,17 @@ Iterated Chaining and GAReversals and ReverseGA are algos I haven;t really found
 implemented. So I implemented them.
 
 
+** I am trying to make the flight_algorithms into a package.
+there are 3 __init__.py 
+one in the main folder.
+second inside flight_algorithms/
+third in flight_algorithms/utils/
+So either the init files are importing wrongly or sys.path.append(os.getcwd()) is causing an issue
+or the naming of utils/utils??
+A problem i faced was an error always popped up saying utils module doesn't exist,
+when I tried to install and use it using pip3 install -e .
+and it pointed to 
+>>5th line of ga.py file ://
 """
 
 read_file('flights.txt')
