@@ -1,10 +1,11 @@
 from final.utils.util import read_file,plot_scores
 from final.rs import RandomSearch
-from final.ga import GeneticAlgorithm, ReverseGA
+from final.ga import GA, ReverseGA
 from final.hc import HillClimb
 from final.chaining import IteratedChaining
 from final.multiproc import multiple_runs
 from final.fitness import fitness_function,domain,griewank
+
 
 """
 
@@ -47,12 +48,12 @@ and it pointed to
 """
 
 read_file('flights.txt')
-ic=IteratedChaining(rounds=10, n_obs=2, tol=90)
-soln, cost, scores, nfe=ic.run('RandomSearch', 'HillClimb')
+#ic=IteratedChaining(rounds=10, n_obs=2, tol=90)
+#soln, cost, scores, nfe=ic.run('RandomSearch', 'HillClimb')
 
 #multiple_runs(ReverseGA, domain, fitness_function, record=False, n=10)
 
 
-#hc=HillClimb(seed_init=False,max_time=0.0000001)
-#soln, cost, scores, nfe, seed=hc.run(domain=domain['griewank']*5,fitness_function=griewank,seed=5)
-#plot_scores(scores,hc.get_name(),fname='griewank',save_fig=False)
+hc=HillClimb(seed_init=False,max_time=0.0000001)
+soln, cost, scores, nfe, seed=hc.run(domain=domain['griewank']*5,fitness_function=griewank,seed=5)
+plot_scores(scores,hc.get_name(),fname='griewank',save_fig=False)
