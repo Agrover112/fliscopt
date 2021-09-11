@@ -29,19 +29,19 @@ class IteratedChaining():
         if algorithm == 'RandomSearch':
             return RandomSearch() 
         elif algorithm == 'HillClimb':
-            return HillClimb()\
+            return HillClimb()
 
         elif algorithm == 'SimulatedAnnealing':
             return SimulatedAnnealing()\
 
         elif algorithm == 'GA':
-            return GA()\
+            return GA()
 
         elif algorithm == 'ReverseGA':
-            return ReverseGA()\
+            return ReverseGA()
 
         elif algorithm == 'GAReversals':
-            return GAReversals()\
+            return GAReversals()
 
         else:
             raise ValueError("Algorithm not found")

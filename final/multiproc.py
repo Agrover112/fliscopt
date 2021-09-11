@@ -11,6 +11,8 @@ from .utils.util import read_file
 from .fitness import *
 from .ga import GA,ReverseGA, GAReversals
 
+import rich
+
 """ Asynchronous multiprocessing implementation for searching algorithms"""
 
 def multiple_runs(algorithm, domain, fitness_function, init=[], record=False, n_proc=multiprocessing.cpu_count(),
@@ -56,7 +58,7 @@ def multiple_runs(algorithm, domain, fitness_function, init=[], record=False, n_
                     r[4]) + "\n")
             f.close()
         else: 
-            print("Run_Number\tSolution\t      Cost  NFE SEED", )
+            rich.print("[bold red]Run_Number[/bold red]\t[bold green]Solution[bold green]\t      [bold magenta]Cost[/bold magenta]  [bold magenta]NFE[/bold magenta] SEED", )
             for i, r in enumerate(res):
                 print(i, r[0], r[1], r[3], r[4])
 

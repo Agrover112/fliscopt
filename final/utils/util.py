@@ -6,6 +6,9 @@ import time
 import matplotlib
 import matplotlib.pyplot as plt
 
+
+import rich
+
 matplotlib.use('TKAgg')
 people = [('Lisbon', 'LIS'),
           ('Madrid', 'MAD'),
@@ -49,9 +52,11 @@ def print_schedule(schedule:list, dest:str) -> None:
         flight_id += 1
         returning = flights[(dest, origin)][schedule[flight_id]]
         total_price += returning[2]
-        print(name, origin, dest, going[0], going[1],
+        #pprint(name, origin, dest, going[0], going[1],\
+        #      going[2], returning[0], returning[1], returning[2])
+        rich.print(name,origin, dest, going[0], going[1],
               going[2], returning[0], returning[1], returning[2])
-        print('Total price: ', total_price)
+        rich.print('[bold magenta]Total price: [/bold magenta]', total_price)
 
 
 def get_minutes(hour:str) -> int:
@@ -126,3 +131,4 @@ if __name__ == '__main__':
     assert flights is not None
     assert get_minutes("6:13") == 373
     assert get_minutes("00:00") == 0
+    print_schedule([1,2,3,4,5,6,7,8,9],'FCO')

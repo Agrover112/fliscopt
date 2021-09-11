@@ -8,15 +8,17 @@ with open("README.md", 'r') as f:
 setup(
    name='final',
    version='0.5',
-   description='Flight scheduling algorithms',
+   description='Flight scheduling amd genetic algorithms for optimization',
    license="MIT",
    long_description=long_description,
-   author='agrover112',
+   long_description_content_type='text/markdown',
+   author='Ankit Grover, Jones Granatyr',
    author_email='agrover112@gmail.com',
     packages=find_packages(),
+    platforms=['linux','macos','unix'],
 
    install_requires=[
-       'matplotlib',
+       'matplotlib','rich'
    ],
 
    python_requires='>=3.8')
