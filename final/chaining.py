@@ -1,18 +1,19 @@
 import sys
-import os 
+import os
+from typing import final 
 sys.path.append(os.getcwd())
-import time
+import time 
 
-from .utils.util import  plot_scores, print_schedule, read_file
-from .utils.ga_utils import mutation
-from .base_algorithm import FlightAlgorithm
-from .rs import RandomSearch
-from .hc import HillClimb
-from .sa import SimulatedAnnealing
-from .ga import GA, ReverseGA, GAReversals
+from final.utils.util import  plot_scores, print_schedule, read_file
+from final.utils.ga_utils import mutation
+from final.base_algorithm import FlightAlgorithm
+from final.rs import RandomSearch
+from final.hc import HillClimb
+from final.sa import SimulatedAnnealing
+from final.ga import GA, ReverseGA, GAReversals
 
 import random
-from .fitness import *
+from final.fitness import *
 
 class IteratedChaining():
 
@@ -57,7 +58,9 @@ class IteratedChaining():
                 scores.append(cost)
                 NFE += nfe
                 print("Cost at {}=={}".format(i, cost))
+                print(algorithm_1)
             elif i == self.rounds - 1:
+                print("I'm IN ELSE if GUYS")
                 final_soln, cost, scores, nfe, seed = self.choose(algorithm_2).run(self.domain, self.fitness_function, self.seed)
                 scores.append(cost)
                 NFE += nfe
@@ -85,7 +88,8 @@ class IteratedChaining():
 
 if __name__ == '__main__':
     read_file('flights.txt')
-    ic=IteratedChaining(rounds=10, n_obs=2, tol=90)
-    soln, cost, scores, nfe=ic.run('RandomSearch', 'HillClimb')
+    ic=IteratedChaining(rounds=1, n_obs=2, tol=90)
+    #soln, cost, scores, nfe=ic.run('RandomSearch', 'HillClimb')
+    vals=ic.run('RandomSearch', 'HillClimb')
     #print_schedule(soln, 'FCO')
     #plot_scores(scores, "Chaining",save_fig=False)
