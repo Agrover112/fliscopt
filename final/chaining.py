@@ -4,16 +4,18 @@ from typing import final
 sys.path.append(os.getcwd())
 import time 
 
-from final.utils.util import  plot_scores, print_schedule, read_file
-from final.utils.ga_utils import mutation
-from final.base_algorithm import FlightAlgorithm
-from final.rs import RandomSearch
-from final.hc import HillClimb
-from final.sa import SimulatedAnnealing
-from final.ga import GA, ReverseGA, GAReversals
+from .utils.util import  plot_scores, print_schedule, read_file
+from .utils.ga_utils import mutation
+from .base_algorithm import FlightAlgorithm
+from .rs import RandomSearch
+from .hc import HillClimb
+from .sa import SimulatedAnnealing
+from .ga import GA, ReverseGA, GAReversals
 
 import random
-from final.fitness import *
+from .fitness import *
+
+import rich
 
 class IteratedChaining():
 
@@ -57,18 +59,16 @@ class IteratedChaining():
                 soln = mutation(self.domain, random.randint(0, 1), soln)  # Either 1 step or no step InitMutation
                 scores.append(cost)
                 NFE += nfe
-                print("Cost at {}=={}".format(i, cost))
-                print(algorithm_1)
+                rich.print("Cost at {}=={}".format(i, cost))
             elif i == self.rounds - 1:
-                print("I'm IN ELSE if GUYS")
                 final_soln, cost, scores, nfe, seed = self.choose(algorithm_2).run(self.domain, self.fitness_function, self.seed)
                 scores.append(cost)
                 NFE += nfe
-                print("Cost at {}=={}".format(i, cost))
+                rich.print("Cost at {}=={}".format(i, cost))
                 return final_soln, scores[-1], scores, NFE
             else:
                 soln, cost, scores, nfe, seed = self.choose(algorithm_1).run(self.domain, self.fitness_function, self.seed)
-                print("Cost at {}=={}".format(i, cost))
+                rich.print("Cost at {}=={}".format(i, cost))
                 soln = mutation(self.domain, random.randint(0, 1), soln)
                 scores.append(cost)
                 NFE += nfe
@@ -76,20 +76,21 @@ class IteratedChaining():
             final_soln, cost, scores, nfe, seed = self.choose(algorithm_2).run(self.domain, self.fitness_function, self.seed)
             scores.append(cost)
             NFE += nfe
+            if self.rounds ==1:
+                return soln, scores[-1], scores, NFE
             if cost - random.randint(self.tol, 100) > int(sum(scores[-self.n_obs:]) / self.n_obs):
-                print("----Ending early at iteration{}----".format(i))
-                print("Cost{}".format(cost))
+                rich.print("----Ending early at iteration{}----".format(i))
+                rich.print("Cost{}".format(cost))
                 if fitness_function.__name__ == 'fitness_function':
                     print_schedule(final_soln, 'FCO')
                 return final_soln, scores[-1], scores, NFE
-            print("Cost at {}=={}".format(i, cost))
+            rich.print("Cost at {}=={}".format(i, cost))
             init = mutation(self.domain, 1, final_soln)  # IntMutation
 
 
 if __name__ == '__main__':
     read_file('flights.txt')
-    ic=IteratedChaining(rounds=1, n_obs=2, tol=90)
-    #soln, cost, scores, nfe=ic.run('RandomSearch', 'HillClimb')
-    vals=ic.run('RandomSearch', 'HillClimb')
-    #print_schedule(soln, 'FCO')
+    ic=IteratedChaining(rounds=10, n_obs=2, tol=90)
+    soln, cost, scores, nfe=ic.run('RandomSearch', 'HillClimb')
+    print_schedule(soln, 'FCO')
     #plot_scores(scores, "Chaining",save_fig=False)
