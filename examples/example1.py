@@ -1,4 +1,4 @@
-from final.utils.util import read_file,plot_scores
+from final.utils.util import print_schedule, read_file,plot_scores
 from final.rs import RandomSearch
 from final.ga import GA, ReverseGA
 from final.hc import HillClimb
@@ -48,10 +48,10 @@ and it pointed to
 """
 
 read_file('flights.txt')
-#ic=IteratedChaining(rounds=10, n_obs=2, tol=90)
-#soln, cost, scores, nfe=ic.run('RandomSearch', 'HillClimb')
-
-#multiple_runs(ReverseGA, domain, fitness_function, record=False, n=10)
+ic=IteratedChaining(rounds=5, n_obs=2, tol=90)
+soln, cost, scores, nfe=ic.run('RandomSearch', 'HillClimb')
+print_schedule(soln,'FCO')
+#multiple_runs(ReverseGA, domain, fitness_function, record=False, n=2)
 
 
 hc=HillClimb(seed_init=False,max_time=0.0000001)

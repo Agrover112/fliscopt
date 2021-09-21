@@ -16,7 +16,7 @@ def mutation(domain, step, solution) -> list:
             mutant = solution[0:gene]+[solution[gene]+step]+solution[gene+1:]
     return mutant
 
-# No good results tbh( also doesn't work for benchmarks yet)
+# No good results tbh( also doesn't work for benchmarks yet) #FIX-NEEDED
 def multi_mutation(domain, step, solution) -> list:
     li = [i for i in range(domain[0][0], domain[0][1]+1)]
     gene = random.randint(0, len(domain)-1)

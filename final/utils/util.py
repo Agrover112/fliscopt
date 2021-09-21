@@ -127,8 +127,4 @@ def play_sound() -> None:
 
 if __name__ == '__main__':
     print(os.getcwd())
-    assert read_file("flights.txt") == "------File Read-----"
-    assert flights is not None
-    assert get_minutes("6:13") == 373
-    assert get_minutes("00:00") == 0
     print_schedule([1,2,3,4,5,6,7,8,9],'FCO')

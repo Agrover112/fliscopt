@@ -174,19 +174,3 @@ def zakharov(x):
     return (sum(i**2 for i in x) + p2**2 + p2**4)
 
 
-if __name__ == "__main__":
-    """assert fitness_function(
-        [1, 4, 3, 2, 7, 3, 6, 3, 2, 4, 5, 3], "FCO") == 5451
-    assert fitness_function(
-        [1, 3, 3, 2, 7, 3, 6, 3, 2, 4, 5, 3], "FCO") == 5304"""
-    assert ackley_N2([0, 0]) == -200
-    assert matyas([0, 0]) == 0
-    assert booth([1, 3]) == 0
-    assert griewank([0, 0, 0]) == 0
-    assert sphere([0, 0, 0]) == 0
-    assert three_hump_camel([0, 0]) == 0  # difficult
-    assert schaffer_N1([0, 0]) == 0  # difficult
-    assert schwefel([0, 0, 0]) == 0
-    assert brown([0, 0, 0]) == 0
-    assert rosenbrock([1, 1, 1]) == 0  # difficult
-    assert zakharov([0, 0, 0, 0]) == 0  # difficu;t
