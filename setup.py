@@ -8,7 +8,7 @@ with open("README.md", 'r') as f:
 setup(
    name='final',
    version='0.5',
-   description='Flight scheduling amd genetic algorithms for optimization',
+   description='Flight scheduling and genetic algorithms for optimization',
    license="MIT",
    long_description=long_description,
    long_description_content_type='text/markdown',

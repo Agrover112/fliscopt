@@ -1,7 +1,9 @@
 # Flight Scheduling Algorithms
 
-The following repository contains code for the paper "XYZ" .Few flight scheduling algorithms have been implemented. The experiments were performed in PyPy3.7 and CPython 3.8.10.
+An simple optimization library for flight scheduling and related problems in the discrete domain.The library supports plotting,asynchronous multiprocessing and unimodal optimization benchmarks.
+The following repository contains code for the paper "XYZ" . The experiments were performed in **PyPy3.7** and **CPython 3.8.10.**
 
+Following algorithms have been implemented and test as of date:
 **Algorithms**:
 - Hill Climbing
 - Random Search
@@ -10,24 +12,70 @@ The following repository contains code for the paper "XYZ" .Few flight schedulin
 - Genetic Algorithm in Reverse Mode
 - Genetic  Algorithm with Reversals
 - Iterated Chaining
-  
+
+ 
 
 
 # Getting Started
+
+Install the library using pip:
+```
+pip install -e . #for development mode  
+OR
+pip install final 
+```
+
+## For PyPy users
 The instructions for setup are mentioned in setup directory. Alternatively, you can setup using this bash script. A requirements file is provided just in case.
-The script creates and activates an PyPy conda virtual environment with all libraries and dependencies.
+The script creates and activates an PyPy conda  environment with all libraries and dependencies.
 ```
 cd ./setup.sh
 source setup.sh
 ```
-# Run
-Execute the script to run the experiments.
+
+# Testing
+After adding any new algorithm, you can run the tests to check if the code is working properly.
 ```
-pypy mp.py 
-OR
-pypy flightscheduling.py
+./run_tests.sh
 ```
 # Results
+## Accessing results
+After running the experiments, the results are stored in the results directory. The results are stored in the following format in subdirectories:
+```
+.
+├── multi_proc
+│   ├── ackley_N2
+│   │   ├── genetic_algorithm_results.csv
+│   │   ├── genetic_algorithm_reversed_results.csv
+│   │   ├── genetic_algorithm_with_reversals_results.csv
+│   │   ├── hill_climb_results.csv
+│   │   ├── random_search_results.csv
+│   │   └── simulated_annealing_results.csv
+│   ├── booth/....
+|   |
+|   |
+│   └── zakharov
+│       ├── genetic_algorithm_results.csv
+│       ├── genetic_algorithm_reversed_results                  
+│       ├── genetic_algorithm_with_reversals_results.csv
+│       ├── random_search_results.csv
+│       └── simulated_annealing_results.csv
+├── plots
+│   ├── ackley_N2
+│   ├── fitness_function
+│   │   ├── hill_climb.png
+│   │   └── random_search.png
+│   ├── flight_scheduling
+│   │   ├── simulated_annealing.png
+│   │   ├── sol_chaining.png
+│   │   └── sol_chaining_a1.png
+│   └── griewank
+```
+
+## Experimental Results
+Results were compared by using the same seeds. The following table shows the results for the experiments.
+
+
 
 # Contributing Guidelines
 Refer [Contributing.md](./CONTRIBUTING.md) for mode details.
