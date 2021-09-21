@@ -34,14 +34,14 @@ function check_conda_install()
 check_conda_install
 sleep 0.4
 echo -n "Setting up conda PyPy environment";dots;
-#source ~/miniconda3/etc/profile.d/conda.sh
+source ~/miniconda3/etc/profile.d/conda.sh
 echo -n "Creating the environment";dots;
-#conda env create -f config.yml
+conda env create -f config.yml
 sleep 0.5
 echo -n "Setup done";dots;
 echo -n "Activating environment";dots;
 sleep 0.5
-#conda activate config 
+conda activate config 
 echo "Done :D"
 
 

@@ -1,1 +1,2 @@
-matplotlib==3.3.4
+matplotlib>=3.3.*
+rich>=10.1.* 

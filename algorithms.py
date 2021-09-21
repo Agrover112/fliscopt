@@ -3,9 +3,7 @@ import math
 import random
 import sys
 
-from utils.ga_utils import crossover, mutation ,multi_mutation
-from utils.utils import plot_scores, print_schedule
-
+from utils.ga_utils import crossover, mutation
 
 
 def random_search(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[], epochs=100):
@@ -97,13 +95,13 @@ def hill_climb(domain, fitness_function, seed=random.randint(10, 100), seed_init
             if solution[i] > domain[i][0]:
                 if solution[i] != domain[i][1]:  # cannot change value of 9 to 10
                     neighbors.append(
-                        solution[0:i]+[solution[i]+1]+solution[i+1:])
+                        solution[0:i] + [solution[i] + 1] + solution[i + 1:])
             if solution[i] < domain[i][1]:
                 if solution[i] != domain[i][0]:
                     neighbors.append(
                         solution[0:i] + [solution[i] - 1] + solution[i + 1:])
 
-        #actual = fitness_function(solution, 'FCO')
+        # actual = fitness_function(solution, 'FCO')
         if not fitness_function.__name__ == 'fitness_function':
             actual = fitness_function(solution)
         else:
@@ -112,7 +110,7 @@ def hill_climb(domain, fitness_function, seed=random.randint(10, 100), seed_init
         best = actual
         for i in range(len(neighbors)):
             count += 1
-            #cost = fitness_function(neighbors[i], 'FCO')
+            # cost = fitness_function(neighbors[i], 'FCO')
             if not fitness_function.__name__ == 'fitness_function':
                 cost = fitness_function(neighbors[i])
             else:
@@ -125,12 +123,13 @@ def hill_climb(domain, fitness_function, seed=random.randint(10, 100), seed_init
 
         if best == actual:
             print('Count: ', count)
-            #print('NFE: ',nfe)
+            # print('NFE: ',nfe)
             break
     return solution, best, scores, nfe, seed
 
 
-def simulated_annealing(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[], temperature=50000.0, cooling=0.95, step=1):
+def simulated_annealing(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],
+                        temperature=50000.0, cooling=0.95, step=1):
     """ Simulated annealing algorithm implemented with temeperature and cooling parameters.
 
 
@@ -181,13 +180,13 @@ def simulated_annealing(domain, fitness_function, seed=random.randint(10, 100), 
             temp_solution[i] = domain[i][1]
 
         count += 1
-        #cost = fitness_function(solution, 'FCO')
+        # cost = fitness_function(solution, 'FCO')
         if not fitness_function.__name__ == 'fitness_function':
             cost = fitness_function(solution)
         else:
             cost = fitness_function(solution, 'FCO')
         nfe += 1
-        #cost_temp = fitness_function(temp_solution, 'FCO')
+        # cost_temp = fitness_function(temp_solution, 'FCO')
         if not fitness_function.__name__ == 'fitness_function':
             cost_temp = fitness_function(solution)
         else:
@@ -209,7 +208,8 @@ def simulated_annealing(domain, fitness_function, seed=random.randint(10, 100), 
     return solution, best, scores, nfe, seed
 
 
-def genetic_algorithm(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[], population_size=100, step=1,
+def genetic_algorithm(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],
+                      population_size=100, step=1,
                       probability_mutation=0.2, elitism=0.2,
                       number_generations=500, search=False):
     """ Genetic algorithm implemented with elitisim.
@@ -278,7 +278,7 @@ def genetic_algorithm(domain, fitness_function, seed=random.randint(10, 100), se
             scores.append(fitness_function(population[0]))
         else:
             scores.append(fitness_function(population[0], 'FCO'))
-        #scores.append(fitness_function(population[0], 'FCO'))
+        # scores.append(fitness_function(population[0], 'FCO'))
         nfe += 1
         while len(population) < population_size:
             if random.random() < probability_mutation:
@@ -293,7 +293,8 @@ def genetic_algorithm(domain, fitness_function, seed=random.randint(10, 100), se
     return costs[0][1], costs[0][0], scores, nfe, seed
 
 
-def genetic_algorithm_reversed(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[], population_size=100, step=1,
+def genetic_algorithm_reversed(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],
+                               population_size=100, step=1,
                                probability_crossover=0.2, elitism=0.2,
                                number_generations=500, search=False):
     """ Genetic algorithm implemented with elitisim.
@@ -360,7 +361,7 @@ def genetic_algorithm_reversed(domain, fitness_function, seed=random.randint(10,
             scores.append(fitness_function(population[0]))
         else:
             scores.append(fitness_function(population[0], 'FCO'))
-        #scores.append(fitness_function(population[0], 'FCO'))
+        # scores.append(fitness_function(population[0], 'FCO'))
         nfe += 1
         while len(population) < population_size:
             if random.random() < probability_crossover:
@@ -376,7 +377,8 @@ def genetic_algorithm_reversed(domain, fitness_function, seed=random.randint(10,
     return costs[0][1], costs[0][0], scores, nfe, seed
 
 
-def genetic_algorithm_with_reversals(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[], population_size=100, step=1,
+def genetic_algorithm_with_reversals(domain, fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],
+                                     population_size=100, step=1,
                                      probability_mutation=0.2, elitism=0.2, n_k=250, step_length=100,
                                      number_generations=500, search=False):
     """ Genetic algorithm implemented with elitisim with n number of reversals.
@@ -445,7 +447,7 @@ def genetic_algorithm_with_reversals(domain, fitness_function, seed=random.randi
                 rev += 1
             else:
                 rev += 1
-                for _ in range(step_length-1):
+                for _ in range(step_length - 1):
                     costs.sort(reverse=True)
                     ordered_individuals = [
                         individual for (cost, individual) in costs]
@@ -487,7 +489,3 @@ def genetic_algorithm_with_reversals(domain, fitness_function, seed=random.randi
                     mutation(domain, step, ordered_individuals[m]))
 
     return costs[0][1], costs[0][0], scores, nfe, seed
-
-
-
-
