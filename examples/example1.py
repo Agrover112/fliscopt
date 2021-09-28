@@ -1,10 +1,10 @@
-from flopt.utils.util import print_schedule, read_file,plot_scores
-from flopt.rs import RandomSearch
-from flopt.ga import GA, ReverseGA
-from flopt.hc import HillClimb
-from flopt.chaining import IteratedChaining
-from flopt.multiproc import multiple_runs
-from flopt.fitness import fitness_function,domain,griewank
+from fliscopt.utils.util import print_schedule, read_file,plot_scores
+from fliscopt.rs import RandomSearch
+from fliscopt.ga import GA, ReverseGA
+from fliscopt.hc import HillClimb
+from fliscopt.chaining import IteratedChaining
+from fliscopt.multiproc import multiple_runs
+from fliscopt.fitness import fitness_function,domain,griewank
 
 
 """

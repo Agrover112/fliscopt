@@ -1,17 +1,17 @@
 try:
-    import flopt
+    import fliscopt
 except:
     import sys
     sys.path.append("..")
 
 import unittest
 
-from flopt.rs import RandomSearch
-from flopt.sa import SimulatedAnnealing
-from flopt.ga import GA
-from flopt.hc import HillClimb
-from flopt.utils.util import read_file
-from flopt.fitness import griewank,domain
+from fliscopt.rs import RandomSearch
+from fliscopt.sa import SimulatedAnnealing
+from fliscopt.ga import GA
+from fliscopt.hc import HillClimb
+from fliscopt.utils.util import read_file
+from fliscopt.fitness import griewank,domain
 
 class TestAlgorithms(unittest.TestCase):
     def test_rs(self):

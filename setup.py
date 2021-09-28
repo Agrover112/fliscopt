@@ -1,12 +1,12 @@
 import setuptools
 from setuptools import setup,find_packages
 import os
-from flopt import __version__
+from fliscopt import __version__
 with open("README.md", 'r') as f:
     long_description = f.read()
 
 setup(
-   name='flopt',
+   name='fliscopt',
    version=__version__,
    description='Flight scheduling optimization using Genetic Algorithm variants and other algorithms. ',
    license="MIT",

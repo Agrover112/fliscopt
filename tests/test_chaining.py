@@ -1,12 +1,12 @@
 try:
-    import flopt
+    import fliscopt
 except:
     import sys
     sys.path.append("..")
 import unittest
 
-from flopt.utils.util import read_file
-from flopt.chaining import IteratedChaining
+from fliscopt.utils.util import read_file
+from fliscopt.chaining import IteratedChaining
 
 
 class TestChaining(unittest.TestCase):
