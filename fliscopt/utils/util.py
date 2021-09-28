@@ -17,7 +17,7 @@ people = [('Lisbon', 'LIS'),
 flights = {}
 
 
-def read_file(fname) -> str: #FIXXXX THE PATH OF THE FILE
+def read_file(fname) -> str: 
     """ Utility function to read given file
     Args:
         fname (str): File name to be read
@@ -25,7 +25,7 @@ def read_file(fname) -> str: #FIXXXX THE PATH OF THE FILE
         str: String message that file has been read
     """
 
-    for line in open('/mnt/d/MINOR PROJECT/final/data/' + fname, 'r+'):
+    for line in open('../data/'+fname, 'r+'):
         origin, dest, departure, arrival, price = line.split(',')
         flights.setdefault((origin, dest), [])
         flights[(origin, dest)].append((departure, arrival, int(price)))
@@ -116,7 +116,7 @@ def plot_scores(scores, algo_name, save_fig, **kwargs) -> None:
         else:
             plt.show()
 
-def play_sound() -> None:
+def play_sound() -> None:  #FIX-NEEDED
     """ Plays a completion sound.
     """
     raise NotImplementedError
