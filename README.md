@@ -20,7 +20,7 @@ Following algorithms have been implemented and test as of date:
 
 Install the library using pip:
 ```
-pip install final 
+pip install flicsopt
 ```
 
 ## For PyPy users
