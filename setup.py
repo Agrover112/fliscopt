@@ -6,9 +6,9 @@ with open("README.md", 'r') as f:
     long_description = f.read()
 
 setup(
-   name='final',
-   version='0.5',
-   description='Flight scheduling and genetic algorithms for optimization',
+   name='flopt:Flight scheduling OPtimization algorithms',
+   version='0.1.0',
+   description='Flight scheduling optimization using Genetic Algorithm variants and other algorithms. ',
    license="MIT",
    long_description=long_description,
    long_description_content_type='text/markdown',

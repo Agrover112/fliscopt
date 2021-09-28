@@ -1,5 +1,3 @@
-# from fitness import fitness_function
-#from fitness import fitness_function
 import os
 import time
 
@@ -19,7 +17,7 @@ people = [('Lisbon', 'LIS'),
 flights = {}
 
 
-def read_file(fname) -> str:
+def read_file(fname) -> str: #FIXXXX THE PATH OF THE FILE
     """ Utility function to read given file
     Args:
         fname (str): File name to be read

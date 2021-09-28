@@ -1,10 +1,10 @@
-from final.utils.util import print_schedule, read_file,plot_scores
-from final.rs import RandomSearch
-from final.ga import GA, ReverseGA
-from final.hc import HillClimb
-from final.chaining import IteratedChaining
-from final.multiproc import multiple_runs
-from final.fitness import fitness_function,domain,griewank
+from flopt.utils.util import print_schedule, read_file,plot_scores
+from flopt.rs import RandomSearch
+from flopt.ga import GA, ReverseGA
+from flopt.hc import HillClimb
+from flopt.chaining import IteratedChaining
+from flopt.multiproc import multiple_runs
+from flopt.fitness import fitness_function,domain,griewank
 
 
 """
