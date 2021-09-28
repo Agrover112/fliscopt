@@ -1,12 +1,12 @@
 try:
-    import final
+    import flopt
 except:
     import sys
     sys.path.append("..")
 import unittest
 
-from final.utils.util import read_file
-from final.chaining import IteratedChaining
+from flopt.utils.util import read_file
+from flopt.chaining import IteratedChaining
 
 
 class TestChaining(unittest.TestCase):
