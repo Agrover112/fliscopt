@@ -20,8 +20,6 @@ Following algorithms have been implemented and test as of date:
 
 Install the library using pip:
 ```
-pip install -e . #for development mode  
-OR
 pip install final 
 ```
 
@@ -39,6 +37,11 @@ After adding any new algorithm, you can run the tests to check if the code is wo
 ./run_tests.sh
 ```
 # Results
+
+## Experimental Results
+Results were compared by using the same seeds. The following table shows the results for the experiments.
+(Will be shortly added)
+
 ## Accessing results
 After running the experiments, the results are stored in the results directory. The results are stored in the following format in subdirectories:
 ```
@@ -72,13 +75,12 @@ After running the experiments, the results are stored in the results directory. 
 │   └── griewank
 ```
 
-## Experimental Results
-Results were compared by using the same seeds. The following table shows the results for the experiments.
+
 
 
 
 # Contributing Guidelines
-Refer [Contributing.md](./CONTRIBUTING.md) for mode details.
+Refer [Contributing.md](./CONTRIBUTING.md) and Project Board for mode details.
 # References
 [1] []
 [2] []    

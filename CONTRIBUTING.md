@@ -18,6 +18,30 @@ Following these guidelines helps to communicate that you respect the time of the
 - Once you have been assigned the issue by the maintainer, you can go ahead to fork the repo, clone and make changes to fix the issue. 
 - Please follow [**conventional commits**](https://www.conventionalcommits.org/en/v1.0.0-beta.2/)
 
+
+##  Specific Contribution Guidelines
+These guidelines should be followed if you are changing the code base .
+- Any suggestion on removing redundancy in CONTRUBUTING.md/README.md is welcome.
+- You can always add new algorithms to the repostiory, there is a list of available algorithms online!.
+- You could add a modified version of an algorithm such as adaptive version or other variants which you tested out on your own problems or on the flight-scheduling problem.
+- Make sure to test the algorithm thoroughly before you add it to the repository.
+- This can be done by running the algorithm on the flight-scheduling problem and benchmark functions and checking if it is working properly.
+- IF algo is variant of existing algo--> sub-class it from existing one EX: GA with adaptive operators!?
+- For other algorithms make a seperate file such as hc for hillclimbing.py and follow the style followed in other files.Well, I think the structure can be considered as an **Abstract Factory Design Pattern??**
+- Make sure to write proper tests!
+- Make sure to write good comments and use docstrings/etc.
+- Update the chaining.py with your new algorithm.
+- Finally make sure to update the list of algorithms in the README.md file, and it's performance in the Experimental results section.
+- AND....finally update the ```___version___``` in the ```__init__.py``` file.( Refer semantic versioning for more details).
+- If all tests work properly and it works on all benchmarks and problems, you can raise a PR!!!
+  ### TLDR :(:
+  - Algo should work a a single import
+  - Algo should work with multiprocessing multiproc.py <Try this first
+  - Algo should work with flight-sheduling and all benchmarks functions for wierd behaviours that you can encounter. IF you encounter one try fixing the function/algo and writing a test for it in test_fitness.py or test_algorithms.py
+  - Algo should work with chaining test_chaining.py
+  - ./test.sh should work
+  
+  (PS: If you are having trouble writing the algorithm, refer the algorithms.py file,which was the initial version upon which the entire project was built upon.)
 ## Making your Pull Request
 
 - Good pull requests - patches, improvements, new features - are a fantastic help. They should remain focused in scope and avoid containing unrelated commits. 
