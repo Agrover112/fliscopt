@@ -39,11 +39,12 @@ implemented. So I implemented them.
 
 read_file('flights.txt')
 ic=IteratedChaining(rounds=5, n_obs=2, tol=90)
-soln, cost, scores, nfe=ic.run('RandomSearch', 'HillClimb')
+soln, cost, scores, nfe=ic.run('RandomSearch', 'HillClimb') 
 print_schedule(soln,'FCO')
 #multiple_runs(ReverseGA, domain, fitness_function, record=False, n=2)
 
 
 hc=HillClimb(seed_init=False,max_time=0.0000001)
+# All domains defined with a single-tuple/or without a multiplier have n-dimensional Input Domain
 soln, cost, scores, nfe, seed=hc.run(domain=domain['griewank']*5,fitness_function=griewank,seed=5)
 plot_scores(scores,hc.get_name(),fname='griewank',save_fig=False)
