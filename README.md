@@ -1,7 +1,7 @@
 # Fliscopt 
 
 
-FLight SCheduling OPTimization(fliscopt) is an simple optimization library for flight scheduling and related problems in the discrete domain.The library supports plotting,asynchronous multiprocessing and unimodal optimization benchmarks.
+FLight SCheduling OPTimization or *fliscopt* is an simple optimization library for flight scheduling and related problems in the discrete domain.The library supports plotting,asynchronous multiprocessing and unimodal optimization benchmarks.
 The following repository contains code for the paper "XYZ" . The experiments were performed in **PyPy3.7** and **CPython 3.8.10.**
 
 Following algorithms have been implemented and test as of date:
@@ -21,7 +21,7 @@ Following algorithms have been implemented and test as of date:
 
 Install the library using pip:
 ```
-pip install flicsopt
+pip install fliscopt
 ```
 
 ## For PyPy users
