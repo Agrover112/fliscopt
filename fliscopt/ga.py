@@ -49,6 +49,9 @@ class GA(BaseGA):
                          0, elitism, number_generations, search)
 
     def run(self,domain,fitness_function,seed) -> tuple:
+        self.domain = domain
+        self.fitness_function = fitness_function
+        self.seed = seed
         population = []
         scores = []
         nfe = 0
@@ -110,6 +113,9 @@ class ReverseGA(BaseGA):
                          probability_crossover, elitism, number_generations, search)
 
     def run(self,domain,fitness_function,seed) -> tuple:
+        self.domain = domain
+        self.fitness_function = fitness_function
+        self.seed = seed
         population = []
         scores = []
         nfe = 0
@@ -174,6 +180,9 @@ class GAReversals(BaseGA):
         self.step_length = step_length
 
     def run(self,domain,fitness_function,seed) -> tuple:
+        self.domain = domain
+        self.fitness_function = fitness_function
+        self.seed = seed
         population = []
         scores = []
         nfe = 0

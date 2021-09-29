@@ -25,6 +25,9 @@ class HillClimb(FlightAlgorithm,metaclass=ABCMeta):
         count = 0
         scores = []
         nfe = 0
+        self.domain=domain
+        self.fitness_function=fitness_function
+        self.seed=seed
         if len(self.init) > 0:
             solution = self.init
         else:

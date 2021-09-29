@@ -27,6 +27,9 @@ class RandomSearch(FlightAlgorithm, metaclass=ABCMeta):
  
         
     def run(self,domain,fitness_function,seed):
+            self.domain=domain
+            self.fitness_function=fitness_function
+            self.seed=seed
             scores = []
             nfe = 0
             if len(self.init) > 0:
