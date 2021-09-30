@@ -107,6 +107,7 @@ After running the experiments, the results are stored in the results directory. 
 
 # Contributing Guidelines
 Refer [Contributing.md](./CONTRIBUTING.md) and Project Board for mode details.
+This repository follows [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)!
 # References
 [1] []
 [2] []    
