@@ -3,7 +3,7 @@ import os
 import time
 sys.path.append(os.getcwd())
 from .utils.util import plot_scores, print_schedule, read_file
-from .base_algorithm import FlightAlgorithm
+from .base_algorithm import FlightAlgorithm,random
 from .rs import RandomSearch
 from .utils.ga_utils import crossover, mutation
 from .fitness import *
@@ -41,6 +41,7 @@ class BaseGA(FlightAlgorithm, metaclass=ABCMeta):
 
 
 
+
 class GA(BaseGA):
     def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],max_time=100,
                  population_size=100, step=1, probability_mutation=0.2, elitism=0.2,
@@ -49,9 +50,7 @@ class GA(BaseGA):
                          0, elitism, number_generations, search)
 
     def run(self,domain,fitness_function,seed) -> tuple:
-        self.domain = domain
-        self.fitness_function = fitness_function
-        self.seed = seed
+        self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
         population = []
         scores = []
         nfe = 0
@@ -97,7 +96,7 @@ class GA(BaseGA):
                     i1 = random.randint(0, number_elitism)
                     i2 = random.randint(0, number_elitism)
                     population.append(
-                        crossover(domain, ordered_individuals[i1], ordered_individuals[i2]))
+                        crossover(self.domain, ordered_individuals[i1], ordered_individuals[i2]))
 
             if time.time()-self.start_time>self.max_time:
                 return costs[0][1], costs[0][0], scores, nfe, self.seed
@@ -113,9 +112,7 @@ class ReverseGA(BaseGA):
                          probability_crossover, elitism, number_generations, search)
 
     def run(self,domain,fitness_function,seed) -> tuple:
-        self.domain = domain
-        self.fitness_function = fitness_function
-        self.seed = seed
+        self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
         population = []
         scores = []
         nfe = 0
@@ -157,7 +154,7 @@ class ReverseGA(BaseGA):
                     i1 = random.randint(0, number_elitism)
                     i2 = random.randint(0, number_elitism)
                     population.append(
-                        crossover(domain, ordered_individuals[i1], ordered_individuals[i2]))
+                        crossover(self.domain, ordered_individuals[i1], ordered_individuals[i2]))
                 else:
                     m = random.randint(0, number_elitism)
                     population.append(
@@ -167,7 +164,6 @@ class ReverseGA(BaseGA):
                 return costs[0][1], costs[0][0], scores, nfe, self.seed
 
         return costs[0][1], costs[0][0], scores, nfe, self.seed
-
 
 
 class GAReversals(BaseGA):
@@ -180,9 +176,7 @@ class GAReversals(BaseGA):
         self.step_length = step_length
 
     def run(self,domain,fitness_function,seed) -> tuple:
-        self.domain = domain
-        self.fitness_function = fitness_function
-        self.seed = seed
+        self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
         population = []
         scores = []
         nfe = 0
@@ -261,8 +255,8 @@ class GAReversals(BaseGA):
                     return costs[0][1], costs[0][0], scores, nfe, self.seed
 
         return costs[0][1], costs[0][0], scores, nfe, self.seed
-            
-
+    
+ 
 if __name__ == '__main__':
     read_file('flights.txt')
     sga = ReverseGA(seed_init=False,search=True)
