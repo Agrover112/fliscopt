@@ -4,9 +4,9 @@ sys.path.append(os.getcwd())
 import time
 from abc import ABCMeta
 from .utils.util import plot_scores, print_schedule, read_file
-from .base_algorithm import FlightAlgorithm
+from .base_algorithm import FlightAlgorithm,random
 
-import random
+#import random
 from .fitness import *
 
 class HillClimb(FlightAlgorithm,metaclass=ABCMeta):
@@ -22,9 +22,11 @@ class HillClimb(FlightAlgorithm,metaclass=ABCMeta):
         return self.__class__.__name__
 
     def run(self,domain,fitness_function,seed) -> tuple:
+        self.__init__(domain,fitness_function,seed,self.seed_init, self.init,self.max_time)
         count = 0
         scores = []
         nfe = 0
+       
         if len(self.init) > 0:
             solution = self.init
         else:

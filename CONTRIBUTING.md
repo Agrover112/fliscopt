@@ -5,7 +5,7 @@ Following these guidelines helps to communicate that you respect the time of the
 ## Some contributing rules you should follow 
  
  - Always use the English language.
- - Make use of [discussion](https://github.com/Agrover112/final/discussions) properly (proper language)
+ - Make use of [discussion](https://github.com/Agrover112/fliscopt/discussionss) properly (proper language)
  -  Check if the feature you are adding already exists.
  -  Contribution to new algorithms is always welcome.
  -  While adding algorithms test it properly  and make sure all functionalities including single_run,multiple_run,benchmark are working properly.
@@ -13,7 +13,7 @@ Following these guidelines helps to communicate that you respect the time of the
  -  Check for broken or re-located links.
 - If this is your first contribution, You might also want to take up issues with the <b>good first</b> issue or the<b> help wanted </b>label.
 
-- Discuss the changes you wish to make by creating an [issue](https://github.com/Agrover112/final/issues) or comment on an [existing issue]https://github.com/Agrover112/final/issues).
+- Discuss the changes you wish to make by creating an [issue](https://github.com/Agrover112/fliscopt/issues) or comment on an [existing issue](https://github.com/Agrover112/final/issues).
 -  Description should start with a capital letter and be ended with proper punctuation.
 - Once you have been assigned the issue by the maintainer, you can go ahead to fork the repo, clone and make changes to fix the issue. 
 - Please follow [**conventional commits**](https://www.conventionalcommits.org/en/v1.0.0-beta.2/)
@@ -54,4 +54,4 @@ Kudos to you :balloon:
 
 ---
 
-Thank you for contributing to [awesome-semantic-search](https://github.com/Agrover112/awesome-semantic-search).
+Thank you for contributing to [fliscopt](https://github.com/Agrover112/fliscopt).

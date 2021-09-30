@@ -5,6 +5,7 @@ FLight SCheduling OPTimization or *fliscopt* is an simple optimization library f
 The following repository contains code for the paper "XYZ" . The experiments were performed in **PyPy3.7** and **CPython 3.8.10.**
 
 Following algorithms have been implemented and test as of date:
+
 **Algorithms**:
 - Hill Climbing
 - Random Search
@@ -23,6 +24,16 @@ Install the library using pip:
 ```
 pip install fliscopt
 ```
+Or for development:
+```
+git clone https://github.com/Agrover112/fliscopt.git
+cd fliscopt
+pip install .
+```
+
+Download the flights.txt file from the following [link](https://drive.google.com/file/d/1-wxzUMLloeF1tGYEVHvBG_Dh6jfZ-pzR/view) and add it to a data/ directory within your parent directory.
+
+Checkout out the examples in the examples/ directory.
 
 ## For PyPy users
 The instructions for setup are mentioned in setup directory. Alternatively, you can setup using this bash script. A requirements file is provided just in case.
@@ -31,12 +42,17 @@ The script creates and activates an PyPy conda  environment with all libraries a
 cd ./setup.sh
 source setup.sh
 ```
+Then install using:
 
+```
+pypy -mpip install fliscopt
+```
 # Testing
 After adding any new algorithm, you can run the tests to check if the code is working properly.
 ```
 ./run_tests.sh
 ```
+
 # Results
 
 ## Experimental Results

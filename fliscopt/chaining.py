@@ -51,39 +51,39 @@ class IteratedChaining():
 
     def run(self,algorithm_1, algorithm_2):
         # Note scores here is the best cost of each particular single_run
-        scores = []
+        SCORES = []
         NFE = 0
         for i in range(self.rounds):
             if i == 0:
                 soln, cost, scores, nfe, seed = self.choose(algorithm_1).run(self.domain, self.fitness_function, self.seed)
                 soln = mutation(self.domain, random.randint(0, 1), soln)  # Either 1 step or no step InitMutation
-                scores.append(cost)
+                SCORES.append(cost)
                 NFE += nfe
                 rich.print("Cost at {}=={}".format(i, cost))
             elif i == self.rounds - 1:
                 final_soln, cost, scores, nfe, seed = self.choose(algorithm_2).run(self.domain, self.fitness_function, self.seed)
-                scores.append(cost)
+                SCORES.append(cost)
                 NFE += nfe
                 rich.print("Cost at {}=={}".format(i, cost))
-                return final_soln, scores[-1], scores, NFE
+                return final_soln, SCORES[-1], SCORES, NFE
             else:
                 soln, cost, scores, nfe, seed = self.choose(algorithm_1).run(self.domain, self.fitness_function, self.seed)
                 rich.print("Cost at {}=={}".format(i, cost))
                 soln = mutation(self.domain, random.randint(0, 1), soln)
-                scores.append(cost)
+                SCORES.append(cost)
                 NFE += nfe
 
             final_soln, cost, scores, nfe, seed = self.choose(algorithm_2).run(self.domain, self.fitness_function, self.seed)
-            scores.append(cost)
+            SCORES.append(cost)
             NFE += nfe
             if self.rounds ==1:
-                return soln, scores[-1], scores, NFE
+                return soln, SCORES[-1], SCORES, NFE
             if cost - random.randint(self.tol, 100) > int(sum(scores[-self.n_obs:]) / self.n_obs):
                 rich.print("----Ending early at iteration{}----".format(i))
                 rich.print("Cost{}".format(cost))
                 if fitness_function.__name__ == 'fitness_function':
                     print_schedule(final_soln, 'FCO')
-                return final_soln, scores[-1], scores, NFE
+                return final_soln, SCORES[-1], SCORES, NFE
             rich.print("Cost at {}=={}".format(i, cost))
             init = mutation(self.domain, 1, final_soln)  # IntMutation
 

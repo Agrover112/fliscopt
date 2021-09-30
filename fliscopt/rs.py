@@ -27,6 +27,7 @@ class RandomSearch(FlightAlgorithm, metaclass=ABCMeta):
  
         
     def run(self,domain,fitness_function,seed):
+            self.__init__(domain,fitness_function,seed,self.seed_init, self.init,self.max_time)
             scores = []
             nfe = 0
             if len(self.init) > 0:
@@ -52,6 +53,7 @@ class RandomSearch(FlightAlgorithm, metaclass=ABCMeta):
                 if time.time()-self.start_time>self.max_time:
                     return self.best_solution, self.best_cost, scores, nfe, self.seed
             return self.best_solution, self.best_cost, scores, nfe, self.seed
+    
 
 if __name__ == '__main__':
     read_file('flights.txt')
