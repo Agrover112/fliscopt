@@ -1,11 +1,11 @@
 try:
-    import final
+    import fliscopt
 except:
     import sys
     sys.path.append("..")
 import unittest
-from final.fitness import ackley_N2, booth, brown, fitness_function, griewank, matyas, rosenbrock, schaffer_N1, schwefel, sphere, three_hump_camel, zakharov,fitness_function
-from final.utils.util import read_file
+from fliscopt.fitness import ackley_N2, booth, brown, fitness_function, griewank, matyas, rosenbrock, schaffer_N1, schwefel, sphere, three_hump_camel, zakharov,fitness_function
+from fliscopt.utils.util import read_file
 class TestFitness(unittest.TestCase):
 
     def test_fitness(self):

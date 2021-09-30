@@ -1,5 +1,3 @@
-# from fitness import fitness_function
-#from fitness import fitness_function
 import os
 import time
 
@@ -19,7 +17,7 @@ people = [('Lisbon', 'LIS'),
 flights = {}
 
 
-def read_file(fname) -> str:
+def read_file(fname) -> str: 
     """ Utility function to read given file
     Args:
         fname (str): File name to be read
@@ -27,7 +25,7 @@ def read_file(fname) -> str:
         str: String message that file has been read
     """
 
-    for line in open('/mnt/d/MINOR PROJECT/final/data/' + fname, 'r+'):
+    for line in open('../data/'+fname, 'r+'):
         origin, dest, departure, arrival, price = line.split(',')
         flights.setdefault((origin, dest), [])
         flights[(origin, dest)].append((departure, arrival, int(price)))
@@ -118,7 +116,7 @@ def plot_scores(scores, algo_name, save_fig, **kwargs) -> None:
         else:
             plt.show()
 
-def play_sound() -> None:
+def play_sound() -> None:  #FIX-NEEDED
     """ Plays a completion sound.
     """
     raise NotImplementedError

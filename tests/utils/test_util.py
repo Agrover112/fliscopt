@@ -1,11 +1,11 @@
 try:
-    import final
+    import fliscopt
 except:
     import sys
     sys.path.append("../../")
 
 import unittest
-from final.utils.util import *
+from fliscopt.utils.util import *
 
 class TestUtil(unittest.TestCase):
     def test_read_file(self):

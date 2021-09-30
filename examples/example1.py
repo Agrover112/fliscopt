@@ -1,10 +1,10 @@
-from final.utils.util import print_schedule, read_file,plot_scores
-from final.rs import RandomSearch
-from final.ga import GA, ReverseGA
-from final.hc import HillClimb
-from final.chaining import IteratedChaining
-from final.multiproc import multiple_runs
-from final.fitness import fitness_function,domain,griewank
+from fliscopt.utils.util import print_schedule, read_file,plot_scores
+from fliscopt.rs import RandomSearch
+from fliscopt.ga import GA, ReverseGA
+from fliscopt.hc import HillClimb
+from fliscopt.chaining import IteratedChaining
+from fliscopt.multiproc import multiple_runs
+from fliscopt.fitness import fitness_function,domain,griewank
 
 
 """
@@ -34,26 +34,17 @@ Iterated Chaining and GAReversals and ReverseGA are algos I haven;t really found
 implemented. So I implemented them.
 
 
-** I am trying to make the final into a package.
-there are 3 __init__.py 
-one in the main folder.
-second inside final/
-third in final/utils/
-So either the init files are importing wrongly or sys.path.append(os.getcwd()) is causing an issue
-or the naming of utils/utils??
-A problem i faced was an error always popped up saying utils module doesn't exist,
-when I tried to install and use it using pip3 install -e .
-and it pointed to 
->>5th line of ga.py file ://
+
 """
 
 read_file('flights.txt')
 ic=IteratedChaining(rounds=5, n_obs=2, tol=90)
-soln, cost, scores, nfe=ic.run('RandomSearch', 'HillClimb')
+soln, cost, scores, nfe=ic.run('RandomSearch', 'HillClimb') 
 print_schedule(soln,'FCO')
 #multiple_runs(ReverseGA, domain, fitness_function, record=False, n=2)
 
 
 hc=HillClimb(seed_init=False,max_time=0.0000001)
+# All domains defined with a single-tuple/or without a multiplier have n-dimensional Input Domain
 soln, cost, scores, nfe, seed=hc.run(domain=domain['griewank']*5,fitness_function=griewank,seed=5)
 plot_scores(scores,hc.get_name(),fname='griewank',save_fig=False)
