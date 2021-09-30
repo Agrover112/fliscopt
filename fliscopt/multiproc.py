@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append(os.getcwd())
+sys.path.append("..")
 
 
 import multiprocessing
@@ -69,5 +69,6 @@ def multiple_runs(algorithm, domain, fitness_function, init=[], record=False, n_
 
 if __name__ == '__main__':
     read_file('flights.txt')
-    multiple_runs(ReverseGA, domain, fitness_function, record=False, n=10)
+    multiple_runs(ReverseGA, domain['griewank']*12, griewank, record=False, n=10)
+
     

@@ -16,11 +16,11 @@ class FlightAlgorithm(metaclass=ABCMeta):
         self.max_time=1000
         if self.seed_init:
             # Set the seed for initial population only
-            self.r_init = random.Random(seed)
+            self.r_init = random.Random(self.seed)
         else:
             # Same seeds for both init and other random generators
-            self.r_init = random.Random(seed)
-            random.seed(seed)
+            self.r_init = random.Random(self.seed)
+            random.seed(self.seed)
         
         self.best_cost =0.0  # returned
     @abstractmethod

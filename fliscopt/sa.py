@@ -4,11 +4,11 @@ import time
 sys.path.append(os.getcwd())
 from abc import ABCMeta
 from .utils.util import plot_scores, print_schedule, read_file
-from .base_algorithm import FlightAlgorithm
+from .base_algorithm import FlightAlgorithm,random
 import heapq
 import math
 
-import random
+#import random
 from .fitness import *
 
 class SimulatedAnnealing(FlightAlgorithm,metaclass=ABCMeta):
@@ -28,9 +28,7 @@ class SimulatedAnnealing(FlightAlgorithm,metaclass=ABCMeta):
         return self.__class__.__name__
 
     def run(self,domain,fitness_function,seed) -> tuple:
-        self.domain=domain
-        self.fitness_function=fitness_function
-        self.seed=seed
+        self.__init__(domain,fitness_function,seed,self.seed_init, self.init,self.max_time)
         count = 0
         nfe = 0
         scores = []
