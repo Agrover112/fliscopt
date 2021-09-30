@@ -28,6 +28,9 @@ class SimulatedAnnealing(FlightAlgorithm,metaclass=ABCMeta):
         return self.__class__.__name__
 
     def run(self,domain,fitness_function,seed) -> tuple:
+        self.domain=domain
+        self.fitness_function=fitness_function
+        self.seed=seed
         count = 0
         nfe = 0
         scores = []
