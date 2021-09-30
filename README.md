@@ -40,7 +40,7 @@ pip install .
 
 Download the flights.txt file from the following [link](https://drive.google.com/file/d/1-wxzUMLloeF1tGYEVHvBG_Dh6jfZ-pzR/view) and add it to a data/ directory within your parent directory.
 
-Checkout out the examples in the [examples](https://github.com/Agrover112/fliscopt/tree/master/examples) directory.
+Checkout out the examples in the [examples](https://github.com/Agrover112/fliscopt/tree/master/examples) directory or run in [Google Collab](https://colab.research.google.com/drive/1C9tPvDvauUPxxkL4ItGYP1Azlg6NUBaW?usp=sharing)
 
 ## For PyPy users
 The instructions for setup are mentioned in setup directory. Alternatively, you can setup using this bash script. A requirements file is provided just in case.
