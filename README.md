@@ -26,7 +26,7 @@ pip install fliscopt
 ```
 Or for development:
 ```
-git clone 
+git clone https://github.com/Agrover112/fliscopt.git
 cd fliscopt
 pip install .
 ```
@@ -52,12 +52,7 @@ After adding any new algorithm, you can run the tests to check if the code is wo
 ```
 ./run_tests.sh
 ```
-or
-```
-git clone 
-cd flopt/
-pip3 install .
-```
+
 # Results
 
 ## Experimental Results
