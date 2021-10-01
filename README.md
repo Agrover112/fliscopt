@@ -10,16 +10,16 @@
 
 ![image](https://github.com/Anik-Bardhan/fliscopt/blob/Anik-Bardhan-add-graphic/images/fliscopt_graphic.jpg)
 
-FLight SCheduling OPTimization or *fliscopt* is an simple optimization library for flight scheduling and related problems in the discrete domain.The library supports plotting,asynchronous multiprocessing and unimodal optimization benchmarks.
-The following repository contains code for the paper "XYZ" . The experiments were performed in **PyPy3.7** and **CPython 3.8.10.**
+FLight SCheduling OPTimization 🛫 or *fliscopt* is a simple optimization library for flight scheduling and related problems in the discrete domain. The library supports plotting, asynchronous multiprocessing, and unimodal optimization benchmarks.
+The following repository contains code for the paper "XYZ". The experiments were performed in **PyPy3.7** and **CPython 3.8.10.**
 
 Following algorithms have been implemented and test as of date:
 
 **Algorithms**:
-- Hill Climbing
-- Random Search
-- Simulated Annealing
-- Genetic Algorithm
+- Hill Climbing 
+- Random Search 
+- Simulated Annealing 
+- Genetic Algorithm 
 - Genetic Algorithm in Reverse Mode
 - Genetic  Algorithm with Reversals
 - Iterated Chaining
@@ -45,8 +45,8 @@ Download the flights.txt file from the following [link](https://drive.google.com
 Checkout out the examples in the [examples](https://github.com/Agrover112/fliscopt/tree/master/examples) directory or run in [Google Collab](https://colab.research.google.com/drive/1C9tPvDvauUPxxkL4ItGYP1Azlg6NUBaW?usp=sharing)
 
 ## For PyPy users
-The instructions for setup are mentioned in setup directory. Alternatively, you can setup using this bash script. A requirements file is provided just in case.
-The script creates and activates an PyPy conda  environment with all libraries and dependencies.
+The instructions for setup are mentioned in the setup directory. Alternatively, you can set up using this bash script. A requirements file is provided just in case.
+The script creates and activates a PyPy Conda environment with all libraries and dependencies.
 ```
 cd ./setup.sh
 source setup.sh
@@ -65,7 +65,7 @@ After adding any new algorithm, you can run the tests to check if the code is wo
 # Results
 
 ## Experimental Results
-Results were compared by using the same seeds. The following table shows the results for the experiments.
+Results were compared by using the same seeds. The following table shows the results of the experiments.
 (Will be shortly added)
 
 ## Accessing results
@@ -80,7 +80,7 @@ After running the experiments, the results are stored in the results directory. 
 │   │   ├── hill_climb_results.csv
 │   │   ├── random_search_results.csv
 │   │   └── simulated_annealing_results.csv
-│   ├── booth/....
+│   ├── booth/...
 |   |
 |   |
 │   └── zakharov
