@@ -16,8 +16,8 @@ The following repository contains code for the paper "XYZ". The experiments were
 Following algorithms have been implemented and test as of date:
 
 **Algorithms**:
-- Hill Climbing 🧗‍♂️
-- Random Search 💥
+- Hill Climbing 
+- Random Search 
 - Simulated Annealing 
 - Genetic Algorithm 
 - Genetic Algorithm in Reverse Mode
