@@ -19,7 +19,7 @@ Following algorithms have been implemented and test as of date:
 - Hill Climbing
 - Random Search
 - Simulated Annealing
-- Genetic Algorithms
+- Genetic Algorithm
 - Genetic Algorithm in Reverse Mode
 - Genetic  Algorithm with Reversals
 - Iterated Chaining
