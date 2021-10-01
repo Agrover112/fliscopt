@@ -33,13 +33,15 @@ These guidelines should be followed if you are changing the code base .
 - Update the chaining.py with your new algorithm.
 - Finally make sure to update the list of algorithms in the README.md file, and it's performance in the Experimental results section.
 - AND....finally update the ```___version___``` in the ```__init__.py``` file.( Refer semantic versioning for more details).
+
+- **Please don't add EMOJIS for god's sake pls, that's absolutely unnecessary**
 - If all tests work properly and it works on all benchmarks and problems, you can raise a PR!!!
   ### TLDR :(:
   - Algo should work a a single import
   - Algo should work with multiprocessing multiproc.py <Try this first
   - Algo should work with flight-sheduling and all benchmarks functions for wierd behaviours that you can encounter. IF you encounter one try fixing the function/algo and writing a test for it in test_fitness.py or test_algorithms.py
   - Algo should work with chaining test_chaining.py
-  - ./test.sh should work
+  - ./run_tests.sh should work
   
   (PS: If you are having trouble writing the algorithm, refer the algorithms.py file,which was the initial version upon which the entire project was built upon.)
 ## Making your Pull Request
