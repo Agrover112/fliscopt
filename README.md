@@ -33,6 +33,10 @@ Install the library using pip:
 ```
 pip install fliscopt
 ```
+Or for unreleased versions:
+```
+pip install 'git+https://github.com/Agrover112/fliscopt/fliscopt@branchname
+```
 Or for development:
 ```
 git clone https://github.com/Agrover112/fliscopt.git
