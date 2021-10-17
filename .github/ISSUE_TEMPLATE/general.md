@@ -4,7 +4,7 @@ about: If you find any issues with the program, which seem to hamper the experie
   please mention it in this page.
 title: General
 labels: general
-assignees: ShubhayuB
+assignees:
 
 ---
 
