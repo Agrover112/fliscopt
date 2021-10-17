@@ -1,18 +1,21 @@
-# General Issues
-If you find any issues with the program, which seem to hamper the experience, please mention it in this page.
+---
+name: General
+about: If you find any issues with the program, which seem to hamper the experience,
+  please mention it in this page.
+title: ''
+labels: ''
+assignees: ''
 
+---
 
+> **_Anomalous Behavior:_**  Describe in detail, the problem that you are facing.
+       
+=>
 
-### Describe the issue you are facing.
+> **_Expected Behavior:_**  Describe in detail, how you want the program to actually function.
 
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+=>
 
+> **_Suggestions to solve the issue:_** Any advice, to get the required changes.
 
-### Describe the solution you'd like/alternatives you have considered.
-A clear and concise description of what you want to happen and suggest any ideas, which can lead to the solution.
-
-
-### Additional context
-
-Add any other context or screenshots about the feature request here.
-
+=>
