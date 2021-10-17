@@ -1,12 +1,7 @@
----
-name: General
-about: If you find any issues with the program, which seem to hamper the experience,
-  please mention it in this page.
-title: General
-labels: general
-assignees:
+# General Issues
+If you find any issues with the program, which seem to hamper the experience, please mention it in this page.
 
----
+
 
 ## Describe the issue you are facing.
 
@@ -20,3 +15,4 @@ A clear and concise description of what you want to happen and suggest any ideas
 ## Additional context
 
 Add any other context or screenshots about the feature request here.
+
