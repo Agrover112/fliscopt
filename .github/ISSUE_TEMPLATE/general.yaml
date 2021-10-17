@@ -1,12 +1,12 @@
 name: "General Issues"
 description: "If you find any issue in the program, which seems to hamper with the existing code, report it here"
-title: "General Issues "
-labels: [issues]
+title: "General Issues:"
+labels: [bug]
 body:
   - type: markdown
     attributes:
       value: |
-        Thank You for helping us make the program better!
+        Thank You for helping us make the program better!🙏
   - type: textarea
     id: actual-behavior
     validations:
@@ -14,7 +14,7 @@ body:
     attributes:
       label: "👎 Actual Behavior"
       description: "What actually happened? Add screenshots, if applicable."
-      placeholder: "It actually ..."
+      placeholder: "It actually ..." 
   - type: textarea
     id: expected-behavior
     validations:
@@ -23,16 +23,14 @@ body:
       label: "👍 Expected behavior"
       description: "How did you expect the program to behave?"
       placeholder: "It should ..."
-  
-   - type: textarea
-    id: Suggestions-to-rectify-the-issue
-     validations:
+  - type: textarea
+    id: Suggestions-to-rectify
+    validations:
       required: true
-      attributes:
+    attributes:
       label: "Suggestions to rectify this issue"
       description: "If you have any ideas that can help us rectify the issue, please mention them:"
-      placeholder: " "
-
+      placeholder: "...."
   - type: checkboxes
     id: no-duplicate-issues
     attributes:
