@@ -24,6 +24,13 @@ body:
       description: "How did you expect the program to behave?"
       placeholder: "It should ..."
   
+   - type: textarea
+    id: Suggestions-to-rectify-the-issue
+      attributes:
+      label: "Suggestions to rectify this issue"
+      description: "If you have any ideas that can help us rectify the issue, please mention them:"
+      placeholder: " "
+
   - type: checkboxes
     id: no-duplicate-issues
     attributes:
