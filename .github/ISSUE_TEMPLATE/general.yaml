@@ -26,6 +26,8 @@ body:
   
    - type: textarea
     id: Suggestions-to-rectify-the-issue
+     validations:
+      required: true
       attributes:
       label: "Suggestions to rectify this issue"
       description: "If you have any ideas that can help us rectify the issue, please mention them:"
