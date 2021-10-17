@@ -1,6 +1,6 @@
 name: "General Issues"
 description: "If you find any issue in the program, which seems to hamper with the existing code, report it here"
-title: "General Issues:"
+title: "📋General Issues:"
 labels: [bug]
 body:
   - type: markdown
@@ -28,7 +28,7 @@ body:
     validations:
       required: true
     attributes:
-      label: "Suggestions to rectify this issue"
+      label: "✍️ Suggestions to rectify this issue"
       description: "If you have any ideas that can help us rectify the issue, please mention them:"
       placeholder: "...."
   - type: checkboxes
