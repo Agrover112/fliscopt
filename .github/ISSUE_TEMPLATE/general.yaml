@@ -8,14 +8,6 @@ body:
       value: |
         Thank You for helping us make the program better!
   - type: textarea
-    id: expected-behavior
-    validations:
-      required: true
-    attributes:
-      label: "👍 Expected behavior"
-      description: "How did you expect the program to behave?"
-      placeholder: "It should ..."
-  - type: textarea
     id: actual-behavior
     validations:
       required: true
@@ -23,6 +15,15 @@ body:
       label: "👎 Actual Behavior"
       description: "What actually happened? Add screenshots, if applicable."
       placeholder: "It actually ..."
+  - type: textarea
+    id: expected-behavior
+    validations:
+      required: true
+    attributes:
+      label: "👍 Expected behavior"
+      description: "How did you expect the program to behave?"
+      placeholder: "It should ..."
+  
   - type: checkboxes
     id: no-duplicate-issues
     attributes:
