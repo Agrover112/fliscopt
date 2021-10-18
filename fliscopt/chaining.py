@@ -26,6 +26,20 @@ class IteratedChaining():
         self.rounds = rounds
         self.n_obs = n_obs
         self.tol = tol
+    """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
 
 
     def choose(self,algorithm):
@@ -48,11 +62,39 @@ class IteratedChaining():
 
         else:
             raise ValueError("Algorithm not found")
+    """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """ 
 
     def run(self,algorithm_1, algorithm_2):
         # Note scores here is the best cost of each particular single_run
         SCORES = []
         NFE = 0
+    """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
         for i in range(self.rounds):
             if i == 0:
                 soln, cost, scores, nfe, seed = self.choose(algorithm_1).run(self.domain, self.fitness_function, self.seed)

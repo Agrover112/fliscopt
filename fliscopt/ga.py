@@ -27,16 +27,73 @@ class BaseGA(FlightAlgorithm, metaclass=ABCMeta):
         self.number_generations = number_generations
         self.search = search
 
+    """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
+
 
     def get_base(self) -> str:
         return self.__class__.__base__.__name__
+    """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
 
     def get_name(self) -> str:
         pass
+     """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
     
     @abstractmethod
     def run(self,domain,fitness_function,seed) -> tuple:
         pass
+    """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
 
 
 
@@ -46,14 +103,43 @@ class GA(BaseGA):
     def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],max_time=100,
                  population_size=100, step=1, probability_mutation=0.2, elitism=0.2,
                  number_generations=500, search=False) -> None:
+    
         super().__init__(domain, fitness_function, seed, seed_init, init,max_time, population_size, step, probability_mutation,
                          0, elitism, number_generations, search)
+    """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
 
     def run(self,domain,fitness_function,seed) -> tuple:
         self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
         population = []
         scores = []
         nfe = 0
+    """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
         for i in range(self.population_size):
             if self.search == True:
                 solution, b_c, sc, r_nfe, s = RandomSearch(
@@ -110,12 +196,40 @@ class ReverseGA(BaseGA):
                  number_generations=500, search=False) -> None:
         super().__init__(domain, fitness_function, seed, seed_init, init,max_time, population_size, step, 0.0,
                          probability_crossover, elitism, number_generations, search)
+    """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """                     
 
     def run(self,domain,fitness_function,seed) -> tuple:
         self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
         population = []
         scores = []
         nfe = 0
+    """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
         for i in range(self.population_size):
             if self.search == True:
                 solution, b_c, sc, r_nfe, s = RandomSearch(
@@ -174,6 +288,20 @@ class GAReversals(BaseGA):
                          0.0, elitism, number_generations, search)
         self.n_k = n_k
         self.step_length = step_length
+    """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
 
     def run(self,domain,fitness_function,seed) -> tuple:
         self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
@@ -181,6 +309,20 @@ class GAReversals(BaseGA):
         scores = []
         nfe = 0
         rev = 0
+    """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
         for i in range(self.population_size):
             if self.search == True:
                 solution, b_c, sc, r_nfe, s = RandomSearch(

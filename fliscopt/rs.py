@@ -17,11 +17,58 @@ class RandomSearch(FlightAlgorithm, metaclass=ABCMeta):
         self.epochs = epochs
         self.best_cost=sys.maxsize
         self.best_solution=0.0
+
+    """ Flight Algorithm implemented
+       Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
+
+        
         
     def get_base(self) -> str:
         pass
+    """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
     
     def get_name(self) -> str:
+     """Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
+
         return self.__class__.__name__
 
  
@@ -37,6 +84,21 @@ class RandomSearch(FlightAlgorithm, metaclass=ABCMeta):
                             for i in range(len(self.domain))]
 
             self.start_time=time.time()
+    """ Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
+
             for i in range(self.epochs):
                 if i != 0:
                     solution = [random.randint(self.domain[i][0], self.domain[i][1])
