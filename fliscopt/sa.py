@@ -12,21 +12,22 @@ import math
 from .fitness import *
 
 class SimulatedAnnealing(FlightAlgorithm,metaclass=ABCMeta):
-    def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100),
-                 seed_init=True,init=[],max_time=1000,temperature=50000.0, cooling=0.95, step=1) -> None:
-        super().__init__(domain, fitness_function, seed, seed_init, init,max_time) 
-        self.best_solution=0.0
-        self.temperature=temperature
-        self.cooling=cooling
-        self.step=step
-        self.temp = []
-    """Args:
+    
+    """
+    Simulated Annealing implemented.
+    
+    
+    Atributes:
         domain (list): List containing the upper and lower bound.i.e domain of our inputs
         fitness_function (function): This parameter accepts a fitness function of given optimization problem.
         seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
         seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
         init (list, optional): List for initializing the initial solution. Defaults to [].
         epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+        
+        temperature (float,optional): The initial temperature of annealing. Defaults to 50000.
+        cooling (float, optional): The rate of cooling the temperature.Defaults to 0.95
+        step (int,optional): The step length change in either direction.Defaults to step length of 1.
     Returns:
         list: List containing the best_solution,
         int: The final cost after running the algorithm,
@@ -35,59 +36,29 @@ class SimulatedAnnealing(FlightAlgorithm,metaclass=ABCMeta):
         int: Seed value used by random generators.
     """
     
+    
+    def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100),
+                 seed_init=True,init=[],max_time=1000,temperature=50000.0, cooling=0.95, step=1) -> None:
+        super().__init__(domain, fitness_function, seed, seed_init, init,max_time) 
+        self.best_solution=0.0
+        self.temperature=temperature
+        self.cooling=cooling
+        self.step=step
+        self.temp = []
+    
     def get_base(self) -> str:
         pass
-    """Args:
-        domain (list): List containing the upper and lower bound.i.e domain of our inputs
-        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
-        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
-        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
-        init (list, optional): List for initializing the initial solution. Defaults to [].
-        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
-    Returns:
-        list: List containing the best_solution,
-        int: The final cost after running the algorithm,
-        list: List containing all costs during all epochs.
-        int: The number of function evaluations(NFE) after running the algorithm
-        int: Seed value used by random generators.
-    """
+  
 
     def get_name(self) -> str:
         return self.__class__.__name__
-    """Args:
-        domain (list): List containing the upper and lower bound.i.e domain of our inputs
-        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
-        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
-        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
-        init (list, optional): List for initializing the initial solution. Defaults to [].
-        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
-    Returns:
-        list: List containing the best_solution,
-        int: The final cost after running the algorithm,
-        list: List containing all costs during all epochs.
-        int: The number of function evaluations(NFE) after running the algorithm
-        int: Seed value used by random generators.
-    """
+   
 
     def run(self,domain,fitness_function,seed) -> tuple:
         self.__init__(domain,fitness_function,seed,self.seed_init, self.init,self.max_time)
         count = 0
         nfe = 0
         scores = []
-    """Args:
-        domain (list): List containing the upper and lower bound.i.e domain of our inputs
-        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
-        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
-        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
-        init (list, optional): List for initializing the initial solution. Defaults to [].
-        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
-    Returns:
-        list: List containing the best_solution,
-        int: The final cost after running the algorithm,
-        list: List containing all costs during all epochs.
-        int: The number of function evaluations(NFE) after running the algorithm
-        int: Seed value used by random generators.
-    """
         
         if len(self.init) > 0:
             solution = self.init
