@@ -67,7 +67,7 @@ class RandomSearch(FlightAlgorithm, metaclass=ABCMeta):
                 solution = [self.r_init.randint(self.domain[i][0], self.domain[i][1])
                             for i in range(len(self.domain))]
 
-
+            self.start_time = time.time()
             for i in range(self.epochs):
                 if i != 0:
                     solution = [random.randint(self.domain[i][0], self.domain[i][1])

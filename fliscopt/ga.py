@@ -2,6 +2,7 @@ import sys
 import os
 import time
 sys.path.append(os.getcwd())
+
 from .utils.util import plot_scores, print_schedule, read_file
 from .base_algorithm import FlightAlgorithm,random
 from .rs import RandomSearch
@@ -105,7 +106,9 @@ class GA(BaseGA):
                          0, elitism, number_generations, search)
    
     def run(self,domain,fitness_function,seed) -> tuple:
-        self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
+        #self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
+        super().__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time, self.population_size, self.step, self.probability_mutation,
+                         0, self.elitism,self.number_generations, self.search)
         population = []
         scores = []
         nfe = 0
@@ -189,7 +192,10 @@ class ReverseGA(BaseGA):
                          probability_crossover, elitism, number_generations, search)                  
 
     def run(self,domain,fitness_function,seed) -> tuple:
-        self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
+        #self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
+        super().__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time, self.population_size, self.step, 0.0,
+                         self.probability_crossover,self. elitism,self.number_generations, self.search)
+
         population = []
         scores = []
         nfe = 0
@@ -278,10 +284,13 @@ class GAReversals(BaseGA):
                          0.0, elitism, number_generations, search)
         self.n_k = n_k
         self.step_length = step_length
+        print(self.n_k,self.step_length,self.number_generations,self.max_time)
     
 
     def run(self,domain,fitness_function,seed) -> tuple:
-        self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
+        #self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
+        super().__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time, self.population_size, self.step, self.probability_mutation,
+                         0.0, self.elitism, self.number_generations, self.search)
         population = []
         scores = []
         nfe = 0
@@ -309,7 +318,7 @@ class GAReversals(BaseGA):
             else:
                 costs = [(self.fitness_function(individual, 'FCO'), individual)
                         for individual in population]
-            nfe += 1
+            nfe += 1           
             if i % self.n_k == 0 and i != 0:
                 if self.step_length == 1:
                     costs.sort(reverse=True)
@@ -358,6 +367,7 @@ class GAReversals(BaseGA):
                         mutation(self.domain, self.step, ordered_individuals[m]))
                         
             if time.time()-self.start_time>self.max_time:
+                    print("reached")
                     return costs[0][1], costs[0][0], scores, nfe, self.seed
 
         return costs[0][1], costs[0][0], scores, nfe, self.seed
@@ -371,3 +381,4 @@ if __name__ == '__main__':
                     seed=5)
     plot_scores(scores, sga.get_base(),fname='flight_scheduling', save_fig=False)
     print_schedule(soln, 'FCO')
+    

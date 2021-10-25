@@ -1,6 +1,6 @@
 from fliscopt.utils.util import print_schedule, read_file,plot_scores
 from fliscopt.rs import RandomSearch
-from fliscopt.ga import GA, ReverseGA
+from fliscopt.ga import GA, ReverseGA, GAReversals
 from fliscopt.hc import HillClimb
 from fliscopt.chaining import IteratedChaining
 from fliscopt.multiproc import multiple_runs
@@ -33,9 +33,9 @@ algo1--soln-->algo2--algo2soln-->algo1.....n-times
 Iterated Chaining and GAReversals and ReverseGA are algos I haven;t really found being 
 implemented. So I implemented them.
 
-
-
 """
+
+
 
 read_file('flights.txt')
 ic=IteratedChaining(rounds=5, n_obs=2, tol=90)
@@ -43,6 +43,10 @@ soln, cost, scores, nfe=ic.run('RandomSearch', 'HillClimb')
 print_schedule(soln,'FCO')
 #multiple_runs(ReverseGA, domain, fitness_function, record=False, n=2)
 
+read_file('flights.txt')
+sga=GAReversals(seed_init=False,search=False,n_k=250,number_generations=1000)
+soln, cost, scores, nfe, seed = sga.run(domain=domain['domain'], fitness_function=fitness_function,seed=5)
+plot_scores(scores, sga.get_base(),fname='flight_scheduling', save_fig=False)
 
 hc=HillClimb(seed_init=False,max_time=0.0000001)
 # All domains defined with a single-tuple/or without a multiplier have n-dimensional Input Domain

@@ -17,7 +17,6 @@ class TestAlgorithms(unittest.TestCase):
     def test_rs(self):
         rs = RandomSearch(max_time=0.00001)
         res=rs.run(domain=domain['griewank']*5,fitness_function=griewank,seed=5)
-        print(type(res[4]),type(res[3]),type(res[2]))
         self.assertIsNotNone(res[0],msg="Best sol returned None, expected output of type List")
         self.assertEqual(len(res[0]),5,msg="Best sol output length not matching  length :{} of input soln. Refer fitness_fn soln length".format(5))
         self.assertIsNotNone(res[1],msg="Best cost returned None, expected output of type float/int")
