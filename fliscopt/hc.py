@@ -10,6 +10,27 @@ from .base_algorithm import FlightAlgorithm,random
 from .fitness import *
 
 class HillClimb(FlightAlgorithm,metaclass=ABCMeta):
+    
+    """
+    Simple hill Climbing method implemented.[1]
+    
+    References:
+    [1]https://en.wikipedia.org/wiki/Hill_climbing
+    Args:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+    """
+    
     def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100),
                  seed_init=True, init=[], max_time=1000,epochs=100) -> None:
         super().__init__(domain, fitness_function, seed, seed_init, init)       
@@ -18,8 +39,10 @@ class HillClimb(FlightAlgorithm,metaclass=ABCMeta):
         
     def get_base(self) -> str:
         pass
+  
     def get_name(self) -> str:
         return self.__class__.__name__
+
 
     def run(self,domain,fitness_function,seed) -> tuple:
         self.__init__(domain,fitness_function,seed,self.seed_init, self.init,self.max_time)

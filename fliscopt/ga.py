@@ -14,6 +14,35 @@ from abc import ABCMeta, abstractmethod
 
 
 class BaseGA(FlightAlgorithm, metaclass=ABCMeta):
+    
+""" 
+    Base Class for Genetic Algorithm variants
+    
+
+    
+    Attributes:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool, optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+        
+        population_size (int, optional): The size of the population. Defaults to 100.
+        number_generations (int,optional): The number of generations which our genetic algorithm produces.Defaults to 500.
+        step (int, optional): The step length change in either direction.Defaults to 1.
+        probability_mutation: (float, optional): The probability of mutation. Defaults to 0.2.
+        probability_crossover: (float, optional): The probability of mutation. Defaults to 0.2
+        elitism (float,optional): The top x% of population to retain. Defaults to 0.2
+        search (bool, optional): True performs a local search (Random Search) and initializes the initial population of RS as the soln. False doesn't perform any local search.
+
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+ """
 
     def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],max_time=100,
                  population_size=100, step=1, probability_mutation=0.2, probability_crossover=0.2, elitism=0.2,
@@ -28,32 +57,59 @@ class BaseGA(FlightAlgorithm, metaclass=ABCMeta):
         self.search = search
 
 
+
+
     def get_base(self) -> str:
         return self.__class__.__base__.__name__
-
+  
     def get_name(self) -> str:
         pass
+   
     
     @abstractmethod
     def run(self,domain,fitness_function,seed) -> tuple:
         pass
+   
 
 
 
 
 
 class GA(BaseGA):
+      
+ """ 
+    Simple genetic algorithm is implemented.
+    
+    References:
+    [1]Mitchell, Melanie (1996). An Introduction to Genetic Algorithms. Cambridge, MA: MIT Press. ISBN 9780585030944.
+    
+    Attributes:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+ """
     def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],max_time=100,
                  population_size=100, step=1, probability_mutation=0.2, elitism=0.2,
                  number_generations=500, search=False) -> None:
+    
         super().__init__(domain, fitness_function, seed, seed_init, init,max_time, population_size, step, probability_mutation,
                          0, elitism, number_generations, search)
-
+   
     def run(self,domain,fitness_function,seed) -> tuple:
         self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
         population = []
         scores = []
         nfe = 0
+   
         for i in range(self.population_size):
             if self.search == True:
                 solution, b_c, sc, r_nfe, s = RandomSearch(
@@ -105,17 +161,39 @@ class GA(BaseGA):
 
 
 class ReverseGA(BaseGA):
+   
+ """ 
+    Simple genetic algorithm but with operations performed in reverse order.
+    
+    References:
+    [1]Mitchell, Melanie (1996). An Introduction to Genetic Algorithms. Cambridge, MA: MIT Press. ISBN 9780585030944.
+    
+   Attributes:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+ """
     def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],max_time=100,
                  population_size=100, step=1, probability_crossover=0.2, elitism=0.2,
                  number_generations=500, search=False) -> None:
         super().__init__(domain, fitness_function, seed, seed_init, init,max_time, population_size, step, 0.0,
-                         probability_crossover, elitism, number_generations, search)
+                         probability_crossover, elitism, number_generations, search)                  
 
     def run(self,domain,fitness_function,seed) -> tuple:
         self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
         population = []
         scores = []
         nfe = 0
+    
         for i in range(self.population_size):
             if self.search == True:
                 solution, b_c, sc, r_nfe, s = RandomSearch(
@@ -167,6 +245,32 @@ class ReverseGA(BaseGA):
 
 
 class GAReversals(BaseGA):
+     
+  """ 
+    A genetic algorithm that can perform reverse optimization, to escape local minimma inspired from [1]
+    In this algorithm the minimzation process is reversed to a maxmimization process i/n_k times i.e process in reverse direction for step_length no. of times.
+    
+    References:
+    
+    [1]https://www.microsoft.com/en-us/research/blog/genetic-algorithm-in-reverse-mode/#:~:text=%20To%20summarize%3A%20%201%20Reversing%20genetic%20algorithm,Duration%20and%20frequency%20of%20reversal%20cycle...%20More%20
+    
+  Attributes:
+        domain (list): List containing the upper and lower bound.i.e domain of our inputs
+        fitness_function (function): This parameter accepts a fitness function of given optimization problem.
+        seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
+        seed_init(bool,optional): True set's the seed of only population init generator, False sets all generators
+        init (list, optional): List for initializing the initial solution. Defaults to [].
+        epochs (int, optional): Number of times the algorithm runs. Defaults to 100.
+        
+        n_k (int, optional): The denominator factor i/n_k which determines the number of iterations which are multiples of n_k where reversals take place.Defaults to 250.
+        step_length (int, optional): The number of reversals steps/iterations to perform.Defeaults to 100 reversal steps.
+    Returns:
+        list: List containing the best_solution,
+        int: The final cost after running the algorithm,
+        list: List containing all costs during all epochs.
+        int: The number of function evaluations(NFE) after running the algorithm
+        int: Seed value used by random generators.
+ """
     def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],max_time=100,
                  population_size=100, step=1, probability_mutation=0.2, elitism=0.2,
                  number_generations=500, search=False,n_k=250, step_length=100,) -> None:
@@ -174,6 +278,7 @@ class GAReversals(BaseGA):
                          0.0, elitism, number_generations, search)
         self.n_k = n_k
         self.step_length = step_length
+    
 
     def run(self,domain,fitness_function,seed) -> tuple:
         self.__init__(domain, fitness_function, seed, self.seed_init, self.init,self.max_time)
@@ -181,6 +286,7 @@ class GAReversals(BaseGA):
         scores = []
         nfe = 0
         rev = 0
+    
         for i in range(self.population_size):
             if self.search == True:
                 solution, b_c, sc, r_nfe, s = RandomSearch(
