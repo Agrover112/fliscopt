@@ -15,7 +15,7 @@ from abc import ABCMeta, abstractmethod
 
 class BaseGA(FlightAlgorithm, metaclass=ABCMeta):
     
-""" 
+    """ 
     Base Class for Genetic Algorithm variants
     
 
@@ -42,7 +42,7 @@ class BaseGA(FlightAlgorithm, metaclass=ABCMeta):
         list: List containing all costs during all epochs.
         int: The number of function evaluations(NFE) after running the algorithm
         int: Seed value used by random generators.
- """
+    """
 
     def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],max_time=100,
                  population_size=100, step=1, probability_mutation=0.2, probability_crossover=0.2, elitism=0.2,
@@ -77,7 +77,7 @@ class BaseGA(FlightAlgorithm, metaclass=ABCMeta):
 
 class GA(BaseGA):
       
- """ 
+    """ 
     Simple genetic algorithm is implemented.
     
     References:
@@ -96,7 +96,7 @@ class GA(BaseGA):
         list: List containing all costs during all epochs.
         int: The number of function evaluations(NFE) after running the algorithm
         int: Seed value used by random generators.
- """
+"""
     def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],max_time=100,
                  population_size=100, step=1, probability_mutation=0.2, elitism=0.2,
                  number_generations=500, search=False) -> None:
@@ -162,13 +162,13 @@ class GA(BaseGA):
 
 class ReverseGA(BaseGA):
    
- """ 
+    """ 
     Simple genetic algorithm but with operations performed in reverse order.
     
     References:
     [1]Mitchell, Melanie (1996). An Introduction to Genetic Algorithms. Cambridge, MA: MIT Press. ISBN 9780585030944.
     
-   Attributes:
+    Attributes:
         domain (list): List containing the upper and lower bound.i.e domain of our inputs
         fitness_function (function): This parameter accepts a fitness function of given optimization problem.
         seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
@@ -246,7 +246,7 @@ class ReverseGA(BaseGA):
 
 class GAReversals(BaseGA):
      
-  """ 
+    """ 
     A genetic algorithm that can perform reverse optimization, to escape local minimma inspired from [1]
     In this algorithm the minimzation process is reversed to a maxmimization process i/n_k times i.e process in reverse direction for step_length no. of times.
     
@@ -254,7 +254,7 @@ class GAReversals(BaseGA):
     
     [1]https://www.microsoft.com/en-us/research/blog/genetic-algorithm-in-reverse-mode/#:~:text=%20To%20summarize%3A%20%201%20Reversing%20genetic%20algorithm,Duration%20and%20frequency%20of%20reversal%20cycle...%20More%20
     
-  Attributes:
+    Attributes:
         domain (list): List containing the upper and lower bound.i.e domain of our inputs
         fitness_function (function): This parameter accepts a fitness function of given optimization problem.
         seed (int,optional): Set the seed value of the random seed generator. Defaults to random integer value.
@@ -270,7 +270,7 @@ class GAReversals(BaseGA):
         list: List containing all costs during all epochs.
         int: The number of function evaluations(NFE) after running the algorithm
         int: Seed value used by random generators.
- """
+    """
     def __init__(self, domain=domain['domain'], fitness_function=fitness_function, seed=random.randint(10, 100), seed_init=True, init=[],max_time=100,
                  population_size=100, step=1, probability_mutation=0.2, elitism=0.2,
                  number_generations=500, search=False,n_k=250, step_length=100,) -> None:
