@@ -284,7 +284,6 @@ class GAReversals(BaseGA):
                          0.0, elitism, number_generations, search)
         self.n_k = n_k
         self.step_length = step_length
-        print(self.n_k,self.step_length,self.number_generations,self.max_time)
     
 
     def run(self,domain,fitness_function,seed) -> tuple:
@@ -367,7 +366,6 @@ class GAReversals(BaseGA):
                         mutation(self.domain, self.step, ordered_individuals[m]))
                         
             if time.time()-self.start_time>self.max_time:
-                    print("reached")
                     return costs[0][1], costs[0][0], scores, nfe, self.seed
 
         return costs[0][1], costs[0][0], scores, nfe, self.seed
