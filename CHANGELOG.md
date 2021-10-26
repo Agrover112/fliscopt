@@ -1,3 +1,12 @@
+## [0.1.31](https://github.com/Agrover112/fliscopt/compare/v0.1.1...v0.1.31) (2021-10-26)
+
+
+### Bug Fixes
+
+* Removed unecesary print for debugging ([7563993](https://github.com/Agrover112/fliscopt/commit/7563993ccd8c5ad0dfc13e1b863ba16f4db14854))
+
+
+
 ## [0.1.1](https://github.com/Agrover112/fliscopt/compare/v0.1.0...v0.1.1) (2021-10-25)
 
 
