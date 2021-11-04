@@ -1,3 +1,12 @@
+## [0.1.32](https://github.com/Agrover112/fliscopt/compare/v0.1.31...v0.1.32) (2021-11-04)
+
+
+### Bug Fixes
+
+* Fixed README error in name ([93b0e5a](https://github.com/Agrover112/fliscopt/commit/93b0e5a0513e9cb98eab6fc80fdc90bac1c9e73a))
+
+
+
 ## [0.1.31](https://github.com/Agrover112/fliscopt/compare/v0.1.1...v0.1.31) (2021-10-26)
 
 
