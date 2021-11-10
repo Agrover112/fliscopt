@@ -1,3 +1,12 @@
+## [0.1.33](https://github.com/Agrover112/fliscopt/compare/v0.1.32...v0.1.33) (2021-11-10)
+
+
+### Bug Fixes
+
+* Comment spelling error ([4ea43a8](https://github.com/Agrover112/fliscopt/commit/4ea43a8b09348ce0a225d3a264b731572559afbe))
+
+
+
 ## [0.1.32](https://github.com/Agrover112/fliscopt/compare/v0.1.31...v0.1.32) (2021-11-04)
 
 
