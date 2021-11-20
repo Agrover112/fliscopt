@@ -444,10 +444,11 @@ class GARSReversals(BaseGA):
                     costs.sort(reverse=True)
                     rev += 1
                 else:
+                    best_cost = sys.maxsize
+                    best_solution=[]
                     rev += 1
                     for _ in range(self.step_length - 1):
                         costs.sort(reverse=True)
-                        nfe = 0
                         solution = [self.r_init.randint(self.domain[i][0], self.domain[i][1])
                                         for i in range(len(self.domain))]
 
@@ -460,11 +461,11 @@ class GARSReversals(BaseGA):
                         
                         nfe += 1
                         if cost > self.best_cost:
-                            self.best_cost = cost
-                            self.best_solution = solution
+                            best_cost = cost
+                            best_solution = solution
                             
-                        scores.append(self.best_cost)
-                        population.append(self.best_solution)
+                        scores.append(best_cost)
+                        population.append(best_solution)
 
                 print(rev)  # To print the number of reversals
             else:
