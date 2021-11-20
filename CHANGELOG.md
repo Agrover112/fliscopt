@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/Agrover112/fliscopt/compare/v0.2.0...v0.2.1) (2021-11-20)
+
+
+### Bug Fixes
+
+* Updated README.md with new feature ([67e5897](https://github.com/Agrover112/fliscopt/commit/67e5897d1ab1c6d953a7700168315f70e0800342))
+
+
+
 # [0.2.0](https://github.com/Agrover112/fliscopt/compare/v0.1.33...v0.2.0) (2021-11-20)
 
 
@@ -36,17 +45,6 @@
 ### Bug Fixes
 
 * Removed unecesary print for debugging ([7563993](https://github.com/Agrover112/fliscopt/commit/7563993ccd8c5ad0dfc13e1b863ba16f4db14854))
-
-
-
-## [0.1.1](https://github.com/Agrover112/fliscopt/compare/v0.1.0...v0.1.1) (2021-10-25)
-
-
-### Bug Fixes
-
-* bump version x.y.30 ([5045993](https://github.com/Agrover112/fliscopt/commit/50459932c398a6f30079a8cfbc51099b0b69a4c0))
-* Fix docstring indents ([c8ed9c4](https://github.com/Agrover112/fliscopt/commit/c8ed9c473fb9bef37ae17ea28d7f0af5917c0597))
-* Major bug fixes ([1da4969](https://github.com/Agrover112/fliscopt/commit/1da496927e8c4d43eeb64eacf5388aeee2b5d2b3))
 
 
 
