@@ -22,6 +22,7 @@ Following algorithms have been implemented and test as of date:
 - Genetic Algorithm 
 - Genetic Algorithm in Reverse Mode
 - Genetic  Algorithm with Reversals
+- Genetic Algorithm with Random Search as a Reversal/Reverse Process
 - Iterated Chaining
 
 # Getting Started
