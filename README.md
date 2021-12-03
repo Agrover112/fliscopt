@@ -102,6 +102,10 @@ After running the experiments, the results are stored in the results directory. 
 │   │   └── sol_chaining_a1.png
 │   └── griewank
 ```
+# References 
+Read the following for detailed understanding of our project.
+
+[1] [Alicea B., Grover A., Lim A. ,Parent J, Unified Theory of Switching. Flash Talk to be  presented at: 4th Neuromatch Conference; December 1 - 2, 2021](https://youtu.be/aTqgPbKQUD8)
 
 # Contributing Guidelines
 Refer [Contributing.md](./CONTRIBUTING.md) and Project Board for mode details.
