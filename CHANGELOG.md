@@ -1,3 +1,12 @@
+## [0.2.2](https://github.com/Agrover112/fliscopt/compare/v0.2.1...v0.2.2) (2021-12-03)
+
+
+### Bug Fixes
+
+* Added first reference/reading material ([b3612a7](https://github.com/Agrover112/fliscopt/commit/b3612a79d631b754224647fcd6deec6ed9642e37))
+
+
+
 ## [0.2.1](https://github.com/Agrover112/fliscopt/compare/v0.2.0...v0.2.1) (2021-11-20)
 
 
@@ -36,15 +45,6 @@
 ### Bug Fixes
 
 * Fixed README error in name ([93b0e5a](https://github.com/Agrover112/fliscopt/commit/93b0e5a0513e9cb98eab6fc80fdc90bac1c9e73a))
-
-
-
-## [0.1.31](https://github.com/Agrover112/fliscopt/compare/v0.1.1...v0.1.31) (2021-10-26)
-
-
-### Bug Fixes
-
-* Removed unecesary print for debugging ([7563993](https://github.com/Agrover112/fliscopt/commit/7563993ccd8c5ad0dfc13e1b863ba16f4db14854))
 
 
 
