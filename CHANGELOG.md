@@ -1,3 +1,12 @@
+## [0.2.3](https://github.com/Agrover112/fliscopt/compare/v0.2.2...v0.2.3) (2021-12-08)
+
+
+### Bug Fixes
+
+* Fixed the image link ([2515502](https://github.com/Agrover112/fliscopt/commit/2515502809e1c294f333c166f07e20ba0b3a7468))
+
+
+
 ## [0.2.2](https://github.com/Agrover112/fliscopt/compare/v0.2.1...v0.2.2) (2021-12-03)
 
 
@@ -36,15 +45,6 @@
 ### Bug Fixes
 
 * Comment spelling error ([4ea43a8](https://github.com/Agrover112/fliscopt/commit/4ea43a8b09348ce0a225d3a264b731572559afbe))
-
-
-
-## [0.1.32](https://github.com/Agrover112/fliscopt/compare/v0.1.31...v0.1.32) (2021-11-04)
-
-
-### Bug Fixes
-
-* Fixed README error in name ([93b0e5a](https://github.com/Agrover112/fliscopt/commit/93b0e5a0513e9cb98eab6fc80fdc90bac1c9e73a))
 
 
 
