@@ -8,7 +8,7 @@
 ![Tweet](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2FAgrover112%2Ffliscopt)
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/Agrover112)
 
-![image](https://github.com/Anik-Bardhan/fliscopt/blob/Anik-Bardhan-add-graphic/images/fliscopt_graphic.jpg)
+![image](./images/fliscopt_graphic.jpg)
 
 FLIght SCheduling OPTimization 🛫 or *fliscopt* is a simple optimization library for flight scheduling and related problems in the discrete domain. The library supports plotting, asynchronous multiprocessing, and unimodal optimization benchmarks.
 The following repository contains code for the paper "XYZ". The experiments were performed in **PyPy3.7** and **CPython 3.8.10.**
