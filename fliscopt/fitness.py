@@ -72,7 +72,7 @@ def fitness_function(solution, dest):
 
         # Waiting time for all arrived
         total_wait += last_arrival - get_minutes(going[1])
-        # Waiting time for all to depart and reach locatiom
+        # Waiting time for all to depart and reach location
         total_wait += get_minutes(returning[0]) - first_departure
 
     # 3PM - 10AM
