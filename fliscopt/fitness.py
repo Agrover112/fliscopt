@@ -72,7 +72,7 @@ def fitness_function(solution, dest):
 
         # Waiting time for all arrived
         total_wait += last_arrival - get_minutes(going[1])
-        # Waiting time for all to depart and reach locatiom
+        # Waiting time for all to depart and reach location
         total_wait += get_minutes(returning[0]) - first_departure
 
     # 3PM - 10AM
@@ -129,7 +129,6 @@ if sys.version_info[1] < 8:
 
     def griewank(x):
         # Griewank is n dim unimodal f(0,0,0)== 0
-        # return 1.0/4000.0 * sum(i**2 for i in x) - math.prod((cos(i/sqrt(idx+1.0)) for idx, i in enumerate(x))) +1
         return 1.0/4000.0 * sum(i**2 for i in x) - reduce(operator.mul, (cos(i/sqrt(idx+1.0)) for idx, i in enumerate(x))) + 1
 else:
     from math import prod
@@ -158,14 +157,16 @@ def schwefel(x):
 
 
 def brown(x):
-    #x=list(i**2 for i in x)
-    # return sum((x[i]**2.0)**(x[i+1]**2.0 + 1.0) + (x[i+1]**2.0)**(x[i]**2.0 + 1.0)for i in range(len(x)-1))
     return sum((x**2.0)**(y**2.0 + 1.0) + (y**2.0)**(x**2.0 + 1.0) for x, y in zip(x[:-1], x[1:]))
 
 
 def rosenbrock(x):
-    """ This function blatantly copied lol DEAP benchmarks :(
-        My implementation was absolutely ***"""
+    """ This function blatantly copied lol DEAP[1] benchmarks wellllllll
+        My implementation was absolutely trash 
+        
+        References:
+        [1]https://github.com/DEAP/deap/blob/d328fe6b68e7528b2d2d990bb2ab1ad1786e6f58/deap/benchmarks/__init__.py#L98
+    """
     return sum(100 * (x * x - y)**2 + (1. - x)**2 for x, y in zip(x[:-1], x[1:]))
 
 
