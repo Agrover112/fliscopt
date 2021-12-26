@@ -16,6 +16,10 @@ def mutation(domain, step, solution) -> list:
             mutant = solution[0:gene]+[solution[gene]+step]+solution[gene+1:]
     return mutant
 
+def circular_mutation(domain, step,shift, solution) -> list:
+    #Cirulcar shift by shift places  & then mutate normally 
+    return mutation(domain, step, solution[shift:] + solution[:shift])
+
 # No good results tbh( also doesn't work for benchmarks yet) #FIX-NEEDED
 def multi_mutation(domain, step, solution) -> list:
     li = [i for i in range(domain[0][0], domain[0][1]+1)]
@@ -41,4 +45,6 @@ def multi_mutation(domain, step, solution) -> list:
 
     return mutant
 
-
+if __name__ == "__main__":
+    #print(circular_mutation([[0, 10], [0, 10]], 1, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+    print(circular_mutation([(1, 10)]*10, 1,1, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))

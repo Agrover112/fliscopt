@@ -9,7 +9,7 @@ from multiprocessing import Queue
 from .utils.util import read_file
 
 from .fitness import *
-from .ga import GA,ReverseGA, GAReversals
+from .ga import GA, GARSReversals,ReverseGA, GAReversals
 
 import rich
 
@@ -26,7 +26,7 @@ def multiple_runs(algorithm, domain, fitness_function, init=[], record=False, n_
 
 
         f = open(os.path.join(os.getcwd()+'/results/multi_proc/' + fitness_function.__name__ + '/' +
-                            algorithm.__name__ + "_results.csv"), 'a+')
+                            algorithm.__name__ + "_results.csv"), 'a+',newline='\n')
 
         d = domain
         fn = fitness_function
@@ -58,6 +58,7 @@ def multiple_runs(algorithm, domain, fitness_function, init=[], record=False, n_
                     r[4]) + "\n")
             f.close()
         else: 
+            f.close()
             rich.print("[bold red]Run_Number[/bold red]\t[bold green]Solution[bold green]\t      [bold magenta]Cost[/bold magenta]  [bold magenta]NFE[/bold magenta] SEED", )
             for i, r in enumerate(res):
                 print(i, r[0], r[1], r[3], r[4])
@@ -69,6 +70,6 @@ def multiple_runs(algorithm, domain, fitness_function, init=[], record=False, n_
 
 if __name__ == '__main__':
     read_file('flights.txt')
-    multiple_runs(ReverseGA, domain['griewank']*12, griewank, record=False, n=10)
+    multiple_runs(GA, domain['domain'], fitness_function, record=True, n=10)
 
     

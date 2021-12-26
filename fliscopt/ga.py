@@ -6,7 +6,7 @@ sys.path.append(os.getcwd())
 from .utils.util import plot_scores, print_schedule, read_file
 from .base_algorithm import FlightAlgorithm,random
 from .rs import RandomSearch
-from .utils.ga_utils import crossover, mutation
+from .utils.ga_utils import crossover, mutation, circular_mutation
 from .fitness import *
 import random
 import heapq
