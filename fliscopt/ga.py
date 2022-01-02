@@ -118,11 +118,12 @@ class GA(BaseGA):
                 solution, b_c, sc, r_nfe, s = RandomSearch(
                     ).run(self.domain, self.fitness_function, self.seed)
                 nfe += r_nfe
-            if len(self.init) > 0:
-                solution = self.init
             else:
-                solution = [self.r_init.randint(self.domain[i][0], self.domain[i][1])
-                            for i in range(len(self.domain))]
+                if len(self.init) > 0:
+                    solution = self.init
+                else:
+                    solution = [self.r_init.randint(self.domain[i][0], self.domain[i][1])
+                                for i in range(len(self.domain))]
 
             population.append(solution)
 
@@ -205,11 +206,12 @@ class ReverseGA(BaseGA):
                 solution, b_c, sc, r_nfe, s = RandomSearch(
                     ).run(self.domain, self.fitness_function, self.seed)
                 nfe += r_nfe
-            if len(self.init) > 0:
-                solution = self.init
             else:
-                solution = [self.r_init.randint(self.domain[i][0], self.domain[i][1])
-                            for i in range(len(self.domain))]
+                if len(self.init) > 0:
+                    solution = self.init
+                else:
+                    solution = [self.r_init.randint(self.domain[i][0], self.domain[i][1])
+                                for i in range(len(self.domain))]
 
             population.append(solution)
 
@@ -300,11 +302,12 @@ class GAReversals(BaseGA):
                 solution, b_c, sc, r_nfe, s = RandomSearch(
                     ).run(self.domain, self.fitness_function,self.seed)
                 nfe += r_nfe
-            if len(self.init) > 0:
-                solution = self.init
             else:
-                solution = [self.r_init.randint(self.domain[i][0], self.domain[i][1])
-                            for i in range(len(self.domain))]
+                if len(self.init) > 0:
+                    solution = self.init
+                else:
+                    solution = [self.r_init.randint(self.domain[i][0], self.domain[i][1])
+                                for i in range(len(self.domain))]
 
             population.append(solution)
 
@@ -421,11 +424,12 @@ class GARSReversals(BaseGA):
                 solution, b_c, sc, r_nfe, s = RandomSearch(
                     ).run(self.domain, self.fitness_function,self.seed)
                 nfe += r_nfe
-            if len(self.init) > 0:
-                solution = self.init
             else:
-                solution = [self.r_init.randint(self.domain[i][0], self.domain[i][1])
-                            for i in range(len(self.domain))]
+                if len(self.init) > 0:
+                    solution = self.init
+                else:
+                    solution = [self.r_init.randint(self.domain[i][0], self.domain[i][1])
+                                for i in range(len(self.domain))]
 
             population.append(solution)
 
