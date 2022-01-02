@@ -1,3 +1,17 @@
+# [0.3.0](https://github.com/Agrover112/fliscopt/compare/v0.2.3...v0.3.0) (2022-01-02)
+
+
+### Bug Fixes
+
+* Fixed population intialization(actually fixes it) ([92f3d69](https://github.com/Agrover112/fliscopt/commit/92f3d69f954179618646893bbaf7b141272e95b5))
+
+
+### Features
+
+* Added circular shift mutation & fixed .csv write issue ([caf6895](https://github.com/Agrover112/fliscopt/commit/caf6895282a7454ece4cb4faf0df64832806d307))
+
+
+
 ## [0.2.3](https://github.com/Agrover112/fliscopt/compare/v0.2.2...v0.2.3) (2021-12-08)
 
 
@@ -36,15 +50,6 @@
 ### Features
 
 * Added GARandomSearchReversals ([957e0c6](https://github.com/Agrover112/fliscopt/commit/957e0c6ded50e2014a2421c041da7c6ce33f3570))
-
-
-
-## [0.1.33](https://github.com/Agrover112/fliscopt/compare/v0.1.32...v0.1.33) (2021-11-10)
-
-
-### Bug Fixes
-
-* Comment spelling error ([4ea43a8](https://github.com/Agrover112/fliscopt/commit/4ea43a8b09348ce0a225d3a264b731572559afbe))
 
 
 
