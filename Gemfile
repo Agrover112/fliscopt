@@ -34,7 +34,6 @@ gem "webrick"
 
 group :jekyll_plugins do
   gem "jekyll-default-layout"
-  gem 'jekyll-admin'
   gem "jekyll-feed"
   gem "jekyll-optional-front-matter"
   gem "jekyll-paginate"
