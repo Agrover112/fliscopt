@@ -355,6 +355,7 @@ plugins:
 #     - https://twitter.com/<username>
 #     - https://github.com/<username>
 
+
 # Plugin Configs
 # ---------------------------------------------------------------------------------------
 optional_front_matter:

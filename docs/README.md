@@ -86,3 +86,5 @@ After running the experiments, the results are stored in the results directory. 
 │   │   └── sol_chaining_a1.png
 │   └── griewank
 ```
+
+# Algorithms available
