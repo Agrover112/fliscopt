@@ -21,7 +21,7 @@ This step parameter controls the amount of mutation.
 Each mutation is a simple addition or subtraction of the particular gene by a step.
 
 
-**Note:**Make sure that the step size is not too large, or else it will result in genes being out of the Upper or Lower Bounds of their domain.
+**Note:** Make sure that the step size is not too large, or else it will result in genes being out of the Upper or Lower Bounds of their domain.
 
 ``probability_mutation:float``
 Controls the rate of mutation and crossover.
