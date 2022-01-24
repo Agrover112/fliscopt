@@ -22,8 +22,7 @@ What is Fliscopt?
 ## Why should I use it?
 You can easily run novel variants of Genetic Algorithm’s which have been tried and tested on benchmarks , to optimize for your given task. Moreover, fliscopt provides a simple interface which can be used to also learn about the algorithm’s and optimize your given task at hand. Simply plug your own cost function in based on the convention and enjoy the power of optimization.
 
-You can also use this for creating your own flight schedules by adding your own data, in the given [format]
-(https://github.com/Agrover112/fliscopt/blob/master/data/flights.txt).
+You can also use this for creating your own flight schedules by adding your own data, in the given [format](https://github.com/Agrover112/fliscopt/blob/master/data/flights.txt).
 
 ## How to use it?
 Further the details are mentioned in the README.md, which explains beautifully how to install it as a package from PyPy or to clone it from the source.
