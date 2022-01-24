@@ -1,4 +1,15 @@
-# What is Switching really??
+---
+layout: page
+title: Switching Mechanism
+description: >
+  Switching mechanism
+hide_description: true
+sitemap: false
+permalink: /docs/switching-mechanism
+---
+
+
+# What is Switching ? or Switching Mechanisms
 ![1_E4_pTJctmAofSRpZCZbv-g](https://user-images.githubusercontent.com/42321810/150737388-17edd566-3263-48e0-9d66-831978010c81.jpg)
 
 
