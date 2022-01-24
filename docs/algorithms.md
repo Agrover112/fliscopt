@@ -28,7 +28,7 @@ permalink: /docs/algolist
 
 
 
-
+## Parameters
 
 Each algorithm has these common fn parameters:
 
