@@ -1,3 +1,14 @@
+---
+layout: page
+title: Documentation
+description: >
+  Algo list
+hide_description: true
+sitemap: false
+permalink: /docs/algolist
+---
+
+
 # Algorithms List
 
 1. Genetic Algorithm
