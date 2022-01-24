@@ -11,7 +11,7 @@ permalink: /docs/algolist
 
 # Algorithms List
 
-1. Genetic Algorithm
+1. [Genetic Algorithm](https://github.com/Agrover112/fliscopt/blob/docs/docs/genetic.md)
 
 2. GA with Reversals
 
@@ -23,7 +23,7 @@ permalink: /docs/algolist
 
 8. Random Search
 
-10. Iterated Chaining
+10. [Iterated Chaining](https://github.com/Agrover112/fliscopt/blob/docs/docs/iterated-chaining.md)
 
 
 
