@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Documentation
+title: Introduction
 description: >
-  BASE DOCUMENTATION
+  Introduction
 hide_description: true
 sitemap: false
-permalink: /docs/
+permalink: /docs/introduction
 ---
 
 
