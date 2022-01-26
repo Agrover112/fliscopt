@@ -1,10 +1,3 @@
----
-title: What is Fliscopt?
-image: https://www.lhsystems.com/static/457f98d97f86cadd6521e456d4cc8491/c252f/2016-084_istock-182509052_hi-res_0.jpg
-categories: About Information Installation
-published: true
----
-
 # Fliscopt 
 ![Stars](https://img.shields.io/github/stars/Agrover112/fliscopt) ![Forks](	https://img.shields.io/github/forks/Agrover112/fliscopt) ![License](https://img.shields.io/github/license/Agrover112/fliscopt)  ![Issues](https://img.shields.io/github/issues/Agrover112/fliscopt) 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)

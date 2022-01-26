@@ -1,49 +1,30 @@
 ---
 description: >
-  The documentation describes how to install and use our software, how to contribute and what our software/hardware does and how it works
+  What is Fliscopt & how do I install it?
 hide_description: false
 permalink: /docs/
 ---
 
-# Documentation
-Documentation describing the creation, maintenance and usage of our projects, software and hardware. Currently the following projects are available in documentation:
+# About Fliscopt
+### What is Fliscopt?
+	Fliscopt is a short name for the term Flight Scheduling Optimization . It is a library you can use for scheduling flights which are round trips  from given locations to a given location and back. Fliscopt takes care of the constraints imposed such as waiting time, departure time, cost of the flight,etc. 
 
-[Arcadia](#arcadia) — Our social gaming service
-[Unnamed Unity RPG]({{ site.baseurl }}/docs/unify) — Our currently unnamed RPG in Unity
+### Why should I use it?
+You can easily run novel variants of Genetic Algorithm’s which have been tried and tested on benchmarks , to optimize for your given task. Moreover, fliscopt provides a simple interface which can be used to also learn about the algorithm’s and optimize your given task at hand. Simply plug your own cost function in based on the convention and enjoy the power of optimization.
 
-More coming soon!
+### How to use it?
+All the details are mentioned in the README.md, which explains beautifully how to install it as a package from PyPy or to clone it from the source.
 
-<details><summary>Mini-Updates</summary>
-<iframe style="width: 90%; height: 1000px; overflow: show;" src="https://cli.skinetics.tech/f03618a962d94c7a8dc742c85d34c3b5" width="100%" height="1000" scrolling="yes">IFrame</iframe>
-</details>
+# Installation
+* [Using pip](/fliscopt/docs/Installation) -> Find prereleases & finished versions here
+* [PyPi Project Page](https://pypi.org/project/fliscopt/) -> Find meta information & dependencies here
 
-**NOTE**: The documentation is always being updated
-{:.message}
+# Algorithms available
+* [Genetic Algorithms](/fliscopt/docs/genetic) -> Solving both constrained & unconstrained optimisation problems
+* [Genetic Algorithms with Reverse Operations](/fiscopt/docs/genetic-reverse) -> Differential evolution without its own mutation
+* [Genetic Algorithms with Reversals](/fliscopt/docs/genetic-reversal) -> Switching is introduced with reversals
+* [What is switching?](/fliscopt/docs/switching) -> A guide for what switching is and how it's used
 
-# Getting started
-* [Meta](http://larbuckle.glitch.me) --- Snippets & Particles (Software Components)
-* [Support](/stellarios/support/) --- Learn how to contact us if you run into a problem
-
-## Arcadia
-### Unity
-* [Adding health bars to RPG]{:.heading.flip-title} — How you can add health and other bars to a character in Unity
-
-# Network Docs
-* [Portal Backup Procedure]{:.heading.flip-title} --- How to create and store backups
-
-# Third-Party Software
-* [VSCode Installs](/stellarios/docs/vscode/)
-
-
-[install]: install.md
-[upgrade]: upgrade.md
-[config]: config.md
-[Adding health bars to RPG]: bars.md
-[writing]: writing.md
-[scripts]: scripts.md
-[build]: build.md
-[advanced]: advanced.md
-[LICENSE]: ../LICENSE.md
-[NOTICE]: ../NOTICE.md
-[CHANGELOG]: ../CHANGELOG.md
-[Portal Backup Procedure]: ../portalbackup.md
+# Suggested reading/viewing
+* [Universal theory of switching](https://www.youtube.com/watch?v=aTqgPbKQUD8&feature=youtu.be)
+* [arxiv pre-print incoming [Stay Tuned]](#)
