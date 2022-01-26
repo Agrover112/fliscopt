@@ -21,8 +21,8 @@ All the details are mentioned in the README.md, which explains beautifully how t
 
 # Algorithms available
 * [Genetic Algorithms](/fliscopt/docs/genetic) -> Solving both constrained & unconstrained optimisation problems
-* [Genetic Algorithms with Reverse Operations](/fiscopt/docs/genetic-reverse) -> Differential evolution without its own mutation
-* [Genetic Algorithms with Reversals](/fliscopt/docs/genetic-reversal) -> Switching is introduced with reversals
+<!--* [Genetic Algorithms with Reverse Operations](/fiscopt/docs/genetic-reverse) -> Differential evolution without its own mutation
+* [Genetic Algorithms with Reversals](/fliscopt/docs/genetic-reversal) -> Switching is introduced with reversals-->
 * [Iterated chaining](/fliscopt/docs/iterated-chaining) -> Chaining procedure inspired by Nevergrad
 * [What is switching?](/fliscopt/docs/switching) -> A guide for what switching is and how it's used
 
