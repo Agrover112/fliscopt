@@ -1,6 +1,6 @@
 # Ignore docs files
 _gh_pages
-_site
+_site*
 _drafts
 .ruby-version
 
@@ -39,18 +39,12 @@ validation-report.json
 
 # Folders to ignore
 node_modules
-package*.json
-vendor
+vendor/bundle
+.bundle
 .sass-cache
 .jekyll-metadata
-.jekyll-cache
 *.gem
 _zip
 /stats.json
-/dist
-/build
 
-/assets/js/*hydejack-*
-/_sass/*/__*__/*
-
-.vercel
+#<removed>

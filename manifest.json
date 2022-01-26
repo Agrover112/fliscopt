@@ -1,0 +1,12 @@
+{
+    "name": "AC0/RD",
+    "short_name": "ACoRD",
+    "description": "A scientific and software development company that wants YOU to build stuff with US",
+    "start_url": "http://acord.software/",
+    "display": "standalone",
+    "lang": "English",
+    "url": "https://acord.software",
+    "icons": [],
+    "screenshots": [],
+    "orientation": "portrait"
+}
