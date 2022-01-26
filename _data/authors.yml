@@ -2,45 +2,29 @@
 # Must be the same as `author` in `_config.yml`.
 # Change `author1` to your shortname.
 author1:
-  name:              Liam Arbuckle
-  email:             liam@skinetics.tech
+  name:              Ankit Grover
+  email:             agrover112@gmail.com
 
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:             |
-    Signal Kinetics is an open-source scientific development community creating and powering the new scientific revolution
-
-    #{% include newsletter.html %}
-
-    [Join ACORD](http://ar.skinetics.tech/login/login)
-    -- or --
-    [Login & Download](http://ar.skinetics.tech/account)
-
-    [kit]: https://larbuckle.glitch.me
-    [contribute]: http://github.com/acord-robotics
+    Fliscopt is a short name for the term Flight Scheduling Optimization . It is a library you can use for scheduling flights which are round trips  from given locations to a given location and back. Fliscopt takes care of the constraints imposed such as waiting time, departure time, cost of the flight,etc. 
 
   # This photo will be used in the about section
   picture:
-    path:            https://media-exp1.licdn.com/dms/image/C5603AQHtM1EpxGAkQw/profile-displayphoto-shrink_200_200/0/1606301008833?e=1621468800&v=beta&t=wcHx9dWTLH0wuXT39JNF9pPI5YIzr7NxGengnnNJ_qo
+    path:            https://avatars.githubusercontent.com/u/42321810?v=4
     # srcset is optional, but can be used to provide higher res versions for retina displays
     srcset:
-      1x:           https://media-exp1.licdn.com/dms/image/C5603AQHtM1EpxGAkQw/profile-displayphoto-shrink_200_200/0/1606301008833?e=1621468800&v=beta&t=wcHx9dWTLH0wuXT39JNF9pPI5YIzr7NxGengnnNJ_qo
-      2x:            https://media-exp1.licdn.com/dms/image/C5603AQHtM1EpxGAkQw/profile-displayphoto-shrink_200_200/0/1606301008833?e=1621468800&v=beta&t=wcHx9dWTLH0wuXT39JNF9pPI5YIzr7NxGengnnNJ_qo
+      1x:           https://avatars.githubusercontent.com/u/42321810?v=4
+      2x:            https://avatars.githubusercontent.com/u/42321810?v=4
 
   # Social media icons in sidebar
   # Comment/uncommet to show/hide
   # Rearrange to change the order in which they appear
   social:
-    # twitter:         ACORDRobotics
-    github:          signal-k
-   # steam:           https://steamcommunity.com/id/droidology
-   # reddit:          https://www.reddit.com/r/AC0RDSoftware/
-    # download:        http://github.com/acord-robotics/stellarios
-    #deviantart:      gizmotronn
-    #gitlab:          http://gitlab.com/acord-robotics/robodev/s2rd
-    #dribbble:        http://dribbble.com/gizmotronn
-    email:           liam@skinetics.tech
-    rss:             https://acord-robotics.github.io/stellarios/feed.xml
+    twitter:         agrover112
+    github:          agrover112
+    email:           agrover112@gmail.com
     # facebook:        <username>
     # google:          <number>
     # vk:              <username>
@@ -64,7 +48,6 @@ author1:
     # pinterest:       <username>
     # foursquare:      <number>
     # yelp:            <string>
-    stackoverflow:   12364070/liam-arbuckle
     # npm:             <username>
     # hackernews:      <username>
     # trello:          <firstnamelastname>
@@ -81,9 +64,9 @@ author2:
   name:              Liam
   email:             liam@skinetics.tech
   about:             |
-    I'm the Co-Founder & Technical Director/CTO of Signal Kinetics
+    I'm the Co-Founder & Technical Director/CTO of Signal Kinetics, and the documentation maintainer for Fliscopt
   picture:           https://media-exp1.licdn.com/dms/image/C5603AQHtM1EpxGAkQw/profile-displayphoto-shrink_200_200/0/1606301008833?e=1621468800&v=beta&t=wcHx9dWTLH0wuXT39JNF9pPI5YIzr7NxGengnnNJ_qo
-  twitter:           OpusTheRobot
+  twitter:           TheMrScrooby
   github:            Gizmotronn
   accent_color:      '#268bd2'
   accent_image:
