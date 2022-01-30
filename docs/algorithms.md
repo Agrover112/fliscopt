@@ -1,6 +1,4 @@
 ---
-layout: page
-title: Documentation
 description: >
   Algo list
 hide_description: true
