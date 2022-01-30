@@ -3,7 +3,7 @@ layout: page
 title: Genetic Algorithms available
 description: >
   GA description
-hide_description: true
+hide_description: false
 sitemap: false
 permalink: /docs/genetic-algorithms
 ---
