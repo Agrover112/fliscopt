@@ -1,30 +1,23 @@
-# Fliscopt 
-![Stars](https://img.shields.io/github/stars/Agrover112/fliscopt) ![Forks](	https://img.shields.io/github/forks/Agrover112/fliscopt) ![License](https://img.shields.io/github/license/Agrover112/fliscopt)  ![Issues](https://img.shields.io/github/issues/Agrover112/fliscopt) 
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
-[![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/CharlesAverill/satyrn/graphs/commit-activity)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![PyPI](https://img.shields.io/pypi/v/fliscopt)](https://pypi.org/project/fliscopt/)
-![Tweet](https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2FAgrover112%2Ffliscopt)
-[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/Agrover112)
+# Hydejack Starter Kit
 
-![image](./images/fliscopt_graphic.jpg)
+A quicker, cleaner way to get started blogging with [Hydejack](https://hydejack.com/).
 
-FLIght SCheduling OPTimization 🛫 or *fliscopt* is a simple optimization library for flight scheduling and related problems in the discrete domain. The library supports plotting, asynchronous multiprocessing, and unimodal optimization benchmarks.
-The following repository contains code for the paper "XYZ". The experiments were performed in **PyPy3.7** and **CPython 3.8.10.**
+## Quick Start
+### Running locally
+1. Clone repository (git users), or [download] and unzip.
+2. Open terminal, `cd` into root directory (where `_config.yml` is located)
+3. Run `bundle install` [^1]
+4. Run `bundle exec jekyll serve`
+5. Open <http://localhost:4000/hydejack-starter-kit/>
 
-Following algorithms have been implemented and test as of date:
+## What's next?
+* Open files and read the comments
+* Read the [docs](https://hydejack.com/docs/)
+* Buy the [PRO version](https://hydejack.com/download/) to get the project and resume layout, newsletter subscription box, custom forms, and more.
 
-**Algorithms**:
-- Hill Climbing 
-- Random Search 
-- Simulated Annealing 
-- Genetic Algorithm 
-- Genetic Algorithm in Reverse Mode
-- Genetic  Algorithm with Reversals
-- Genetic Algorithm with Random Search as a Reversal/Reverse Process
-- Iterated Chaining
+[^1]: Requires Bundler. Install with `gem install bundler`.
 
+<<<<<<< HEAD
 # Getting Started
 
 Install the library using pip:
@@ -110,3 +103,6 @@ Read the following for detailed understanding of our project.
 # Contributing Guidelines
 Refer [Contributing.md](./CONTRIBUTING.md) and Project Board for mode details.
 This repository follows [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)!
+=======
+[download]: https://github.com/hydecorp/hydejack-starter-kit/archive/master.zip
+>>>>>>> c50061e70af1d68e9fba10fd71a98bde042e8608

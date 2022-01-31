@@ -1,4 +1,9 @@
 ---
+<<<<<<< HEAD
+=======
+layout: page
+title: Documentation
+>>>>>>> c50061e70af1d68e9fba10fd71a98bde042e8608
 description: >
   Algo list
 hide_description: true
