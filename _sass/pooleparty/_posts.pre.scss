@@ -1,0 +1,52 @@
+// Copyright (c) 2017 Florian Klampfer <https://qwtel.com/>
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+// <<<<< INLINE
+.page {
+  margin-bottom: 3em;
+
+  li + li {
+    margin-top: .25rem;
+  }
+
+  > header {
+    margin-bottom: 2rem;
+  }
+}
+
+// Blog post or page title
+.page-title, .post-title { margin-top: 0; }
+
+// Meta data line below post title
+.post-date {
+  display: block;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+}
+// >>>>>
+// <<<<< LINK
+hr.dingbat {
+  border: 0;
+}
+
+hr.dingbat::after {
+  content: "\2756";
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--menu-text);
+}
+// >>>>>

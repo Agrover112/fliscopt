@@ -1,0 +1,47 @@
+---
+# Copyright (c) 2020 AC0/RD
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+layout: base
+---
+
+{% include components/post.html post=page no_link_title=true no_excerpt=true hide_image=page.hide_image %}
+
+<hr class="dingbat related" />
+
+{% assign addons = page.addons | default:site.hydejack.post_addons %}
+{% unless addons %}{% assign addons = "about,newsletter,related,random" | split:"," %}{% endunless %}
+{% for addon in addons %}
+  {% case addon %}
+  {% when 'about' %}
+     {% include components/about.html %}
+  {% when 'related' %}
+    {% include components/related-posts.html post=post %}
+<h1> Technical Discussion </h1>
+    {% include utterances.html %}
+
+<div id="hyvor-talk-view"></div>
+<script type="text/javascript">
+    var HYVOR_TALK_WEBSITE = 3279; // DO NOT CHANGE THIS
+    var HYVOR_TALK_CONFIG = {
+        url: '{{ page.url | absolute_url }}',
+        id: '{{page.id}}'
+    };
+</script>
+<script async type="text/javascript" src="//talk.hyvor.com/web-api/embed"></script>
+
+  {% else %}
+  {% endcase %}
+{% endfor %}
