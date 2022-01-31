@@ -25,6 +25,7 @@ Following algorithms have been implemented and test as of date:
 - Genetic Algorithm with Random Search as a Reversal/Reverse Process
 - Iterated Chaining
 
+Take a look at the [docs](https://gizmotronn.github.io/fliscopt/docs) 
 # Getting Started
 
 Install the library using pip:
