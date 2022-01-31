@@ -1,44 +1,29 @@
-# Hydejack Starter Kit
+# About Fliscopt
+### What is Fliscopt?
+	Fliscopt is a short name for the term Flight Scheduling Optimization . It is a library you can use for scheduling flights which are round trips  from given locations to a given location and back. Fliscopt takes care of the constraints imposed such as waiting time, departure time, cost of the flight,etc. 
 
-A quicker, cleaner way to get started blogging with [Hydejack](https://hydejack.com/).
+### Why should I use it?
+You can easily run novel variants of Genetic Algorithm’s which have been tried and tested on benchmarks , to optimize for your given task. Moreover, fliscopt provides a simple interface which can be used to also learn about the algorithm’s and optimize your given task at hand. Simply plug your own cost function in based on the convention and enjoy the power of optimization.
 
-## Quick Start
-### Running locally
-1. Clone repository (git users), or [download] and unzip.
-2. Open terminal, `cd` into root directory (where `_config.yml` is located)
-3. Run `bundle install` [^1]
-4. Run `bundle exec jekyll serve`
-5. Open <http://localhost:4000/hydejack-starter-kit/>
+### How to use it?
+All the details are mentioned in the README.md, which explains beautifully how to install it as a package from PyPy or to clone it from the source.
 
-## What's next?
-* Open files and read the comments
-* Read the [docs](https://hydejack.com/docs/)
-* Buy the [PRO version](https://hydejack.com/download/) to get the project and resume layout, newsletter subscription box, custom forms, and more.
+# Installation
+* [Using pip](/fliscopt/docs/Installation) -> Find prereleases & finished versions here
+* [PyPi Project Page](https://pypi.org/project/fliscopt/) -> Find meta information & dependencies here
 
-[^1]: Requires Bundler. Install with `gem install bundler`.
+# Algorithms available
+* [All algorithms](/fliscopt/docs/algolist) -> Descriptions of all algorithms with relevant params
+* [Genetic Algorithms](/fliscopt/docs/genetic-algorithms) -> Solving both constrained & unconstrained optimisation problems
+* [Genetic Reversal](/fliscopt/docs/genetic-reversal) -> Introducing switching to genetic algorithms
+* [Iterated chaining](/fliscopt/docs/iterated-chaining) -> Chaining procedure inspired by Nevergrad
+* [What is switching?](/fliscopt/docs/switching) -> A guide for what switching is and how it's used
 
 <<<<<<< HEAD
-# Getting Started
-
-Install the library using pip:
-```
-pip install fliscopt
-```
-Or for unreleased versions:
-```
-pip install 'git+https://github.com/Agrover112/fliscopt/fliscopt@branchname
-```
-Or for development:
-```
-git clone https://github.com/Agrover112/fliscopt.git
-cd fliscopt
-pip install .
-```
-
-Download the flights.txt file from the following [link](https://drive.google.com/file/d/1-wxzUMLloeF1tGYEVHvBG_Dh6jfZ-pzR/view) and add it to a data/ directory within your parent directory.
-
-Checkout out the examples in the [examples](https://github.com/Agrover112/fliscopt/tree/master/examples) directory or run in [Google Collab](https://colab.research.google.com/drive/1C9tPvDvauUPxxkL4ItGYP1Azlg6NUBaW?usp=sharing)
-
+# Suggested reading/viewing
+* [Universal theory of switching](https://www.youtube.com/watch?v=aTqgPbKQUD8&feature=youtu.be)
+* [arxiv pre-print incoming [Stay Tuned]](#)
+=======
 ## For PyPy users
 The instructions for setup are mentioned in the setup directory. Alternatively, you can set up using this bash script. A requirements file is provided just in case.
 The script creates and activates a PyPy Conda environment with all libraries and dependencies.
@@ -95,14 +80,6 @@ After running the experiments, the results are stored in the results directory. 
 │   │   └── sol_chaining_a1.png
 │   └── griewank
 ```
-# References 
-Read the following for detailed understanding of our project.
 
-[1] [Alicea B., Grover A., Lim A. ,Parent J, Unified Theory of Switching. Flash Talk to be  presented at: 4th Neuromatch Conference; December 1 - 2, 2021](https://youtu.be/aTqgPbKQUD8)
-
-# Contributing Guidelines
-Refer [Contributing.md](./CONTRIBUTING.md) and Project Board for mode details.
-This repository follows [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)!
-=======
-[download]: https://github.com/hydecorp/hydejack-starter-kit/archive/master.zip
+# Algorithms available
 >>>>>>> c50061e70af1d68e9fba10fd71a98bde042e8608
