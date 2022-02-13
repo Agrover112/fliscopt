@@ -1,3 +1,12 @@
+## [0.3.2](https://github.com/Agrover112/fliscopt/compare/v0.3.1...v0.3.2) (2022-02-13)
+
+
+### Bug Fixes
+
+*  Uploading GA plot ([2a231f2](https://github.com/Agrover112/fliscopt/commit/2a231f274e210a02875d549fb5dc4fc0a63dd975))
+
+
+
 ## [0.3.1](https://github.com/Agrover112/fliscopt/compare/v0.3.0...v0.3.1) (2022-02-13)
 
 
@@ -36,15 +45,6 @@
 ### Bug Fixes
 
 * Added first reference/reading material ([b3612a7](https://github.com/Agrover112/fliscopt/commit/b3612a79d631b754224647fcd6deec6ed9642e37))
-
-
-
-## [0.2.1](https://github.com/Agrover112/fliscopt/compare/v0.2.0...v0.2.1) (2021-11-20)
-
-
-### Bug Fixes
-
-* Updated README.md with new feature ([67e5897](https://github.com/Agrover112/fliscopt/commit/67e5897d1ab1c6d953a7700168315f70e0800342))
 
 
 
