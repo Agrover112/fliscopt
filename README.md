@@ -67,23 +67,27 @@ soln, cost, scores, nfe, seed = sga2.run(domain=domain['domain'], fitness_functi
 plot_scores(scores, sga2.get_base(),fname='flight_scheduling', save_fig=False)
 
 ```
+This results in the following two plots:
+
+![](https://github.com/Agrover112/fliscopt/blob/master/examples/image.png)
+
 Checkout out the examples in the [examples](https://github.com/Agrover112/fliscopt/tree/master/examples) directory or run in [Google Collab](https://colab.research.google.com/drive/1C9tPvDvauUPxxkL4ItGYP1Azlg6NUBaW?usp=sharing)
 
 ## For PyPy users
 The instructions for setup are mentioned in the setup directory. Alternatively, you can set up using this bash script. A requirements file is provided just in case.
 The script creates and activates a PyPy Conda environment with all libraries and dependencies.
-```
+```bash
 cd ./setup.sh
 source setup.sh
 ```
 Then install using:
 
-```
+```bash
 pypy -mpip install fliscopt
 ```
 # Testing
 After adding any new algorithm, you can run the tests to check if the code is working properly.
-```
+```bash
 ./run_tests.sh
 ```
 
