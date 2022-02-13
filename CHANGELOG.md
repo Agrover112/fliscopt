@@ -1,3 +1,12 @@
+## [0.3.3](https://github.com/Agrover112/fliscopt/compare/v0.3.2...v0.3.3) (2022-02-13)
+
+
+### Bug Fixes
+
+* Updated README with plots ([5c8d8f5](https://github.com/Agrover112/fliscopt/commit/5c8d8f546145801177ae9426bebc9f97a5605149))
+
+
+
 ## [0.3.2](https://github.com/Agrover112/fliscopt/compare/v0.3.1...v0.3.2) (2022-02-13)
 
 
@@ -36,15 +45,6 @@
 ### Bug Fixes
 
 * Fixed the image link ([2515502](https://github.com/Agrover112/fliscopt/commit/2515502809e1c294f333c166f07e20ba0b3a7468))
-
-
-
-## [0.2.2](https://github.com/Agrover112/fliscopt/compare/v0.2.1...v0.2.2) (2021-12-03)
-
-
-### Bug Fixes
-
-* Added first reference/reading material ([b3612a7](https://github.com/Agrover112/fliscopt/commit/b3612a79d631b754224647fcd6deec6ed9642e37))
 
 
 
