@@ -29,15 +29,15 @@ Take a look at the [docs](https://gizmotronn.github.io/fliscopt/docs)
 # Getting Started
 
 Install the library using pip:
-```
+```bash
 pip install fliscopt
 ```
 Or for unreleased versions:
-```
-pip install 'git+https://github.com/Agrover112/fliscopt/fliscopt@branchname
+```bash
+pip install git+https://github.com/Agrover112/fliscopt/fliscopt@branchname
 ```
 Or for development:
-```
+```bash
 git clone https://github.com/Agrover112/fliscopt.git
 cd fliscopt
 pip install .
@@ -45,6 +45,28 @@ pip install .
 
 Download the flights.txt file from the following [link](https://drive.google.com/file/d/1-wxzUMLloeF1tGYEVHvBG_Dh6jfZ-pzR/view) and add it to a data/ directory within your parent directory.
 
+A sample code demonstrating how to use fliscopt:
+```python
+from fliscopt.utils.util import print_schedule, read_file,plot_scores
+from fliscopt.rs import RandomSearch
+from fliscopt.ga import GA, ReverseGA, GAReversals, GARSReversals
+from fliscopt.hc import HillClimb
+from fliscopt.chaining import IteratedChaining
+from fliscopt.fitness import fitness_function,domain,griewank
+
+
+
+read_file('flights.txt')
+sga=GAReversals(seed_init=False,search=False,n_k=250,number_generations=1000)
+soln, cost, scores, nfe, seed = sga.run(domain=domain['domain'], fitness_function=fitness_function,seed=5)
+plot_scores(scores, sga.get_base(),fname='flight_scheduling', save_fig=False)
+
+
+sga2=GARSReversals(seed_init=False,search=False,n_k=250,number_generations=1000)
+soln, cost, scores, nfe, seed = sga2.run(domain=domain['domain'], fitness_function=fitness_function,seed=5)
+plot_scores(scores, sga2.get_base(),fname='flight_scheduling', save_fig=False)
+
+```
 Checkout out the examples in the [examples](https://github.com/Agrover112/fliscopt/tree/master/examples) directory or run in [Google Collab](https://colab.research.google.com/drive/1C9tPvDvauUPxxkL4ItGYP1Azlg6NUBaW?usp=sharing)
 
 ## For PyPy users
