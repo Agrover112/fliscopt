@@ -10,12 +10,12 @@
 
 ![image](./images/fliscopt_graphic.jpg)
 
-FLIght SCheduling OPTimization 🛫 or *fliscopt* is a simple optimization library for flight scheduling and related problems in the discrete domain. The library supports plotting, asynchronous multiprocessing, and unimodal optimization benchmarks.
-The following repository contains code for the paper "XYZ". The experiments were performed in **PyPy3.7** and **CPython 3.8.10.**
+FLIght SCheduling OPTimization 🛫 or fliscopt is a simple optimization library for flight scheduling and related problems in the discrete domain. The library supports plotting, asynchronous multiprocessing, and unimodal optimization benchmarks.
+The following repository contains code for the paper "XYZ". The experiments were performed in *PyPy3.7* and *CPython 3.8.10.*
 
 Following algorithms have been implemented and test as of date:
 
-**Algorithms**:
+*Algorithms*:
 - Hill Climbing 
 - Random Search 
 - Simulated Annealing 
@@ -29,24 +29,24 @@ Take a look at the [docs](https://gizmotronn.github.io/fliscopt/docs)
 # Getting Started
 
 Install the library using pip:
-```bash
+bash
 pip install fliscopt
-```
+
 Or for unreleased versions:
-```bash
+bash
 pip install git+https://github.com/Agrover112/fliscopt/fliscopt@branchname
-```
+
 Or for development:
-```bash
+bash
 git clone https://github.com/Agrover112/fliscopt.git
 cd fliscopt
 pip install .
-```
+
 
 Download the flights.txt file from the following [link](https://drive.google.com/file/d/1-wxzUMLloeF1tGYEVHvBG_Dh6jfZ-pzR/view) and add it to a data/ directory within your parent directory.
 
 A sample code demonstrating how to use fliscopt:
-```python
+python
 from fliscopt.utils.util import print_schedule, read_file,plot_scores
 from fliscopt.rs import RandomSearch
 from fliscopt.ga import GA, ReverseGA, GAReversals, GARSReversals
@@ -66,7 +66,7 @@ sga2=GARSReversals(seed_init=False,search=False,n_k=250,number_generations=1000)
 soln, cost, scores, nfe, seed = sga2.run(domain=domain['domain'], fitness_function=fitness_function,seed=5)
 plot_scores(scores, sga2.get_base(),fname='flight_scheduling', save_fig=False)
 
-```
+
 This results in the following two plots:
 
 ![](https://github.com/Agrover112/fliscopt/blob/master/examples/image.png)
@@ -76,30 +76,40 @@ Checkout out the examples in the [examples](https://github.com/Agrover112/flisco
 ## For PyPy users
 The instructions for setup are mentioned in the setup directory. Alternatively, you can set up using this bash script. A requirements file is provided just in case.
 The script creates and activates a PyPy Conda environment with all libraries and dependencies.
-```bash
+bash
 cd ./setup.sh
 source setup.sh
-```
+
 Then install using:
 
-```bash
+bash
 pypy -mpip install fliscopt
-```
+
 # Testing
 After adding any new algorithm, you can run the tests to check if the code is working properly.
-```bash
+bash
 ./run_tests.sh
-```
+
 
 # Results
 
 ## Experimental Results
-Results were compared by using the same seeds. The following table shows the results of the experiments.
-(Will be shortly added)
+Results  were compared by using the same seeds. The following table shows the results of the experiments. Flight scheduling results.
+
+| Algorithm | Mean cost | Std.dev | Min cost | Max cost | n.fe. | Time(millsecond) | 
+|-----------|-----------|---------|----------|----------|-------|------------------|
+| SGA       | 2780.9    | 205.75  | 2356     | 3081     | 1000  | 9.36             |   
+| GAwRo     | 2629.8    | 213.79  | 2356     | 3004     | 1000  | 9.66             |   
+| GAwR      | 2593      | 183.89  | 2356     | 2973     | 1099  | 10.16            |   
+| HC        | 4177.7    | 817.72  | 2759     | 5839     | 328   | 0.33             |   
+| RS        | 4545.3    | 271.95  | 4143     | 5165     | 100   | 0.17             |   
+| SA        | 3726.5    | 578.16  | 2759     | 4679     | 512   | 0.24             |   
+| RS+HC     | 3050.7    | 399.72  | 2356     | 3771     | 1657  | 2.23             |   
+| GARSRev   | 2592.9    | 168.45  | 2356     | 2888     | 1099  | 9.97             |  
 
 ## Accessing results
 After running the experiments, the results are stored in the results directory. The results are stored in the following format in subdirectories:
-```
+
 .
 ├── multi_proc
 │   ├── ackley_N2
@@ -128,7 +138,7 @@ After running the experiments, the results are stored in the results directory. 
 │   │   ├── sol_chaining.png
 │   │   └── sol_chaining_a1.png
 │   └── griewank
-```
+
 # References 
 Read the following for detailed understanding of our project.
 
