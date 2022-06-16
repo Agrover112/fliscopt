@@ -109,7 +109,7 @@ Results  were compared by using the same seeds. The following table shows the re
 
 ## Accessing results
 After running the experiments, the results are stored in the results directory. The results are stored in the following format in subdirectories:
-
+```
 .
 ├── multi_proc
 │   ├── ackley_N2
@@ -138,6 +138,7 @@ After running the experiments, the results are stored in the results directory. 
 │   │   ├── sol_chaining.png
 │   │   └── sol_chaining_a1.png
 │   └── griewank
+```
 
 # References 
 Read the following for detailed understanding of our project.
