@@ -94,8 +94,19 @@ After adding any new algorithm, you can run the tests to check if the code is wo
 # Results
 
 ## Experimental Results
-Results were compared by using the same seeds. The following table shows the results of the experiments.
-(Will be shortly added)
+Results were compared by using the same seeds. The following table shows the results of the experiments. Flight scheduling results have been shown below.
+
+| Algorithm | Mean cost | Std.dev | Min cost | Max cost | n.fe. | Time(millsecond) | 
+|-----------|-----------|---------|----------|----------|-------|------------------|
+| SGA       | 2780.9    | 205.75  | 2356     | 3081     | 1000  | 9.36             |   
+| GAwRo     | 2629.8    | 213.79  | 2356     | 3004     | 1000  | 9.66             |   
+| GAwR      | 2593      | 183.89  | 2356     | 2973     | 1099  | 10.16            |   
+| HC        | 4177.7    | 817.72  | 2759     | 5839     | 328   | 0.33             |   
+| RS        | 4545.3    | 271.95  | 4143     | 5165     | 100   | 0.17             |   
+| SA        | 3726.5    | 578.16  | 2759     | 4679     | 512   | 0.24             |   
+| RS+HC     | 3050.7    | 399.72  | 2356     | 3771     | 1657  | 2.23             |   
+| GARSRev   | 2592.9    | 168.45  | 2356     | 2888     | 1099  | 9.97             | 
+
 
 ## Accessing results
 After running the experiments, the results are stored in the results directory. The results are stored in the following format in subdirectories:
