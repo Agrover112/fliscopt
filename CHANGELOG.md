@@ -1,3 +1,12 @@
+# [0.4.0](https://github.com/Agrover112/fliscopt/compare/v0.3.3...v0.4.0) (2022-06-16)
+
+
+### Features
+
+* Update with flight scheduling results ([6563c91](https://github.com/Agrover112/fliscopt/commit/6563c91cadaa480d8f9a1ecd521ef9ba4ba3300e))
+
+
+
 ## [0.3.3](https://github.com/Agrover112/fliscopt/compare/v0.3.2...v0.3.3) (2022-02-13)
 
 
@@ -36,15 +45,6 @@
 ### Features
 
 * Added circular shift mutation & fixed .csv write issue ([caf6895](https://github.com/Agrover112/fliscopt/commit/caf6895282a7454ece4cb4faf0df64832806d307))
-
-
-
-## [0.2.3](https://github.com/Agrover112/fliscopt/compare/v0.2.2...v0.2.3) (2021-12-08)
-
-
-### Bug Fixes
-
-* Fixed the image link ([2515502](https://github.com/Agrover112/fliscopt/commit/2515502809e1c294f333c166f07e20ba0b3a7468))
 
 
 
