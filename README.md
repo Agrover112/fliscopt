@@ -1,4 +1,6 @@
 # Fliscopt 
+[![DOI](https://zenodo.org/badge/347739886.svg)](https://zenodo.org/badge/latestdoi/347739886)
+
 ![Stars](https://img.shields.io/github/stars/Agrover112/fliscopt) ![Forks](	https://img.shields.io/github/forks/Agrover112/fliscopt) ![License](https://img.shields.io/github/license/Agrover112/fliscopt)  ![Issues](https://img.shields.io/github/issues/Agrover112/fliscopt) 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
