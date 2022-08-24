@@ -27,7 +27,7 @@ Following algorithms have been implemented and test as of date:
 - Genetic Algorithm with Random Search as a Reversal/Reverse Process
 - Iterated Chaining
 
-Take a look at the [docs](https://gizmotronn.github.io/fliscopt/docs) 
+Take a look at the [docs](https://gizmotronn.github.io/fliscopt/docs) or the [Appendix](https://github.com/Agrover112/fliscopt/blob/master/Supplementaty%20Material%20and%20Appendix.pdf) for more details.
 # Getting Started
 
 Install the library using pip:
