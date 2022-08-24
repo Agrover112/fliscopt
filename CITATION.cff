@@ -3,6 +3,9 @@ message: "If you use this software, please cite it as below."
 authors:
   - family-names: Ankit
     given-names: Grover
-title: Agrover112/fliscopt: Updates
+    orcid : https://orcid.org/0000-0003-3724-6605
+title: fliscopt
 version: v0.4.1
+doi: 10.5281/zenodo.7018486
 date-released: 2022-08-24
+url : "https://doi.org/10.5281/zenodo.7018486"
