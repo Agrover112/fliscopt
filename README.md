@@ -12,7 +12,9 @@
 
 ![image](./images/fliscopt_graphic.jpg)
 
-FLIght SCheduling OPTimization 🛫 or *fliscopt* is a simple optimization library for flight scheduling and related problems in the discrete domain. The library supports plotting, asynchronous multiprocessing, and unimodal optimization benchmarks.
+FLIght SCheduling OPTimization 🛫 or *fliscopt* is a simple optimization library for flight scheduling and related problems in the discrete domain. Flight scheduling opt here refers to  generating schedules of optimal cost for round-trips.
+
+The library supports plotting, asynchronous multiprocessing, and unimodal optimization benchmarks.
 The following repository contains code for the paper "XYZ". The experiments were performed in **PyPy3.7** and **CPython 3.8.10.**
 
 Following algorithms have been implemented and test as of date:
@@ -143,9 +145,13 @@ After running the experiments, the results are stored in the results directory. 
 │   └── griewank
 ```
 # References 
-Read the following for detailed understanding of our project.
+Read and Cite the following References for detailed understanding and use of our project.
 
-[1] [Alicea B., Grover A., Lim A. ,Parent J, Unified Theory of Switching. Flash Talk to be  presented at: 4th Neuromatch Conference; December 1 - 2, 2021](https://youtu.be/aTqgPbKQUD8)
+[1] [Grover, A., Yadav, V., Alicea, B. (2023). Flipping the Switch on Local Exploration: Genetic Algorithms with Reversals. In: Kumar, S., Sharma, H., Balachandran, K., Kim, J.H., Bansal, J.C. (eds) Third Congress on Intelligent Systems. CIS 2022. Lecture Notes in Networks and Systems, vol 608. Springer, Singapore](https://doi.org/10.1007/978-981-19-9225-4_52)
+
+
+
+[2] [Alicea B., Grover A., Lim A. ,Parent J, Unified Theory of Switching. Flash Talk presented at: 4th Neuromatch Conference; December 1 - 2, 2021](https://youtu.be/aTqgPbKQUD8)
 
 # Contributing Guidelines
 Refer [Contributing.md](./CONTRIBUTING.md) and Project Board for mode details.
