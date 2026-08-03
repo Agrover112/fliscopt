@@ -20,29 +20,16 @@ def circular_mutation(domain, step,shift, solution) -> list:
     #Cirulcar shift by shift places  & then mutate normally 
     return mutation(domain, step, solution[shift:] + solution[:shift])
 
-# No good results tbh( also doesn't work for benchmarks yet) #FIX-NEEDED
 def multi_mutation(domain, step, solution) -> list:
-    li = [i for i in range(domain[0][0], domain[0][1]+1)]
-    gene = random.randint(0, len(domain)-1)
-    if gene in li:
-        li.remove(gene)
-    gene2 = random.choice(li)
-    mutant = solution
-    if random.random() < 0.5:
-        if solution[gene] != domain[gene][0]:
-            mutant = solution[0:gene]+[solution[gene]-step]+solution[gene+1:]
-    else:
-        if solution[gene] != domain[gene][1]:
-            mutant = solution[0:gene]+[solution[gene]+step]+solution[gene+1:]
-    if random.random() < 0.5:
-        if solution[gene2] != domain[gene2][0]:
-            mutant = solution[0:gene2] + \
-                [solution[gene2]-step]+solution[gene2+1:]
-    else:
-        if solution[gene2] != domain[gene2][1]:
-            mutant = solution[0:gene2] + \
-                [solution[gene2]+step]+solution[gene2+1:]
-
+    mutant = solution[:]
+    genes = random.sample(range(len(domain)), min(2, len(domain)))
+    for g in genes:
+        if random.random() < 0.5:
+            if mutant[g] != domain[g][0]:
+                mutant[g] -= step
+        else:
+            if mutant[g] != domain[g][1]:
+                mutant[g] += step
     return mutant
 
 if __name__ == "__main__":
